@@ -1,0 +1,156 @@
+:root {
+    --bg-color: #B2CAD4;
+    --main-color: #264653;
+    --card-bg: #ffffff;
+    --text-color: #2b2b2b;
+    --text-light: #666666;
+    --accent-color: #2a9d8f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hub-header {
+    background-color: var(--main-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.hub-header h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.hub-header p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.hub-container {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.category-section {
+    margin-bottom: 3rem;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    color: var(--main-color);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 240px));
+    gap: 1.5rem;
+}
+
+/* Обновленная плитка с полным выравниванием по центру */
+.tile-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    cursor: pointer;
+
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.tile-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 22px rgba(0,0,0,0.1);
+}
+
+/* Иконка: увеличили размер до 3.2rem и покрасили в глубокий сине-зелёный #264653 */
+.tile-icon {
+    font-size: 3.5rem;
+    color: var(--main-color);
+    margin-bottom: 0.5rem;
+}
+
+.tile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0; /* Магия: одинаковый отступ сверху и снизу прижимает блок строго к центру */
+    width: 100%;
+}
+
+.tile-content h3 {
+    font-size: 1.1rem;
+    color: var(--main-color);
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* В квадратной иконке по центру стрелочка снизу больше не нужна,
+   поэтому убираем рамки и делаем её аккуратным ненавязчивым индикатором */
+.tile-footer {
+    margin-top: auto; /* Прижимает футер к самому низу квадрата */
+    width: 100%;       /* Занимает всю ширину плитки */
+    display: flex;
+    justify-content: flex-end; /* Сдвигает содержимое (кнопку) вправо */
+    padding-top: 0.5rem;
+    border-top: 1px solid #eeeeee;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.empty-service {
+    cursor: default;
+    opacity: 0.6;
+}
+.empty-service:hover {
+    transform: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+/* Для неактивной плитки иконку оставим приглушенной */
+.empty-service .tile-icon {
+    color: var(--text-light);
+}
+.status-disabled {
+    color: var(--text-light);
+}
+
+.hub-footer {
+    text-align: center;
+    padding: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--main-color);
+    font-size: 0.85rem;
+}
