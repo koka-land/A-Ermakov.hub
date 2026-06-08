@@ -17,9 +17,21 @@
 
         <div class="leftbox">
             <nav>
-                <a id="tab-home" class="nav-link active" title="Главная"><i class="fa-solid fa-house"></i></a>
-                <a id="tab-reports" class="nav-link" title="Отчёты"><i class="fa-solid fa-folder"></i></a>
-            </nav>
+    <a href="#" class="nav-link active" id="tab-home" data-tooltip="Главная">
+        <i class="fa fa-home" aria-hidden="true"></i>
+    </a>
+
+    <a href="#" class="nav-link" id="tab-reports" data-tooltip="Отчёты ЭЖ">
+        <i class="fa fa-folder-open" aria-hidden="true"></i>
+    </a>
+
+    <a href="#" class="nav-link" id="tab-analytics" data-tooltip="Аналитика">
+        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+    </a>
+    <a href="#" class="nav-link" id="tab-settings" data-tooltip="Настройки">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+    </a>
+</nav>
         </div>
 
         <div class="rightbox">

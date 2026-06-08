@@ -72,6 +72,55 @@ body {
     width: 100%;
 }
 
+.leftbox nav .nav-link {
+    position: relative;
+}
+
+.leftbox nav .nav-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 110px;                /* Чуть увеличили отступ, так как левая панель стала шире */
+    top: 50%;
+    transform: translateY(-50%) translateX(-10px);
+
+    /* ЦВЕТ И ШРИФТ: используем наш гармоничный темный оттенок */
+    background: #264653;        /* Мягкий сланцевый цвет (чуть светлее левой панели для контраста) */
+    color: #ffffff;
+    padding: 10px 30px;          /* Сделали бокс чуть просторнее */
+    font-size: 1.2rem;         /* Увеличили шрифт (был 0.75rem) */
+    font-weight: 100;
+    border-radius: 5px;         /* Округлили в стиле наших плиток */
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.leftbox nav .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 102px;                /* Подгнали под новое положение бокса */
+    top: 50%;
+    transform: translateY(-50%) translateX(-10px);
+
+    /* Стрелочка теперь красится в тот же сланцевый цвет */
+    border-width: 6px;          /* Чуть увеличили стрелочку под размер шрифта */
+    border-style: solid;
+    border-color: transparent #264653 transparent transparent;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.leftbox nav .nav-link:hover::after,
+.leftbox nav .nav-link:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0); /* Элегантный микродвиг вправо при появлении */
+}
+
 nav a {
     padding: 15px 0;
     color: var(--white);
