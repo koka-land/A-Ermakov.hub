@@ -56,46 +56,82 @@
             </div>
 
             <div id="content-reports" class="tab-content noshow">
-                <h1 class="page-title">Отчеты по электронному журналу</h1>
 
-                <div class="grid-layout">
-                    <a href="/cgi-bin/app.cgi" class="tile-card tile-blue">
-                        <div class="tile-inside">
-                            <div class="tile-icon">
-                                <i class="fa-solid fa-chart-pie"></i>
-                            </div>
-                            <span class="tile-title">Оценка учебных умений</span>
-                        </div>
-                    </a>
+    <div id="reports-categories-root" class="submenu-level">
+        <h1 class="page-title">Категории аналитики</h1>
 
-                    <div class="tile-card empty-service">
-                        <div class="tile-inside">
-                            <div class="tile-icon">
-                                <i class="fa-solid fa-chart-line"></i>
-                            </div>
-                            <span class="tile-title">Новый отчёт</span>
-                        </div>
-                    </div>
+        <div class="categories-grid">
+    <div class="category-card tile-blue" onclick="openSubmenu('sub-reports')">
+        <div class="category-icon-wrapper">
+            <i class="fa-solid fa-chart-pie"></i>
+        </div>
+        <div class="category-info">
+            <h2>Отчёты</h2>
+            <p>Анализ журналов, выгрузка статистики и учебные умения</p>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-next"></i>
+    </div>
 
-                    <div class="tile-card empty-service">
-                        <div class="tile-inside">
-                            <div class="tile-icon">
-                                <i class="fa-solid fa-chart-line"></i>
-                            </div>
-                            <span class="tile-title">Новый отчёт</span>
-                        </div>
-                    </div>
+    <div class="category-card empty-service" onclick="openSubmenu('sub-something-else')">
+        <div class="category-icon-wrapper">
+            <i class="fa-solid fa-folder-open"></i>
+        </div>
+        <div class="category-info">
+            <h2>Что-то еще</h2>
+            <p>Дополнительные метрики, архивы и внешние выгрузки данных</p>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-next"></i>
+    </div>
+</div>
+    </div>
 
-                    <div class="tile-card empty-service">
-                        <div class="tile-inside">
-                            <div class="tile-icon">
-                                <i class="fa-solid fa-chart-line"></i>
-                            </div>
-                            <span class="tile-title">Новый отчёт</span>
-                        </div>
-                    </div>
-                </div>
+    <div id="sub-reports" class="submenu-level noshow">
+        <div class="back-button-row" onclick="closeSubmenu('sub-reports')">
+            <i class="fa-solid fa-arrow-left-long"></i> Назад в категории
+        </div>
+
+        <h1 class="page-title">Отчёты по электронному журналу</h1>
+
+        <div class="grid-layout">
+            <div class="tile-card tile-blue">
+                <i class="fa-solid fa-chart-pie tile-icon"></i>
+                <span class="tile-title">Оценка учебных умений</span>
             </div>
+            <div class="tile-card empty-service">
+                <i class="fa-solid fa-plus tile-icon"></i>
+                <span class="tile-title">Новый отчёт</span>
+            </div>
+            <div class="tile-card empty-service">
+                <i class="fa-solid fa-plus tile-icon"></i>
+                <span class="tile-title">Новый отчёт</span>
+            </div>
+            <div class="tile-card empty-service">
+                <i class="fa-solid fa-plus tile-icon"></i>
+                <span class="tile-title">Новый отчёт</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="sub-something-else" class="submenu-level noshow">
+        <div class="back-button-row" onclick="closeSubmenu('sub-something-else')">
+            <i class="fa-solid fa-arrow-left-long"></i> Назад в категории
+        </div>
+
+        <h1 class="page-title">Что-то еще</h1>
+
+        <div class="grid-layout">
+            <div class="tile-card empty-service">
+                <i class="fa-solid fa-chart-line tile-icon"></i>
+                <span class="tile-title">Какая-то метрика</span>
+            </div>
+            <div class="tile-card empty-service">
+                <i class="fa-solid fa-plus tile-icon"></i>
+                <span class="tile-title">Добавить блок</span>
+            </div>
+        </div>
+    </div>
+
+</div>
 
         </div>
     </div>

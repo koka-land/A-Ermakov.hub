@@ -1,29 +1,65 @@
+/* ==========================================================================
+   1. ПЕРЕМЕННЫЕ И БЕЗОПАСНЫЙ ШРИФТ ROBOTO
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700&display=swap');
+
 :root {
     /* Наша фирменная палитра */
     --bg-color: #B2CAD4;          /* Спокойный матовый серо-голубой фон вокруг */
-    --main-dark: #264653;         /* Глубокий сине-зеленый (для левой панели, лого и заголовков) */
-    --accent-tile: #2a9d8f;       /* Мягкий бирюзовый (цвет активной iOS-плитки) */
+    --main-dark: #264653;         /* Глубокий сине-зеленый (левая панель, лого и заголовки) */
+    --accent-tile: #2a9d8f;       /* Мягкий бирюзовый (цвет активной плитки) */
 
     --white: #FFFFFF;
     --gray-text: #777777;
     --black-text: #070707;
 }
 
+/* Убираем отсюда font-family !important, чтобы не ломать шрифты иконок */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Назначаем Roboto базовым шрифтом для всего текстового контента приложения */
+body, input, button, select, textarea, p, span, h1, h2, h3, a {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* Фон страницы теперь ровный, матовый и глубокий */
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg-color);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+/* Очистка ссылок, чтобы они не синели и не подчеркивались */
+a, a:visited, a:hover, a:active {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* Читаемые отступы для текстов на Главной */
+.rightbox p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: #2f3640;
+    font-weight: 300;
+}
+.rightbox ul, .rightbox ol {
+    margin: 0 0 20px 24px;
+}
+.rightbox li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   2. ДЕСКТОПНЫЙ КАРКАС ПАНЕЛЕЙ
+   ========================================================================== */
 
 /* Основной контейнер-форма */
 .container {
@@ -32,29 +68,17 @@ body {
     height: 70vh;
     min-height: 400px;
     position: relative;
-    box-shadow: 0 15px 35px rgba(38, 70, 83, 0.15); /* Сделали тень мягче и в тон темы */
+    box-shadow: 0 15px 35px rgba(38, 70, 83, 0.15);
     border-radius: 12px;
-}
-
-/* Логотип hub */
-.logo {
-    float: right;
-    margin-right: 20px;
-    margin-top: 15px;
-    color: var(--main-dark); /* Покрасили в благородный темный */
-    font-weight: 900;
-    font-size: 1.5em;
-    letter-spacing: 1px;
-    text-transform: lowercase;
 }
 
 /* Левая вертикальная панель */
 .leftbox {
     float: left;
     top: -5%;
-    left: 40px;               /* Четкий отступ слева, как ты и хотел */
+    left: 40px;
     position: absolute;
-    width: 100px;             /* Точная фиксированная ширина */
+    width: 100px;
     height: 110%;
     background: var(--main-dark);
     box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.15);
@@ -66,8 +90,8 @@ body {
 .leftbox nav {
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* Центрируем иконки по вертикали */
-    gap: 2.5rem;              /* Красивый фиксированный шаг между иконками */
+    justify-content: center;
+    gap: 2.5rem;
     height: 100%;
     width: 100%;
 }
@@ -76,23 +100,21 @@ body {
     position: relative;
 }
 
+/* Воздушные подсказки */
 .leftbox nav .nav-link::after {
     content: attr(data-tooltip);
     position: absolute;
-    left: 110px;                /* Чуть увеличили отступ, так как левая панель стала шире */
+    left: 110px;
     top: 50%;
     transform: translateY(-50%) translateX(-10px);
-
-    /* ЦВЕТ И ШРИФТ: используем наш гармоничный темный оттенок */
-    background: #264653;        /* Мягкий сланцевый цвет (чуть светлее левой панели для контраста) */
+    background: #264653;
     color: #ffffff;
-    padding: 10px 30px;          /* Сделали бокс чуть просторнее */
-    font-size: 1.2rem;         /* Увеличили шрифт (был 0.75rem) */
-    font-weight: 100;
-    border-radius: 5px;         /* Округлили в стиле наших плиток */
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    border-radius: 5px;
     white-space: nowrap;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
@@ -101,86 +123,95 @@ body {
 .leftbox nav .nav-link::before {
     content: "";
     position: absolute;
-    left: 102px;                /* Подгнали под новое положение бокса */
+    left: 102px;
     top: 50%;
     transform: translateY(-50%) translateX(-10px);
-
-    /* Стрелочка теперь красится в тот же сланцевый цвет */
-    border-width: 6px;          /* Чуть увеличили стрелочку под размер шрифта */
+    border-width: 6px;
     border-style: solid;
     border-color: transparent #264653 transparent transparent;
-
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.leftbox nav .nav-link:hover::after,
-.leftbox nav .nav-link:hover::before {
+.leftbox nav .nav-link:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(0); /* Элегантный микродвиг вправо при появлении */
+    transform: translateY(-50%) translateX(0);
+}
+.leftbox nav .nav-link::before,
+.leftbox nav .nav-link:hover::before {
+    display: none !important;
 }
 
-nav a {
+/* ==========================================================================
+   ЦВЕТА И АНИМАЦИЯ ИКОНОК В БОКОВОМ МЕНЮ
+   ========================================================================== */
+
+/* Неактивные иконки — теперь четко в цвете #B2CAD4 */
+nav a, .leftbox nav a {
     padding: 15px 0;
-    color: var(--white);
     font-size: 1.2em;
     display: block;
     text-align: center;
     transition: all .2s ease-in-out;
     cursor: pointer;
     width: 100%;
-    opacity: 0.6; /* Неактивные иконки в меню слегка приглушены */
+    color: #B2CAD4 !important; /* Твой цвет для неактивных пунктов */
+    opacity: 1 !important;     /* Убираем старое размытие, цвет теперь сочный */
 }
 
-/* При наведении на иконку в меню она плавно подсвечивается */
-nav a:hover {
-    color: var(--white);
-    opacity: 1;
+/* При наведении иконка плавно загорается белым и слегка увеличивается */
+nav a:hover, .leftbox nav a:hover {
+    color: var(--white) !important;
     transform: scale(1.1);
 }
 
-/* Активный пункт меню горит чистым белым светом и не прозрачен */
-nav a.active {
-    color: var(--white);
-    opacity: 1;
-    font-size: 1.3em; /* Слегка выделяем активную вкладку размером */
+/* Активный пункт меню уверенно горит чистым белым */
+nav a.active, .leftbox nav a.active {
+    color: var(--white) !important;
+    font-size: 1.3em;          /* Слегка выделяем активную вкладку размером */
+    transform: none;
 }
 
 /* Правая область контента */
 .rightbox {
-    position: absolute;       /* Перевели в абсолют, чтобы left и calc работали идеально */
-    left: 140px;              /* Начинаемся ровно после левой панели */
-    width: calc(100% - 140px);/* Твоя крутая формула расчета ширины */
+    position: absolute;
+    left: 140px;
+    width: calc(100% - 140px);
     height: 100%;
-
-    /* Сохраняем твои новые вертикальные отступы и симметрию по бокам (по 40px) */
     padding: 60px 40px 90px 40px;
 }
 
-/* Содержимое вкладки готово к вылету справа */
+/* Логотип hub */
+.logo {
+    float: right;
+    margin-right: 20px;
+    margin-top: 15px;
+    color: var(--main-dark);
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+}
+
+/* Содержимое вкладок */
 .tab-content {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-
-    /* Убираем глобальный align-items: center, чтобы не ломать левый флаг заголовка */
     align-items: flex-start;
-
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Состояние скрытой вкладки — она прозрачна и сдвинута вправо на 30 пикселей */
 .noshow {
     display: none !important;
     opacity: 0;
-    transform: translateX(30px); /* Вот он — сдвиг по горизонтали (по оси X) */
+    transform: translateX(30px);
 }
 
-/* Вспомогательный класс для плавного старта */
 .tab-content.fade-in {
     opacity: 0;
     transform: translateX(30px);
@@ -194,9 +225,7 @@ nav a.active {
     margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: 600;
-
-    /* Центрируем заголовок соразмерно сетке */
+    font-weight: 500;
     width: 100%;
     max-width: 560px;
     margin-left: auto;
@@ -204,14 +233,13 @@ nav a.active {
 }
 
 #content-reports {
-    align-items: center; /* Центрирует все внутренние блоки (включая .grid-layout) по горизонтали */
+    align-items: center;
 }
 
-/* При этом заголовок внутри этой вкладки должен остаться прижатым к левому краю сетки */
 #content-reports .page-title {
     width: 100%;
-    max-width: 560px;    /* Делаем ширину заголовка точно такой же, как у сетки плиток */
-    text-align: left;    /* Текст внутри своей области смотрит налево */
+    max-width: 560px;
+    text-align: left;
     margin-bottom: 25px;
 }
 
@@ -219,90 +247,265 @@ nav a.active {
 .grid-layout {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 1.2rem;
     max-width: 560px;
     width: 100%;
-
-    /* Вот она, чистая классика центрирования */
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Базовая плитка */
+/* ==========================================================================
+   4. СТИЛЬ ПЛИТОК (Твоя идеальная цветовая схема с ховером)
+   ========================================================================== */
+
+/* БАЗОВЫЙ КАРКАС КАРТОЧКИ (Общие размеры и геометрия для всех) */
 .tile-card {
+    background: var(--white) !important;
+    border: 2px dashed #B2CAD4 !important; /* Серый пунктир по умолчанию для заглушек */
     border-radius: 14px;
-    padding: 1rem 0.5rem;
+    padding: 18px 2px 12px 2px !important;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-decoration: none;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.2s ease;
 }
 
-/* НАША КРАСИВАЯ АКТИВНАЯ ПЛИТКА (Бирюзовый Flat iOS-стиль) */
-.tile-blue {
-    background: var(--accent-tile);
-    color: var(--white);
-    box-shadow: 0 4px 12px rgba(42, 157, 143, 0.2);
-}
-
-.tile-blue:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(42, 157, 143, 0.35);
-    background: #31b0a1; /* Чуть-чуть подсвечиваем при наведении */
-}
-
-.tile-inside {
-    display: flex;
-    flex-direction: column;
+/* БАЗОВЫЙ КАРКАС ИКОНКИ */
+.tile-icon {
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    margin: auto 0;
-    width: 100%;
+    font-size: 2.6rem !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    margin: 0 auto 14px auto !important;
+
+    background: transparent !important;
+    border: none !important;
+    width: auto !important;
+    transition: color 0.25s ease;
 }
 
-.tile-icon {
-    font-size: 2.4rem;
-    margin-bottom: 0.5rem;
-}
-
+/* БАЗОВЫЙ КАРКАС ТЕКСТА (Тонкий Roboto 200) */
 .tile-title {
-    font-size: 0.75rem;
-    font-weight: 400;
+    font-size: 0.9rem;
+    font-weight: 200 !important;
     line-height: 1.3;
     text-align: center;
+    color: var(--main-dark) !important;
     width: 100%;
     display: block;
-    padding: 0 4px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    padding: 0 !important;
     white-space: normal;
+    word-wrap: break-word;
 }
 
-/* Стиль неактивной плитки "В разработке" */
-.empty-service {
-    background: #f4f6f7;
-    color: #a0aab0;
-    border: 1px dashed #d1d8dc;
+/* --------------------------------------------------------------------------
+   1. ТВОЯ АКТИВНАЯ РАБОЧАЯ ПЛИТКА (ГЛУБОКИЙ СЛАНЦЕВЫЙ -> БИРЮЗОВЫЙ СЛИЯНИЕ)
+   -------------------------------------------------------------------------- */
+
+/* В покое — строгий пунктир в цвет левой панели #264653 */
+.tile-card.tile-blue {
+    border: 2px dashed #264653 !important;
+}
+.tile-card.tile-blue .tile-icon {
+    color: #264653 !important;
+}
+
+/* ПРИ НАВЕДЕНИИ: загорается бирюзой #2A9D8F и превращается в сплошную линию */
+.tile-card.tile-blue:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(42, 157, 143, 0.06);
+    border: 2px solid #2A9D8F !important;
+}
+.tile-card.tile-blue:hover .tile-icon {
+    color: #2A9D8F !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. НЕАКТИВНЫЕ ПЛИТКИ-ЗАГЛУШКИ (СЕРЫЙ ПУНКТИР -> SOLID СЕРЫЙ)
+   -------------------------------------------------------------------------- */
+
+/* В покое — блеклый серый пунктир */
+.tile-card.empty-service {
+    border: 2px dashed #cbd3d6 !important;
     cursor: default;
 }
-.empty-service:hover {
-    transform: none;
-    box-shadow: none;
+.tile-card.empty-service .tile-icon {
+    color: #b2bcC2 !important;
 }
-.empty-service .tile-icon {
-    color: #b2bcC2;
+.tile-card.empty-service .tile-title {
+    color: var(--gray-text) !important;
 }
 
-.placeholder-text {
+/* При наведении заглушка превращается в solid, но остается серой */
+.tile-card.empty-service:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 2px solid #b2bcC2 !important;
+}
+.tile-card.empty-service:hover .tile-icon {
+    color: #b2bcC2 !important;
+}
+.tile-card.empty-service:hover .tile-title {
+    color: var(--gray-text) !important;
+}
+/* ==========================================================================
+   5. МНОГОУРОВНЕВАЯ НАВИГАЦИЯ ВНУТРИ ТАБА (СТРОГО В СТИЛЕ ПЛИТОК)
+   ========================================================================== */
+
+/* Обертка для уровней меню */
+.submenu-level {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInMenu 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes fadeInMenu {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Сетка для отображения категорий-строк */
+.categories-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* БАЗОВЫЙ КАРКАС КАРТОЧКИ КАТЕГОРИИ */
+.category-card {
+    background: #ffffff !important;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.2s ease;
+}
+
+/* ИКОНКА КАТЕГОРИИ: Фон теперь прозрачный ВСЕГДА */
+.category-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    background: transparent !important; /* Убрали серые и бирюзовые круги */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 16px;
+    transition: color 0.25s ease;
+}
+
+/* Информационные тексты */
+.category-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.category-info h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+.category-info p {
+    font-size: 0.75rem;
+    font-weight: 300;
+    margin-bottom: 0 !important;
+    transition: color 0.25s ease;
+}
+
+/* Правая стрелочка перехода */
+.arrow-next {
     font-size: 0.9rem;
-    color: var(--gray-text);
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.noshow {
-    display: none !important;
-    opacity: 0;
+/* --------------------------------------------------------------------------
+   ЦВЕТОВЫЕ МОДИФИКАТОРЫ КАТЕГОРИЙ (КОПИЯ ЛОГИКИ ПЛИТОК)
+   -------------------------------------------------------------------------- */
+
+/* --- 1. АКТИВНАЯ КАТЕГОРИЯ (Глубокий сланцевый в покое) --- */
+.category-card.tile-blue {
+    border: 2px dashed #264653 !important;
+}
+.category-card.tile-blue .category-icon-wrapper i,
+.category-card.tile-blue .arrow-next,
+.category-card.tile-blue h2 {
+    color: #264653 !important;
+}
+.category-card.tile-blue p {
+    color: #556e7a !important;
+}
+
+/* Ховер активной категории: сплошная линия и бирюза #2A9D8F */
+.category-card.tile-blue:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 20px rgba(42, 157, 143, 0.06);
+    border: 2px solid #2A9D8F !important;
+}
+.category-card.tile-blue:hover .category-icon-wrapper i,
+.category-card.tile-blue:hover .arrow-next,
+.category-card.tile-blue:hover h2 {
+    color: #2A9D8F !important;
+}
+
+/* --- 2. НЕАКТИВНАЯ КАТЕГОРИЯ (Блеклый серый пунктир) --- */
+.category-card.empty-service {
+    border: 2px dashed #cbd3d6 !important;
+    cursor: default;
+}
+.category-card.empty-service .category-icon-wrapper i,
+.category-card.empty-service .arrow-next {
+    color: #b2bcC2 !important;
+}
+.category-card.empty-service h2,
+.category-card.empty-service p {
+    color: var(--gray-text) !important;
+}
+
+/* Ховер неактивной категории: превращается в solid, но остается строго серой */
+.category-card.empty-service:hover {
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 2px solid #b2bcC2 !important;
+}
+.category-card.empty-service:hover .category-icon-wrapper i,
+.category-card.empty-service:hover .arrow-next {
+    color: #b2bcC2 !important;
+}
+
+/* --- КНОПКА НАЗАД --- */
+.back-button-row {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #777777;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.back-button-row:hover {
+    color: #2a9d8f;
+    transform: translateX(-3px);
+}
+.back-button-row i {
+    font-size: 1rem;
 }
