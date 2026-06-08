@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A-Ermakov.hub</title>
-    <link rel="stylesheet" href="style.css">
+    <link class="style" rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -17,10 +17,8 @@
 
         <div class="leftbox">
             <nav>
-                <a id="tab-home" class="nav-link active" title="Главная"><i class="fa fa-user"></i></a>
-                <a id="tab-payment" class="nav-link" title="Оплата"><i class="fa fa-credit-card"></i></a>
-                <a id="tab-subscription" class="nav-link" title="Подписки"><i class="fa fa-tv"></i></a>
-                <a id="tab-settings" class="nav-link" title="Настройки"><i class="fa fa-cog"></i></a>
+                <a id="tab-home" class="nav-link active" title="Главная"><i class="fa-solid fa-house"></i></a>
+                <a id="tab-reports" class="nav-link" title="Отчёты"><i class="fa-solid fa-folder-closed"></i></a>
             </nav>
         </div>
 
@@ -38,33 +36,14 @@
                             <i class="fa-solid fa-chart-pie"></i>
                             <div>
                                 <strong>Аналитика журналов</strong>
-                                <span>Автоматический разбор отчётов электронного журнала, оценка учебных умений и выгрузка статистики. (Вкладка «Монитор»)</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-credit-card"></i>
-                            <div>
-                                <strong>Управление биллингом</strong>
-                                <span>Контроль взаимных расчетов, логирование платежей и финансовая отчетность. (Вкладка «Оплата»)</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-sliders"></i>
-                            <div>
-                                <strong>Гибкая настройка</strong>
-                                <span>Управление конфигурационными файлами скриптов и системными параметрами. (Вкладка «Шестеренка»)</span>
+                                <span>Автоматический разбор отчётов электронного журнала, оценка учебных умений и выгрузка статистики. (Вкладка «Отчёты»)</span>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div id="content-payment" class="tab-content noshow">
-                <h1 class="page-title">Информация об оплате</h1>
-                <p class="placeholder-text">Здесь будет модуль биллинга и финансовых логов...</p>
-            </div>
-
-            <div id="content-subscription" class="tab-content noshow">
+            <div id="content-reports" class="tab-content noshow">
                 <h1 class="page-title">Отчеты по электронному журналу</h1>
 
                 <div class="grid-layout">
@@ -104,11 +83,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="content-settings" class="tab-content noshow">
-                <h1 class="page-title">Настройки системы</h1>
-                <p class="placeholder-text">Конфигурация параметров персонального хаба.</p>
             </div>
 
         </div>
