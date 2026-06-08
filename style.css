@@ -1,10 +1,12 @@
 :root {
-    --bg-color: #B2CAD4;
-    --main-color: #264653;
-    --card-bg: #ffffff;
-    --text-color: #2b2b2b;
-    --text-light: #666666;
-    --accent-color: #2a9d8f;
+    /* Наша фирменная палитра */
+    --bg-color: #B2CAD4;          /* Спокойный матовый серо-голубой фон вокруг */
+    --main-dark: #264653;         /* Глубокий сине-зеленый (для левой панели, лого и заголовков) */
+    --accent-tile: #2a9d8f;       /* Мягкий бирюзовый (цвет активной iOS-плитки) */
+
+    --white: #FFFFFF;
+    --gray-text: #777777;
+    --black-text: #070707;
 }
 
 * {
@@ -13,144 +15,199 @@
     padding: 0;
 }
 
+/* Фон страницы теперь ровный, матовый и глубокий */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-color);
     min-height: 100vh;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Основной контейнер-форма */
+.container {
+    background: var(--white);
+    width: 800px;
+    height: 70vh;
+    min-height: 400px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(38, 70, 83, 0.15); /* Сделали тень мягче и в тон темы */
+    border-radius: 12px;
+}
+
+/* Логотип hub */
+.logo {
+    float: right;
+    margin-right: 20px;
+    margin-top: 15px;
+    color: var(--main-dark); /* Покрасили в благородный темный */
+    font-weight: 900;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+}
+
+/* Левая вертикальная панель */
+.leftbox {
+    float: left;
+    top: -5%;
+    left: 5%;
+    position: absolute;
+    width: 12%;
+    height: 110%;
+    background: var(--main-dark); /* Спокойный глубокий цвет вместо яркого зеленого */
+    box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 20px 0;
+    z-index: 10;
+}
+
+.leftbox nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+}
+
+nav a {
+    padding: 15px 0;
+    color: var(--white);
+    font-size: 1.2em;
+    display: block;
+    text-align: center;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.6; /* Неактивные иконки в меню слегка приглушены */
+}
+
+/* При наведении на иконку в меню она плавно подсвечивается */
+nav a:hover {
+    color: var(--white);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Активный пункт меню горит чистым белым светом и не прозрачен */
+nav a.active {
+    color: var(--white);
+    opacity: 1;
+    font-size: 1.3em; /* Слегка выделяем активную вкладку размером */
+}
+
+/* Правая область контента */
+.rightbox {
+    float: right;
+    width: 82%;
+    height: 100%;
+    padding: 60px 40px 40px 85px;
+    position: relative;
+}
+
+.tab-content {
+    transition: opacity .4s ease-in-out;
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
 }
 
-.hub-header {
-    background-color: var(--main-color);
-    color: #ffffff;
-    text-align: center;
-    padding: 2rem 1rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.hub-header h1 {
-    font-size: 2.2rem;
+/* Заголовок страницы */
+.page-title {
+    color: var(--main-dark); /* Убрали салатовый, сделали строгим темным */
+    font-size: 1.1rem;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     font-weight: 600;
-    margin-bottom: 0.4rem;
 }
 
-.hub-header p {
-    font-size: 1rem;
-    opacity: 0.8;
-}
-
-.hub-container {
-    flex: 1;
-    max-width: 1200px;
-    width: 100%;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-.category-section {
-    margin-bottom: 3rem;
-}
-
-.category-title {
-    font-size: 1.3rem;
-    color: var(--main-color);
-    margin-bottom: 1.2rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
+/* Сетка для плиток */
 .grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 240px));
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 560px;
 }
 
-/* Обновленная плитка с полным выравниванием по центру */
+/* Базовая плитка */
 .tile-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-    cursor: pointer;
-
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-}
-
-.tile-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 22px rgba(0,0,0,0.1);
-}
-
-/* Иконка: увеличили размер до 3.2rem и покрасили в глубокий сине-зелёный #264653 */
-.tile-icon {
-    font-size: 3.5rem;
-    color: var(--main-color);
-    margin-bottom: 0.5rem;
-}
-
-.tile-content {
+    border-radius: 14px;
+    padding: 1rem 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: auto 0; /* Магия: одинаковый отступ сверху и снизу прижимает блок строго к центру */
+    text-decoration: none;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* НАША КРАСИВАЯ АКТИВНАЯ ПЛИТКА (Бирюзовый Flat iOS-стиль) */
+.tile-blue {
+    background: var(--accent-tile);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(42, 157, 143, 0.2);
+}
+
+.tile-blue:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(42, 157, 143, 0.35);
+    background: #31b0a1; /* Чуть-чуть подсвечиваем при наведении */
+}
+
+.tile-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
     width: 100%;
 }
 
-.tile-content h3 {
-    font-size: 1.1rem;
-    color: var(--main-color);
-    font-weight: 600;
+.tile-icon {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.tile-title {
+    font-size: 0.75rem;
+    font-weight: 400;
     line-height: 1.3;
     text-align: center;
+    width: 100%;
+    display: block;
+    padding: 0 4px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
-/* В квадратной иконке по центру стрелочка снизу больше не нужна,
-   поэтому убираем рамки и делаем её аккуратным ненавязчивым индикатором */
-.tile-footer {
-    margin-top: auto; /* Прижимает футер к самому низу квадрата */
-    width: 100%;       /* Занимает всю ширину плитки */
-    display: flex;
-    justify-content: flex-end; /* Сдвигает содержимое (кнопку) вправо */
-    padding-top: 0.5rem;
-    border-top: 1px solid #eeeeee;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-color);
-}
-
+/* Стиль неактивной плитки "В разработке" */
 .empty-service {
+    background: #f4f6f7;
+    color: #a0aab0;
+    border: 1px dashed #d1d8dc;
     cursor: default;
-    opacity: 0.6;
 }
 .empty-service:hover {
     transform: none;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    box-shadow: none;
 }
-/* Для неактивной плитки иконку оставим приглушенной */
 .empty-service .tile-icon {
-    color: var(--text-light);
-}
-.status-disabled {
-    color: var(--text-light);
+    color: #b2bcC2;
 }
 
-.hub-footer {
-    text-align: center;
-    padding: 1.2rem;
-    background-color: rgba(0, 0, 0, 0.03);
-    color: var(--main-color);
-    font-size: 0.85rem;
+.placeholder-text {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+}
+
+.noshow {
+    display: none !important;
+    opacity: 0;
 }
