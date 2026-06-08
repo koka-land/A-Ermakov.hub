@@ -66,8 +66,8 @@ body {
 .leftbox nav {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центрируем группу иконок по вертикали */
-    gap: 2.5rem;             /* Задаем фиксированный красивый отступ между ними */
+    justify-content: center; /* Центрируем иконки по вертикали */
+    gap: 2.5rem;             /* Фиксированный отступ между ними */
     height: 100%;
     width: 100%;
 }

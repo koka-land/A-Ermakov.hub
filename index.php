@@ -18,7 +18,7 @@
         <div class="leftbox">
             <nav>
                 <a id="tab-home" class="nav-link active" title="Главная"><i class="fa-solid fa-house"></i></a>
-                <a id="tab-reports" class="nav-link" title="Отчёты"><i class="fa-solid fa-folder-closed"></i></a>
+                <a id="tab-reports" class="nav-link" title="Отчёты"><i class="fa-solid fa-folder"></i></a>
             </nav>
         </div>
 
