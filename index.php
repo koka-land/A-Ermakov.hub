@@ -58,6 +58,9 @@
             <div id="content-reports" class="tab-content noshow">
 
     <div id="reports-categories-root" class="submenu-level">
+        <div class="back-button-row placeholder">
+        <i class="fa-solid fa-arrow-left-long"></i> Назад в категории
+    </div>
         <h1 class="page-title">Категории аналитики</h1>
 
         <div class="categories-grid">

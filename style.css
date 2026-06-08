@@ -368,9 +368,7 @@ nav a.active, .leftbox nav a.active {
     flex-direction: column;
     animation: fadeInMenu 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
-#reports-categories-root .page-title {
-    margin-top: 41px !important; /* 10px базового отступа + 44px компенсации высоты кнопки Назад */
-}
+
 @keyframes fadeInMenu {
     from { opacity: 0; transform: translateX(30px); }
     to { opacity: 1; transform: translateX(0); }
@@ -510,4 +508,9 @@ nav a.active, .leftbox nav a.active {
 }
 .back-button-row i {
     font-size: 1rem;
+}
+/* Сделай заглушку невидимой, но сохраняющей свои размеры в потоке */
+.back-button-row.placeholder {
+    visibility: hidden;
+    pointer-events: none;
 }
