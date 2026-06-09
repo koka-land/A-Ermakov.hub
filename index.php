@@ -62,13 +62,16 @@
 
             <div id="content-home" class="tab-pane">
                 <header class="content-header">
+                    <button class="icon-button ripple-target nopointer">
+                            <span class="material-symbols-rounded">folder</span>
+                    </button>
                     <h1 class="headline-small">Добро пожаловать</h1>
                 </header>
                 <div class="content-scroll">
                     <div class="welcome-card md-card filled-card">
                         <div class="card-content">
                             <span class="material-symbols-rounded card-hero-icon">hub</span>
-                            <h2 class="title-large">A-Ermakov · hub</h2>
+                            <h2 class="title-large">A-Ermakov · <span class="hub-accent">hub</span></h2>
                             <p class="body-medium">Персональная экосистема для автоматизации задач, мониторинга сервисов и аналитики данных.</p>
                         </div>
                     </div>
@@ -90,7 +93,10 @@
             <div id="content-reports" class="tab-pane tab-hidden">
 
                 <div id="reports-categories-root" class="submenu-level">
-                    <header class="content-header">
+                    <header class="content-header content-header--back">
+                        <button class="icon-button ripple-target nopointer">
+                            <span class="material-symbols-rounded">folder</span>
+                        </button>
                         <h1 class="headline-small">Категории</h1>
                     </header>
                     <div class="content-scroll">
@@ -131,6 +137,98 @@
                             <div class="md-tile active-tile ripple-target">
                                 <span class="material-symbols-rounded tile-icon">donut_large</span>
                                 <span class="label-small tile-label">Учебные умения</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
                             </div>
                             <div class="md-tile disabled-tile">
                                 <span class="material-symbols-rounded tile-icon">add</span>
@@ -201,7 +299,7 @@
                         </button>
                         <button class="theme-chip ripple-target" id="theme-btn-teal" onclick="applyTheme('teal')">
                             <span class="material-symbols-rounded">palette</span>
-                            <span class="label-large">Бирюзовая</span>
+                            <span class="label-large">Цветная</span>
                         </button>
                     </div>
 
