@@ -1,569 +1,1015 @@
-/* ==========================================================================
-   1. СИСТЕМА ДИЗАЙН-ТОКЕНОВ (MATERIAL YOU) & БАЗОВЫЕ НАСТРОЙКИ
-   ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700&display=swap');
+/* =============================================================================
+   MATERIAL YOU (M3) — Full Design System
+   ============================================================================= */
 
-:root {
-    /* ПО УМОЛЧАНИЮ: ЦВЕТНАЯ ТЕМА (COLORFUL) */
-    --md-sys-color-background:         #B2CAD4;
-    --md-sys-color-container:          #FFFFFF;
-    --md-sys-color-leftbox-bg:         #264653;
-    --md-sys-color-nav-icon:           #B2CAD4;
-    --md-sys-color-nav-icon-active:    #FFFFFF;
-    --md-sys-color-surface:            #FFFFFF;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-    /* Контуры */
-    --md-sys-color-outline-active:     #264653;
-    --md-sys-color-outline-inactive:   #B2CAD4;
-    --md-sys-color-outline-disabled:   #cbd3d6;
+/* -----------------------------------------------------------------------------
+   COLOR TOKENS — Light (M3 Baseline)
+   ----------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+    --md-sys-color-primary:                   #6750A4;
+    --md-sys-color-on-primary:                #FFFFFF;
+    --md-sys-color-primary-container:         #EADDFF;
+    --md-sys-color-on-primary-container:      #21005D;
+    --md-sys-color-secondary:                 #625B71;
+    --md-sys-color-on-secondary:              #FFFFFF;
+    --md-sys-color-secondary-container:       #E8DEF8;
+    --md-sys-color-on-secondary-container:    #1D192B;
+    --md-sys-color-tertiary:                  #7D5260;
+    --md-sys-color-on-tertiary:               #FFFFFF;
+    --md-sys-color-tertiary-container:        #FFD8E4;
+    --md-sys-color-on-tertiary-container:     #31111D;
+    --md-sys-color-background:                #FEF7FF;
+    --md-sys-color-on-background:             #1D1B20;
+    --md-sys-color-surface:                   #FEF7FF;
+    --md-sys-color-on-surface:                #1D1B20;
+    --md-sys-color-surface-variant:           #E7E0EC;
+    --md-sys-color-on-surface-variant:        #49454F;
+    --md-sys-color-outline:                   #79747E;
+    --md-sys-color-outline-variant:           #CAC4D0;
+    --md-sys-color-inverse-surface:           #322F35;
+    --md-sys-color-inverse-on-surface:        #F5EFF7;
+    --md-sys-color-inverse-primary:           #D0BCFF;
+    --md-sys-color-surface-container-lowest:  #FFFFFF;
+    --md-sys-color-surface-container-low:     #F7F2FA;
+    --md-sys-color-surface-container:         #F3EDF7;
+    --md-sys-color-surface-container-high:    #ECE6F0;
+    --md-sys-color-surface-container-highest: #E6E0E9;
 
-    /* Тексты и иконки */
-    --md-sys-color-primary:            #264653; /* Фирменный сланцевый */
-    --md-sys-color-on-surface:         #264653;
-    --md-sys-color-on-surface-variant: #2f3640;
-    --md-sys-color-on-surface-muted:   #777777;
-    --md-sys-color-accent:             #2a9d8f;
-
-    --md-sys-shadow-sm: 0 4px 14px rgba(38, 70, 83, 0.05);
-    --md-sys-shadow-md: 0 10px 25px rgba(38, 70, 83, 0.12);
+    --md-sys-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
+    --md-sys-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
+    --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.30);
 }
 
-/* СВЕТЛАЯ ТЕМА (LIGHT) */
-body[data-theme="light"] {
-    --md-sys-color-background:         #F0F3F5;
-    --md-sys-color-container:          #FFFFFF;
-    --md-sys-color-leftbox-bg:         #1E293B;
-    --md-sys-color-nav-icon:           #94A3B8;
-    --md-sys-color-nav-icon-active:    #FFFFFF;
-    --md-sys-color-surface:            #F8FAFC;
+/* -----------------------------------------------------------------------------
+   COLOR TOKENS — Dark (M3 Baseline)
+   ----------------------------------------------------------------------------- */
+[data-theme="dark"] {
+    --md-sys-color-primary:                   #D0BCFF;
+    --md-sys-color-on-primary:                #381E72;
+    --md-sys-color-primary-container:         #4F378B;
+    --md-sys-color-on-primary-container:      #EADDFF;
+    --md-sys-color-secondary:                 #CCC2DC;
+    --md-sys-color-on-secondary:              #332D41;
+    --md-sys-color-secondary-container:       #4A4458;
+    --md-sys-color-on-secondary-container:    #E8DEF8;
+    --md-sys-color-tertiary:                  #EFB8C8;
+    --md-sys-color-on-tertiary:               #492532;
+    --md-sys-color-tertiary-container:        #633B48;
+    --md-sys-color-on-tertiary-container:     #FFD8E4;
+    --md-sys-color-background:                #141218;
+    --md-sys-color-on-background:             #E6E0E9;
+    --md-sys-color-surface:                   #141218;
+    --md-sys-color-on-surface:                #E6E0E9;
+    --md-sys-color-surface-variant:           #49454F;
+    --md-sys-color-on-surface-variant:        #CAC4D0;
+    --md-sys-color-outline:                   #938F99;
+    --md-sys-color-outline-variant:           #49454F;
+    --md-sys-color-inverse-surface:           #E6E0E9;
+    --md-sys-color-inverse-on-surface:        #322F35;
+    --md-sys-color-inverse-primary:           #6750A4;
+    --md-sys-color-surface-container-lowest:  #0F0D13;
+    --md-sys-color-surface-container-low:     #1D1B20;
+    --md-sys-color-surface-container:         #211F26;
+    --md-sys-color-surface-container-high:    #2B2930;
+    --md-sys-color-surface-container-highest: #36343B;
 
-    --md-sys-color-outline-active:     #1E293B;
-    --md-sys-color-outline-inactive:   #CBD5E1;
-    --md-sys-color-outline-disabled:   #E2E8F0;
-
-    /* Тексты и иконки */
-    --md-sys-color-primary:            #1E293B; /* Строгий угольный для покоя */
-    --md-sys-color-on-surface:         #0F172A;
-    --md-sys-color-on-surface-variant: #475569;
-    --md-sys-color-on-surface-muted:   #94A3B8;
-    --md-sys-color-accent:             #0284c7;
-
-    --md-sys-shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
-    --md-sys-shadow-md: 0 12px 24px rgba(15, 23, 42, 0.08);
+    --md-sys-elevation-1: 0 1px 3px 1px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
+    --md-sys-elevation-2: 0 2px 6px 2px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
+    --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.40), 0 1px 3px rgba(0,0,0,.40);
 }
 
-/* ТЁМНАЯ ТЕМА (DARK) */
-body[data-theme="dark"] {
-    --md-sys-color-background:         #12161A;
-    --md-sys-color-container:          #1A2024;
-    --md-sys-color-leftbox-bg:         #0E1114;
-    --md-sys-color-nav-icon:           #4A5560;
-    --md-sys-color-nav-icon-active:    #4db6ac;
-    --md-sys-color-surface:            #222A30;
+/* -----------------------------------------------------------------------------
+   COLOR TOKENS — Teal (custom brand palette)
+   ----------------------------------------------------------------------------- */
+[data-theme="teal"] {
+    --md-sys-color-primary:                   #006A6A;
+    --md-sys-color-on-primary:                #FFFFFF;
+    --md-sys-color-primary-container:         #9CF1F0;
+    --md-sys-color-on-primary-container:      #002020;
+    --md-sys-color-secondary:                 #4A6363;
+    --md-sys-color-on-secondary:              #FFFFFF;
+    --md-sys-color-secondary-container:       #CCE8E8;
+    --md-sys-color-on-secondary-container:    #051F1F;
+    --md-sys-color-tertiary:                  #456179;
+    --md-sys-color-on-tertiary:               #FFFFFF;
+    --md-sys-color-tertiary-container:        #CCE5FF;
+    --md-sys-color-on-tertiary-container:     #001E30;
+    --md-sys-color-background:                #F4FBFB;
+    --md-sys-color-on-background:             #191C1C;
+    --md-sys-color-surface:                   #F4FBFB;
+    --md-sys-color-on-surface:                #191C1C;
+    --md-sys-color-surface-variant:           #DAE5E5;
+    --md-sys-color-on-surface-variant:        #3F4949;
+    --md-sys-color-outline:                   #6F7979;
+    --md-sys-color-outline-variant:           #BEC9C9;
+    --md-sys-color-inverse-surface:           #2D3131;
+    --md-sys-color-inverse-on-surface:        #ECF2F2;
+    --md-sys-color-inverse-primary:           #80D5D4;
+    --md-sys-color-surface-container-lowest:  #FFFFFF;
+    --md-sys-color-surface-container-low:     #EEF5F5;
+    --md-sys-color-surface-container:         #E8EFEF;
+    --md-sys-color-surface-container-high:    #E2E9E9;
+    --md-sys-color-surface-container-highest: #DCE4E4;
 
-    --md-sys-color-outline-active:     #E2E8F0;
-    --md-sys-color-outline-inactive:   #4A5560;
-    --md-sys-color-outline-disabled:   #333F48;
-
-    /* Тексты и иконки */
-    --md-sys-color-primary:            #CBD5E1; /* Мягкий светлый тон, чтобы иконки сияли ночером! */
-    --md-sys-color-on-surface:         #F8FAFC;
-    --md-sys-color-on-surface-variant: #94A3B8;
-    --md-sys-color-on-surface-muted:   #64748B;
-    --md-sys-color-accent:             #4db6ac;
-
-    --md-sys-shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
-    --md-sys-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+    --md-sys-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
+    --md-sys-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
+    --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.30);
 }
 
-* {
+/* -----------------------------------------------------------------------------
+   RESET & BASE
+   ----------------------------------------------------------------------------- */
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body, input, button, select, textarea, p, span, h1, h2, h3, a {
-    font-family: 'Roboto', sans-serif;
-}
-
 body {
+    font-family: 'Roboto', sans-serif;
     background: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-surface);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s ease;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    -webkit-font-smoothing: antialiased;
 }
 
-a, a:visited, a:hover, a:active {
-    text-decoration: none !important;
-    color: inherit !important;
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; }
+
+.material-symbols-rounded {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 24px;
+    line-height: 1;
+    user-select: none;
+    display: inline-block;
 }
 
-/* Стили текстов на Главной */
-.rightbox p {
-    margin-bottom: 16px;
-    line-height: 1.6;
-    color: var(--md-sys-color-on-surface-variant);
-    font-weight: 300;
-}
-.rightbox ul, .rightbox ol {
-    margin: 0 0 20px 24px;
-}
-.rightbox li {
-    margin-bottom: 8px;
-    line-height: 1.5;
-    font-weight: 300;
-    color: var(--md-sys-color-on-surface-variant);
-}
+/* -----------------------------------------------------------------------------
+   M3 TYPE SCALE
+   ----------------------------------------------------------------------------- */
+.headline-small  { font-size: 24px; line-height: 32px; font-weight: 400; }
+.title-large     { font-size: 22px; line-height: 28px; font-weight: 400; }
+.title-medium    { font-size: 16px; line-height: 24px; font-weight: 500; letter-spacing: .15px; }
+.title-small     { font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: .1px; }
+.body-large      { font-size: 16px; line-height: 24px; font-weight: 400; letter-spacing: .5px; }
+.body-medium     { font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: .25px; }
+.body-small      { font-size: 12px; line-height: 16px; font-weight: 400; letter-spacing: .4px; }
+.label-large     { font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: .1px; }
+.label-medium    { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .5px; }
+.label-small     { font-size: 11px; line-height: 16px; font-weight: 500; letter-spacing: .5px; }
 
-/* ==========================================================================
-   2. ДЕСКТОПНЫЙ КАРКАС ПАНЕЛЕЙ
-   ========================================================================== */
-.container {
-    background: var(--md-sys-color-container);
-    width: 800px;
-    height: 70vh;
-    min-height: 400px;
-    position: relative;
-    box-shadow: var(--md-sys-shadow-md);
-    border-radius: 12px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
+.secondary-text  { color: var(--md-sys-color-on-surface-variant); }
 
-.leftbox {
-    float: left;
-    top: -5%;
-    left: 40px;
-    position: absolute;
-    width: 100px;
-    height: 110%;
-    background: var(--md-sys-color-leftbox-bg);
-    box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    padding: 20px 0;
-    z-index: 10;
-    transition: background 0.3s ease;
-}
-
-.leftbox nav {
+/* -----------------------------------------------------------------------------
+   APP LOADER
+   ----------------------------------------------------------------------------- */
+.app-loader {
+    position: fixed;
+    inset: 0;
+    background: var(--md-sys-color-background);
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 2.5rem;
-    height: 100%;
-    width: 100%;
+    z-index: 999;
+    transition: opacity .4s ease;
 }
 
-.leftbox nav .nav-link {
-    position: relative;
-}
-
-/* Воздушные подсказки (Тултипы) */
-.leftbox nav .nav-link::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 110px;
-    top: 50%;
-    transform: translateY(-50%) translateX(-10px);
-    background: var(--md-sys-color-leftbox-bg);
-    color: #ffffff;
-    padding: 10px 30px;
-    font-size: 1.1rem;
-    font-weight: 300;
-    border-radius: 5px;
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+.app-loader.fade-out {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.leftbox nav .nav-link:hover::after {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
-/* Управление иконками бокового меню */
-nav a, .leftbox nav a {
-    padding: 15px 0;
-    font-size: 1.2em;
-    display: block;
-    text-align: center;
-    transition: all .2s ease-in-out;
-    cursor: pointer;
-    width: 100%;
-    color: var(--md-sys-color-nav-icon) !important;
-}
-
-nav a:hover, .leftbox nav a:hover {
-    color: var(--md-sys-color-nav-icon-active) !important;
-    transform: scale(1.1);
-}
-
-nav a.active, .leftbox nav a.active {
-    color: var(--md-sys-color-nav-icon-active) !important;
-    font-size: 1.3em;
-    transform: none;
-}
-
-.rightbox {
-    position: absolute;
-    left: 140px;
-    width: calc(100% - 140px);
-    height: 100%;
-    padding: 60px 40px 90px 40px;
-}
-
-.logo {
-    float: right;
-    margin-right: 20px;
-    margin-top: 15px;
-    color: var(--md-sys-color-on-surface);
-    font-weight: 700;
-    font-size: 1.5em;
-    letter-spacing: 1px;
+.loader-label {
+    color: var(--md-sys-color-on-surface-variant);
+    letter-spacing: 6px;
     text-transform: lowercase;
 }
 
-/* Содержимое вкладок и анимация переключения табов */
-.tab-content {
-    width: 100%;
-    height: 100%;
+/* M3 Indeterminate Circular Progress */
+.md-circular-progress {
+    width: 48px;
+    height: 48px;
+    animation: cp-rotate 1.4s linear infinite;
+}
+
+.progress-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+.progress-track {
+    fill: none;
+    stroke: var(--md-sys-color-surface-container-highest);
+    stroke-width: 4;
+    transition: stroke .35s ease;
+}
+
+.progress-indicator {
+    fill: none;
+    stroke: var(--md-sys-color-primary);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 1 125.66;
+    animation: cp-dash 1.4s ease-in-out infinite;
+    transition: stroke .35s ease;
+}
+
+@keyframes cp-rotate {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes cp-dash {
+    0%   { stroke-dasharray:   1 125.66; stroke-dashoffset:   0; }
+    50%  { stroke-dasharray: 100 125.66; stroke-dashoffset: -30; }
+    100% { stroke-dasharray: 100 125.66; stroke-dashoffset: -125.66; }
+}
+
+/* -----------------------------------------------------------------------------
+   APP SHELL
+   ----------------------------------------------------------------------------- */
+.app-surface {
+    width: 960px;
+    height: 620px;
+    background: var(--md-sys-color-surface-container-low);
+    border-radius: 28px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.noshow {
-    display: none !important;
-    opacity: 0;
-    transform: translateX(30px);
-}
-
-.tab-content.fade-in {
-    opacity: 0;
-    transform: translateX(30px);
-}
-
-.page-title {
-    color: var(--md-sys-color-on-surface);
-    font-size: 1.1rem;
-    margin-top: 10px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
-    width: 100%;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#content-reports, #content-settings  {
-    align-items: center;
-}
-
-#content-reports .page-title {
-    width: 100%;
-    max-width: 560px;
-    text-align: left;
-    margin-bottom: 25px;
-}
-
-.grid-layout {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    max-width: 560px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ==========================================================================
-   4. СТИЛЬ ПЛИТОК (С новыми тенями и токенами)
-   ========================================================================== */
-.tile-card {
-    background: var(--md-sys-color-surface) !important;
-    border: 2px dashed var(--md-sys-color-outline-inactive) !important;
-    border-radius: 14px;
-    padding: 18px 2px 12px 2px !important;
-    box-shadow: var(--md-sys-shadow-sm);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-decoration: none;
-    aspect-ratio: 1 / 1;
     overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.2s ease;
+    box-shadow: var(--md-sys-elevation-3);
+    transition: background-color .35s ease, box-shadow .35s ease;
+    opacity: 0;
+    transform: scale(.96) translateY(8px);
+    animation: app-enter .5s cubic-bezier(.2,0,0,1) 1.2s forwards;
 }
 
-.tile-icon {
-    display: flex !important;
+@keyframes app-enter {
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* -----------------------------------------------------------------------------
+   NAVIGATION RAIL
+   ----------------------------------------------------------------------------- */
+.nav-rail {
+    width: 88px;
+    flex-shrink: 0;
+    background: var(--md-sys-color-surface-container);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0 24px;
+    transition: background-color .35s ease;
+}
+
+.nav-rail-header {
+    padding: 8px 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--md-sys-color-primary);
+    letter-spacing: -0.5px;
+    text-transform: lowercase;
+    transition: color .35s ease;
+}
+
+.nav-rail-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.nav-rail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    width: 100%;
+    padding: 4px 0;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+}
+
+.nav-rail-indicator {
+    position: relative;
+    width: 56px;
+    height: 32px;
+    border-radius: 16px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.6rem !important;
-    height: 40px !important;
-    min-height: 40px !important;
-    margin: 0 auto 14px auto !important;
-    background: transparent !important;
-    border: none !important;
-    width: auto !important;
-    transition: color 0.25s ease;
+    transition: background-color .25s cubic-bezier(.2,0,0,1),
+                width .3s cubic-bezier(.2,0,0,1);
+    overflow: hidden;
 }
 
-.tile-title {
-    font-size: 0.9rem;
-    font-weight: 200 !important;
-    line-height: 1.3;
-    text-align: center;
-    color: var(--md-sys-color-on-surface) !important;
-    width: 100%;
-    display: block;
-    padding: 0 !important;
-    white-space: normal;
-    word-wrap: break-word;
+.nav-rail-indicator::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--md-sys-color-on-surface);
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity .2s ease;
 }
 
-/* --- 1. АКТИВНАЯ РАБОЧАЯ ПЛИТКА --- */
-.tile-card.tile-blue {
-    border: 2px dashed var(--md-sys-color-outline-active) !important;
-}
-.tile-card.tile-blue .tile-icon {
-    color: var(--md-sys-color-outline-active) !important;
+.nav-rail-item:hover .nav-rail-indicator::after  { opacity: .08; }
+.nav-rail-item:active .nav-rail-indicator::after { opacity: .12; }
+
+.nav-rail-item .material-symbols-rounded {
+    position: relative;
+    z-index: 1;
+    font-size: 24px;
+    color: var(--md-sys-color-on-surface-variant);
+    transition: color .25s ease, font-variation-settings .25s ease;
 }
 
-.tile-card.tile-blue:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--md-sys-shadow-md) !important;
-    border: 2px solid var(--md-sys-color-accent) !important;
-}
-.tile-card.tile-blue:hover .tile-icon {
-    color: var(--md-sys-color-accent) !important;
+.nav-rail-label {
+    color: var(--md-sys-color-on-surface-variant);
+    transition: color .25s ease;
+    font-size: 11px;
+    letter-spacing: .4px;
 }
 
-/* --- 2. НЕАКТИВНЫЕ ПЛИТКИ-ЗАГЛУШКИ --- */
-.tile-card.empty-service {
-    border: 2px dashed var(--md-sys-color-outline-disabled) !important;
+/* Active */
+.nav-rail-item.active .nav-rail-indicator {
+    background-color: var(--md-sys-color-secondary-container);
+}
+
+.nav-rail-item.active .nav-rail-indicator::after {
+    background: var(--md-sys-color-on-secondary-container);
+}
+
+.nav-rail-item.active .material-symbols-rounded {
+    color: var(--md-sys-color-on-secondary-container);
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+.nav-rail-item.active .nav-rail-label {
+    color: var(--md-sys-color-on-surface);
+    font-weight: 700;
+}
+
+/* -----------------------------------------------------------------------------
+   CONTENT AREA
+   ----------------------------------------------------------------------------- */
+.content-area {
+    flex: 1;
+    background: var(--md-sys-color-surface);
+    border-radius: 0 28px 28px 0;
+    position: relative;
+    overflow: hidden;
+    transition: background-color .35s ease;
+}
+
+.tab-pane {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .25s cubic-bezier(.2,0,0,1),
+                transform .25s cubic-bezier(.2,0,0,1);
+}
+
+.tab-pane.tab-hidden {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+}
+
+.content-header {
+    display: flex;
+    align-items: center;
+    padding: 24px 24px 0;
+    flex-shrink: 0;
+}
+
+.content-header--back {
+    gap: 8px;
+}
+
+.content-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--md-sys-color-on-surface);
+    transition: color .35s ease;
+}
+
+.content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 24px 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--md-sys-color-outline-variant) transparent;
+}
+
+.content-scroll::-webkit-scrollbar { width: 4px; }
+.content-scroll::-webkit-scrollbar-thumb {
+    background: var(--md-sys-color-outline-variant);
+    border-radius: 2px;
+}
+
+/* -----------------------------------------------------------------------------
+   ICON BUTTON
+   ----------------------------------------------------------------------------- */
+.icon-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--md-sys-color-on-surface-variant);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: color .2s ease;
+}
+
+.icon-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--md-sys-color-on-surface);
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.icon-button:hover::before  { opacity: .08; }
+.icon-button:active::before { opacity: .12; }
+.icon-button:hover { color: var(--md-sys-color-on-surface); }
+
+/* -----------------------------------------------------------------------------
+   CARDS
+   ----------------------------------------------------------------------------- */
+.md-card {
+    border-radius: 12px;
+    transition: box-shadow .2s ease, background-color .35s ease;
+}
+
+.elevated-card {
+    background: var(--md-sys-color-surface-container-low);
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+.elevated-card:hover { box-shadow: var(--md-sys-elevation-2); }
+
+.filled-card {
+    background: var(--md-sys-color-surface-container-highest);
     box-shadow: none;
-    cursor: default;
-}
-.tile-card.empty-service .tile-icon {
-    color: var(--md-sys-color-on-surface-muted) !important;
-}
-.tile-card.empty-service .tile-title {
-    color: var(--md-sys-color-on-surface-muted) !important;
 }
 
-.tile-card.empty-service:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--md-sys-shadow-sm) !important;
-    border: 2px solid var(--md-sys-color-outline-disabled) !important;
+/* Welcome card */
+.welcome-card {
+    padding: 24px;
+    margin-bottom: 12px;
 }
 
-/* ==========================================================================
-   5. МНОГОУРОВНЕВАЯ НАВИГАЦИЯ ВНУТРИ ТАБА
-   ========================================================================== */
-.submenu-level {
-    width: 100%;
+.card-content { display: flex; flex-direction: column; gap: 6px; }
+
+.card-hero-icon {
+    font-size: 48px;
+    color: var(--md-sys-color-primary);
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+    margin-bottom: 4px;
+    display: block;
+    transition: color .35s ease;
+}
+
+.card-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--md-sys-color-on-surface);
+}
+
+.hub-accent {
+    color: var(--md-sys-color-primary);
+    font-style: italic;
+}
+.card-content p  { color: var(--md-sys-color-on-surface-variant); max-width: 420px; }
+
+/* Feature list */
+.feature-list { display: flex; flex-direction: column; gap: 8px; }
+
+.feature-item {
+    padding: 16px;
     display: flex;
-    flex-direction: column;
-    animation: fadeInMenu 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-@keyframes fadeInMenu {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
+.feature-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--md-sys-color-on-surface);
+    opacity: 0;
+    transition: opacity .2s ease;
+    border-radius: inherit;
 }
 
-.categories-grid {
+.feature-item:hover::before  { opacity: .05; }
+.feature-item:active::before { opacity: .10; }
+
+.feature-icon-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: var(--md-sys-color-secondary-container);
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 560px;
-    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color .35s ease;
 }
 
-.category-card {
-    background: var(--md-sys-color-surface) !important;
+.feature-icon-container .material-symbols-rounded {
+    font-size: 20px;
+    color: var(--md-sys-color-on-secondary-container);
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    transition: color .35s ease;
+}
+
+.feature-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.feature-text .title-small { color: var(--md-sys-color-on-surface); }
+.feature-text .body-small  { color: var(--md-sys-color-on-surface-variant); }
+
+.feature-chevron {
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 20px;
+    transition: transform .2s ease, color .2s ease;
+}
+
+.feature-item:hover .feature-chevron {
+    transform: translateX(3px);
+    color: var(--md-sys-color-primary);
+}
+
+/* -----------------------------------------------------------------------------
+   LIST ITEMS
+   ----------------------------------------------------------------------------- */
+.list-container { display: flex; flex-direction: column; gap: 8px; }
+
+.md-list-item {
+    background: var(--md-sys-color-surface-container-low);
     border-radius: 12px;
     padding: 16px;
     display: flex;
     align-items: center;
+    gap: 16px;
     cursor: pointer;
-    box-shadow: var(--md-sys-shadow-sm);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--md-sys-elevation-1);
+    transition: box-shadow .2s ease, background-color .35s ease;
 }
 
-.category-icon-wrapper {
-    width: 40px;
-    height: 40px;
-    background: transparent !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-right: 16px;
+.md-list-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--md-sys-color-on-surface);
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity .2s ease;
 }
 
-.category-info {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-.category-info h2 {
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.25s ease;
-}
-.category-info p {
-    font-size: 0.75rem;
-    font-weight: 300;
-    margin-bottom: 0 !important;
-    transition: color 0.25s ease;
-}
+.md-list-item:hover                { box-shadow: var(--md-sys-elevation-2); }
+.md-list-item:hover::before        { opacity: .05; }
+.md-list-item:active::before       { opacity: .10; }
 
-.arrow-next {
-    font-size: 0.9rem;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-/* --- Модификатор: Активная категория --- */
-.category-card.tile-blue {
-    border: 2px dashed var(--md-sys-color-outline-active) !important;
-}
-.category-card.tile-blue .category-icon-wrapper i,
-.category-card.tile-blue .arrow-next,
-.category-card.tile-blue h2 {
-    color: var(--md-sys-color-outline-active) !important;
-}
-.category-card.tile-blue p {
-    color: var(--md-sys-color-on-surface-variant) !important;
-}
-
-.category-card.tile-blue:hover {
-    transform: translateX(4px);
-    box-shadow: var(--md-sys-shadow-md) !important;
-    border: 2px solid var(--md-sys-color-accent) !important;
-}
-.category-card.tile-blue:hover .category-icon-wrapper i,
-.category-card.tile-blue:hover .arrow-next,
-.category-card.tile-blue:hover h2 {
-    color: var(--md-sys-color-accent) !important;
-}
-
-/* --- Модификатор: Неактивная категория --- */
-.category-card.empty-service {
-    border: 2px dashed var(--md-sys-color-outline-disabled) !important;
-    box-shadow: none;
+.md-list-item--disabled {
+    opacity: .45;
     cursor: default;
-}
-.category-card.empty-service .category-icon-wrapper i,
-.category-card.empty-service .arrow-next {
-    color: var(--md-sys-color-on-surface-muted) !important;
-}
-.category-card.empty-service h2,
-.category-card.empty-service p {
-    color: var(--md-sys-color-on-surface-muted) !important;
-}
-
-.category-card.empty-service:hover {
-    transform: translateX(2px);
-    box-shadow: var(--md-sys-shadow-sm) !important;
-    border: 2px solid var(--md-sys-color-outline-disabled) !important;
-}
-
-/* --- Кнопка Назад и её невидимый Слот-заглушка --- */
-.back-button-row {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--md-sys-color-on-surface-muted);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 15px;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-.back-button-row:hover {
-    color: var(--md-sys-color-accent);
-    transform: translateX(-3px);
-}
-.back-button-row i {
-    font-size: 1rem;
-}
-
-.back-button-row.placeholder {
-    visibility: hidden;
     pointer-events: none;
 }
 
-/* ==========================================================================
-   6. СТИЛИ ДЛЯ ЭКРАНА НАСТРОЕК (ПРИНУДИТЕЛЬНЫЕ ТОКЕНЫ ДЛЯ ИКОНОК)
-   ========================================================================== */
-.theme-options-grid {
+.list-leading-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color .35s ease;
+}
+
+.tonal-container {
+    background: var(--md-sys-color-secondary-container);
+}
+
+.tonal-container .material-symbols-rounded {
+    font-size: 20px;
+    color: var(--md-sys-color-on-secondary-container);
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    transition: color .35s ease;
+}
+
+.tonal-container--muted {
+    background: var(--md-sys-color-surface-container-highest);
+}
+
+.tonal-container--muted .material-symbols-rounded {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.list-content { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.list-content .title-medium { color: var(--md-sys-color-on-surface); }
+.list-content .body-small   { color: var(--md-sys-color-on-surface-variant); }
+
+.list-trailing {
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 20px;
+    transition: transform .2s ease, color .2s ease;
+}
+
+.md-list-item:hover .list-trailing {
+    transform: translateX(3px);
+    color: var(--md-sys-color-primary);
+}
+
+/* -----------------------------------------------------------------------------
+   TILES GRID
+   ----------------------------------------------------------------------------- */
+.tiles-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    width: 100%;
-    max-width: 560px;
-    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
-.theme-btn {
-    background: var(--md-sys-color-surface);
-    border: 2px dashed var(--md-sys-color-outline-active);
-    border-radius: 12px;
-    padding: 20px 10px;
-    text-align: center;
+.md-tile {
+    border-radius: 16px;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s cubic-bezier(.2,0,0,1),
+                box-shadow .2s ease,
+                background-color .35s ease;
+}
+
+.md-tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .2s ease;
+    border-radius: inherit;
+}
+
+.active-tile {
+    background: var(--md-sys-color-primary-container);
+    box-shadow: var(--md-sys-elevation-1);
     cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: var(--md-sys-shadow-sm);
 }
 
-/* ИКОНКА В ПОКОЕ: Теперь принудительно берет цвет текущего режима */
-.theme-btn i {
-    font-size: 1.8rem;
-    color: var(--md-sys-color-primary) !important; /* Добавили !important */
-    margin-bottom: 10px;
-    display: block;
-    transition: color 0.25s ease;
+.active-tile::before { background: var(--md-sys-color-on-primary-container); }
+.active-tile:hover   { transform: translateY(-3px); box-shadow: var(--md-sys-elevation-2); }
+.active-tile:hover::before  { opacity: .05; }
+.active-tile:active::before { opacity: .12; }
+
+.active-tile .tile-icon  { color: var(--md-sys-color-on-primary-container); }
+.active-tile .tile-label { color: var(--md-sys-color-on-primary-container); }
+
+.disabled-tile {
+    background: var(--md-sys-color-surface-container);
+    cursor: default;
 }
 
-.theme-btn span {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--md-sys-color-on-surface);
+.disabled-tile .tile-icon  { color: var(--md-sys-color-outline); }
+.disabled-tile .tile-label { color: var(--md-sys-color-on-surface-variant); }
+
+.tile-icon {
+    font-size: 28px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    position: relative;
+    z-index: 1;
+    transition: color .35s ease;
 }
 
-/* ХОВЕР: Иконка принудительно загорается бирюзовым акцентом */
-.theme-btn:hover {
-    transform: translateY(-3px);
-    border-style: solid;
-    border-color: var(--md-sys-color-accent);
-    box-shadow: var(--md-sys-shadow-md);
-}
-.theme-btn:hover i {
-    color: var(--md-sys-color-accent) !important; /* Добавили !important */
+.tile-label {
+    text-align: center;
+    padding: 0 8px;
+    font-size: 10px;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+    transition: color .35s ease;
 }
 
-/* АКТИВНАЯ ТЕМА: Иконка горит акцентным цветом выбранного режима */
-.theme-btn.active-theme {
-    border: 2px solid var(--md-sys-color-accent) !important;
-    background: var(--md-sys-color-surface) !important;
+/* -----------------------------------------------------------------------------
+   SUBMENU LEVELS
+   ----------------------------------------------------------------------------- */
+.submenu-level {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--md-sys-color-surface);
+    transition: background-color .35s ease;
+    animation: submenu-enter .3s cubic-bezier(.2,0,0,1);
 }
-.theme-btn.active-theme i {
-    color: var(--md-sys-color-accent) !important;
+
+.submenu-hidden {
+    display: none;
+}
+
+@keyframes submenu-enter {
+    from { opacity: 0; transform: translateX(16px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* -----------------------------------------------------------------------------
+   EMPTY STATE
+   ----------------------------------------------------------------------------- */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 340px;
+    text-align: center;
+    padding: 40px 24px;
+}
+
+.empty-icon {
+    font-size: 64px;
+    color: var(--md-sys-color-outline);
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
+    margin-bottom: 4px;
+    transition: color .35s ease;
+}
+
+.empty-state h2 { color: var(--md-sys-color-on-surface); }
+.empty-state p  { color: var(--md-sys-color-on-surface-variant); max-width: 280px; }
+
+/* -----------------------------------------------------------------------------
+   SETTINGS
+   ----------------------------------------------------------------------------- */
+.settings-section-label {
+    color: var(--md-sys-color-primary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    transition: color .35s ease;
+}
+
+.theme-chips-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.theme-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--md-sys-color-outline-variant);
+    background: transparent;
+    cursor: pointer;
+    color: var(--md-sys-color-on-surface-variant);
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.theme-chip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--md-sys-color-on-surface);
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.theme-chip:hover::before  { opacity: .08; }
+.theme-chip:active::before { opacity: .12; }
+
+.theme-chip .material-symbols-rounded,
+.theme-chip .label-large {
+    position: relative;
+    z-index: 1;
+}
+
+.theme-chip .material-symbols-rounded { font-size: 18px; }
+
+.theme-chip.active {
+    border-color: var(--md-sys-color-primary);
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+.theme-chip.active::before {
+    background: var(--md-sys-color-on-secondary-container);
+}
+
+/* Icon preview */
+.icon-preview-card { padding: 20px; margin-top: 0; }
+
+.icon-preview-row {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.icon-preview-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.preview-icon {
+    font-size: 32px;
+    color: var(--md-sys-color-primary);
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    transition: color .35s ease;
+}
+
+.icon-preview-item .label-small {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+/* -----------------------------------------------------------------------------
+   RIPPLE
+   ----------------------------------------------------------------------------- */
+.ripple-target { position: relative; overflow: hidden; }
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--md-sys-color-primary);
+    opacity: .14;
+    pointer-events: none;
+    transform: scale(0);
+    animation: ripple-expand .6s cubic-bezier(0,.2,.2,1) forwards;
+}
+
+@keyframes ripple-expand {
+    to { transform: scale(4); opacity: 0; }
+}
+
+/* =============================================================================
+   RESPONSIVE — Full-screen on screens < 960 px
+   ============================================================================= */
+@media (max-width: 959px) {
+    body {
+        align-items: stretch;
+        justify-content: stretch;
+    }
+
+    .app-surface {
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .content-area {
+        border-radius: 0;
+    }
+}
+
+/* =============================================================================
+   MOBILE — Bottom Navigation Bar on screens ≤ 599 px
+   ============================================================================= */
+@media (max-width: 599px) {
+
+    /* Redefine entrance animation for mobile (slide up, no scale) */
+    @keyframes app-enter {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: none; }
+    }
+
+    .app-surface {
+        flex-direction: column-reverse; /* nav-rail → bottom, content-area → top */
+    }
+
+    /* ── Bottom Navigation Bar ─────────────────────────────────────── */
+    .nav-rail {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-shrink: 0;
+        padding: 0;
+        padding-bottom: env(safe-area-inset-bottom);
+        align-items: stretch;
+        border-top: 1px solid var(--md-sys-color-outline-variant);
+    }
+
+    .nav-rail-header { display: none; }
+
+    .nav-rail-items {
+        flex-direction: row;
+        gap: 0;
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .nav-rail-item {
+        flex: 1;
+        padding: 12px 4px 16px;
+        gap: 4px;
+    }
+
+    .nav-rail-indicator {
+        width: 64px;
+        height: 32px;
+    }
+
+    .nav-rail-label {
+        font-size: 10px;
+        letter-spacing: .3px;
+    }
+
+    /* ── Content Area ──────────────────────────────────────────────── */
+    .content-header {
+        padding: 20px 16px 0;
+    }
+
+    .content-scroll {
+        padding: 12px 16px 16px;
+    }
+
+    /* ── Cards ─────────────────────────────────────────────────────── */
+    .welcome-card {
+        padding: 20px;
+    }
+
+    .feature-item {
+        padding: 14px 12px;
+        gap: 12px;
+    }
+
+    /* ── List Items ────────────────────────────────────────────────── */
+    .md-list-item {
+        padding: 14px 12px;
+        gap: 12px;
+    }
+
+    /* ── Tiles Grid: 2 columns on mobile ───────────────────────────── */
+    .tiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    /* ── Empty State ───────────────────────────────────────────────── */
+    .empty-state {
+        min-height: 200px;
+        padding: 32px 16px;
+    }
+
+    .empty-icon {
+        font-size: 52px;
+    }
+
+    /* ── Settings ──────────────────────────────────────────────────── */
+    .theme-chips-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .theme-chip {
+        justify-content: center;
+        padding: 10px 16px;
+    }
 }

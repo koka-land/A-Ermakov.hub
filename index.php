@@ -1,156 +1,216 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Ermakov.hub</title>
-    <link class="style" rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>A-Ermakov · hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-
-        <div id="logo">
-            <h1 class="logo">hub</h1>
+    <div id="app-loader" class="app-loader">
+        <div class="loader-content">
+            <div class="md-circular-progress">
+                <svg viewBox="0 0 48 48" class="progress-svg">
+                    <circle class="progress-track" cx="24" cy="24" r="20"/>
+                    <circle class="progress-indicator" cx="24" cy="24" r="20"/>
+                </svg>
+            </div>
+            <span class="label-large loader-label">hub</span>
         </div>
+    </div>
 
-        <div class="leftbox">
-            <nav>
-                <a href="#" class="nav-link active" id="tab-home" data-tooltip="Главная">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="nav-link" id="tab-reports" data-tooltip="Отчёты ЭЖ">
-                    <i class="fa fa-folder-open" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="nav-link" id="tab-analytics" data-tooltip="Аналитика">
-                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="nav-link" id="tab-settings" data-tooltip="Настройки">
-                    <i class="fa fa-cog" aria-hidden="true"></i>
-                </a>
-            </nav>
-        </div>
+    <div class="app-surface" id="app">
 
-        <div class="rightbox">
+        <nav class="nav-rail" role="navigation" aria-label="Основная навигация">
+            <div class="nav-rail-header">
+                <span class="nav-brand title-medium">hub</span>
+            </div>
+            <div class="nav-rail-items">
+                <a href="#" class="nav-rail-item active ripple-target" id="tab-home" data-tab="home" role="button">
+                    <div class="nav-rail-indicator">
+                        <span class="material-symbols-rounded">home</span>
+                    </div>
+                    <span class="nav-rail-label label-medium">Главная</span>
+                </a>
+                <a href="#" class="nav-rail-item ripple-target" id="tab-reports" data-tab="reports" role="button">
+                    <div class="nav-rail-indicator">
+                        <span class="material-symbols-rounded">folder_open</span>
+                    </div>
+                    <span class="nav-rail-label label-medium">Отчёты</span>
+                </a>
+                <a href="#" class="nav-rail-item ripple-target" id="tab-analytics" data-tab="analytics" role="button">
+                    <div class="nav-rail-indicator">
+                        <span class="material-symbols-rounded">analytics</span>
+                    </div>
+                    <span class="nav-rail-label label-medium">Аналитика</span>
+                </a>
+                <a href="#" class="nav-rail-item ripple-target" id="tab-settings" data-tab="settings" role="button">
+                    <div class="nav-rail-indicator">
+                        <span class="material-symbols-rounded">settings</span>
+                    </div>
+                    <span class="nav-rail-label label-medium">Настройки</span>
+                </a>
+            </div>
+        </nav>
 
-            <div id="content-home" class="tab-content">
-                <h1 class="page-title">Добро пожаловать в A-Ermakov.hub</h1>
-                <div class="hub-welcome-text">
-                    <p><strong>A-Ermakov.hub</strong> — это единая персональная экосистема для автоматизации рутинных задач, monitoring-а сервисов и аналитики данных.</p>
-                    <h2 class="sub-title">Что доступно в системе:</h2>
-                    <ul class="hub-features-list">
-                        <li>
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <div>
-                                <strong>Аналитика журналов</strong>
-                                <span>Автоматический разбор отчётов электронного журнала, оценка учебных умений и выгрузка статистики. (Вкладка «Отчёты»)</span>
+        <main class="content-area" role="main">
+
+            <div id="content-home" class="tab-pane">
+                <header class="content-header">
+                    <h1 class="headline-small">Добро пожаловать</h1>
+                </header>
+                <div class="content-scroll">
+                    <div class="welcome-card md-card filled-card">
+                        <div class="card-content">
+                            <span class="material-symbols-rounded card-hero-icon">hub</span>
+                            <h2 class="title-large">A-Ermakov · hub</h2>
+                            <p class="body-medium">Персональная экосистема для автоматизации задач, мониторинга сервисов и аналитики данных.</p>
+                        </div>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item md-card elevated-card ripple-target">
+                            <div class="feature-icon-container">
+                                <span class="material-symbols-rounded">donut_large</span>
                             </div>
-                        </li>
-                    </ul>
+                            <div class="feature-text">
+                                <span class="title-small">Аналитика журналов</span>
+                                <span class="body-small secondary-text">Разбор отчётов электронного журнала и выгрузка статистики</span>
+                            </div>
+                            <span class="material-symbols-rounded feature-chevron">chevron_right</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="content-reports" class="tab-content noshow">
+            <div id="content-reports" class="tab-pane tab-hidden">
 
                 <div id="reports-categories-root" class="submenu-level">
-                    <div class="back-button-row placeholder">
-                        <i class="fa-solid fa-arrow-left-long"></i> Назад в категории
-                    </div>
-                    <h1 class="page-title">Категории аналитики</h1>
-                    <div class="categories-grid">
-                        <div class="category-card tile-blue" onclick="openSubmenu('sub-reports')">
-                            <div class="category-icon-wrapper">
-                                <i class="fa-solid fa-chart-pie"></i>
+                    <header class="content-header">
+                        <h1 class="headline-small">Категории</h1>
+                    </header>
+                    <div class="content-scroll">
+                        <div class="list-container">
+                            <div class="md-list-item ripple-target" onclick="openSubmenu('sub-reports')">
+                                <div class="list-leading-icon tonal-container">
+                                    <span class="material-symbols-rounded">donut_large</span>
+                                </div>
+                                <div class="list-content">
+                                    <span class="title-medium">Отчёты</span>
+                                    <span class="body-small secondary-text">Анализ журналов, статистика и учебные умения</span>
+                                </div>
+                                <span class="material-symbols-rounded list-trailing">chevron_right</span>
                             </div>
-                            <div class="category-info">
-                                <h2>Отчёты</h2>
-                                <p>Анализ журналов, выгрузка статистики и учебные умения</p>
+                            <div class="md-list-item md-list-item--disabled" onclick="">
+                                <div class="list-leading-icon tonal-container tonal-container--muted">
+                                    <span class="material-symbols-rounded">folder_open</span>
+                                </div>
+                                <div class="list-content">
+                                    <span class="title-medium">Что-то ещё</span>
+                                    <span class="body-small secondary-text">Дополнительные метрики и внешние выгрузки</span>
+                                </div>
+                                <span class="material-symbols-rounded list-trailing">chevron_right</span>
                             </div>
-                            <i class="fa-solid fa-chevron-right arrow-next"></i>
-                        </div>
-                        <div class="category-card empty-service" onclick="openSubmenu('sub-something-else')">
-                            <div class="category-icon-wrapper">
-                                <i class="fa-solid fa-folder-open"></i>
-                            </div>
-                            <div class="category-info">
-                                <h2>Что-то еще</h2>
-                                <p>Дополнительные метрики, архивы и внешние выгрузки данных</p>
-                            </div>
-                            <i class="fa-solid fa-chevron-right arrow-next"></i>
                         </div>
                     </div>
                 </div>
 
-                <div id="sub-reports" class="submenu-level noshow">
-                    <div class="back-button-row" onclick="closeSubmenu('sub-reports')">
-                        <i class="fa-solid fa-arrow-left-long"></i> Назад в категории
-                    </div>
-                    <h1 class="page-title">Отчёты по электронному журналу</h1>
-                    <div class="grid-layout">
-                        <div class="tile-card tile-blue">
-                            <i class="fa-solid fa-chart-pie tile-icon"></i>
-                            <span class="tile-title">Оценка учебных умений</span>
-                        </div>
-                        <div class="tile-card empty-service">
-                            <i class="fa-solid fa-plus tile-icon"></i>
-                            <span class="tile-title">Новый отчёт</span>
-                        </div>
-                        <div class="tile-card empty-service">
-                            <i class="fa-solid fa-plus tile-icon"></i>
-                            <span class="tile-title">Новый отчёт</span>
-                        </div>
-                        <div class="tile-card empty-service">
-                            <i class="fa-solid fa-plus tile-icon"></i>
-                            <span class="tile-title">Новый отчёт</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="sub-something-else" class="submenu-level noshow">
-                    <div class="back-button-row" onclick="closeSubmenu('sub-something-else')">
-                        <i class="fa-solid fa-arrow-left-long"></i> Назад в категории
-                    </div>
-                    <h1 class="page-title">Что-то еще</h1>
-                    <div class="grid-layout">
-                        <div class="tile-card empty-service">
-                            <i class="fa-solid fa-chart-line tile-icon"></i>
-                            <span class="tile-title">Какая-то метрика</span>
-                        </div>
-                        <div class="tile-card empty-service">
-                            <i class="fa-solid fa-plus tile-icon"></i>
-                            <span class="tile-title">Добавить блок</span>
+                <div id="sub-reports" class="submenu-level submenu-hidden">
+                    <header class="content-header content-header--back">
+                        <button class="icon-button ripple-target" onclick="closeSubmenu('sub-reports')" aria-label="Назад">
+                            <span class="material-symbols-rounded">arrow_back</span>
+                        </button>
+                        <h1 class="headline-small">Отчёты по журналу</h1>
+                    </header>
+                    <div class="content-scroll">
+                        <div class="tiles-grid">
+                            <div class="md-tile active-tile ripple-target">
+                                <span class="material-symbols-rounded tile-icon">donut_large</span>
+                                <span class="label-small tile-label">Учебные умения</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Новый отчёт</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-            </div> <div id="content-analytics" class="tab-content noshow">
-                <div class="back-button-row placeholder">
-                    <i class="fa-solid fa-arrow-left-long"></i> Заглушка
+                <div id="sub-something-else" class="submenu-level submenu-hidden">
+                    <header class="content-header content-header--back">
+                        <button class="icon-button ripple-target" onclick="closeSubmenu('sub-something-else')" aria-label="Назад">
+                            <span class="material-symbols-rounded">arrow_back</span>
+                        </button>
+                        <h1 class="headline-small">Что-то ещё</h1>
+                    </header>
+                    <div class="content-scroll">
+                        <div class="tiles-grid">
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">trending_up</span>
+                                <span class="label-small tile-label">Метрика</span>
+                            </div>
+                            <div class="md-tile disabled-tile">
+                                <span class="material-symbols-rounded tile-icon">add</span>
+                                <span class="label-small tile-label">Добавить</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h1 class="page-title">Глобальная аналитика</h1>
-                <p style="padding-left: 40px; font-weight: 300; color: var(--md-sys-color-on-surface-muted);">Раздел находится на стадии проектирования модулей обработки данных.</p>
+
             </div>
 
-            <div id="content-settings" class="tab-content noshow">
-                <div class="back-button-row placeholder">
-                    <i class="fa-solid fa-arrow-left-long"></i> Заглушка
-                </div>
-                <h1 class="page-title">Настройки оформления</h1>
-                <div class="theme-options-grid">
-                    <div class="theme-btn" id="theme-btn-colorful" onclick="applyTheme('colorful')">
-                        <i class="fa-solid fa-palette"></i>
-                        <span>Цветная</span>
-                    </div>
-                    <div class="theme-btn" id="theme-btn-light" onclick="applyTheme('light')">
-                        <i class="fa-solid fa-sun"></i>
-                        <span>Светлая</span>
-                    </div>
-                    <div class="theme-btn" id="theme-btn-dark" onclick="applyTheme('dark')">
-                        <i class="fa-solid fa-moon"></i>
-                        <span>Тёмная</span>
+            <div id="content-analytics" class="tab-pane tab-hidden">
+                <header class="content-header">
+                    <h1 class="headline-small">Аналитика</h1>
+                </header>
+                <div class="content-scroll">
+                    <div class="empty-state">
+                        <span class="material-symbols-rounded empty-icon">construction</span>
+                        <h2 class="title-large">В разработке</h2>
+                        <p class="body-medium secondary-text">Раздел на стадии проектирования модулей обработки данных.</p>
                     </div>
                 </div>
-            </div> </div> </div> <script src="script.js"></script>
+            </div>
+
+            <div id="content-settings" class="tab-pane tab-hidden">
+                <header class="content-header">
+                    <h1 class="headline-small">Настройки</h1>
+                </header>
+                <div class="content-scroll">
+                    <p class="label-medium settings-section-label">Цветовая схема</p>
+                    <div class="theme-chips-row">
+                        <button class="theme-chip ripple-target" id="theme-btn-light" onclick="applyTheme('light')">
+                            <span class="material-symbols-rounded">light_mode</span>
+                            <span class="label-large">Светлая</span>
+                        </button>
+                        <button class="theme-chip ripple-target" id="theme-btn-dark" onclick="applyTheme('dark')">
+                            <span class="material-symbols-rounded">dark_mode</span>
+                            <span class="label-large">Тёмная</span>
+                        </button>
+                        <button class="theme-chip ripple-target" id="theme-btn-teal" onclick="applyTheme('teal')">
+                            <span class="material-symbols-rounded">palette</span>
+                            <span class="label-large">Бирюзовая</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
