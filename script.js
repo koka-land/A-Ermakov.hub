@@ -1,4 +1,4 @@
-console.log("🚀 Новый скрипт хаба успешно загружен и выполнен!");
+console.log("🚀 Магия Material You: Все скрипты хаба успешно инициализированы!");
 
 /* ==========================================================================
    1. ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ОСНОВНЫХ ВКЛАДОК (ТАБОВ)
@@ -44,7 +44,7 @@ document.querySelectorAll('.nav-link').forEach(button => {
 });
 
 /* ==========================================================================
-   2. МНОГОУРОВНЕВАЯ НАВИГАЦИЯ (Экспорт в window для onclick в HTML)
+   2. МНОГОУРОВНЕВАЯ НАВИГАЦИЯ ВНУТРИ ТАБА (ОТЧЁТЫ)
    ========================================================================== */
 
 /**
@@ -87,3 +87,34 @@ window.resetSubmenusToRoot = function() {
         sub.classList.add('noshow');
     });
 };
+
+/* ==========================================================================
+   3. ДВИЖОК ПЕРЕКЛЮЧЕНИЯ ТЕМ ОФОРМЛЕНИЯ (Material You Engine)
+   ========================================================================== */
+
+/**
+ * Применяет выбранную тему к body и сохраняет её в памяти localStorage
+ * @param {string} themeName - 'colorful', 'light' или 'dark'
+ */
+window.applyTheme = function(themeName) {
+    // 1. Меняем атрибут на body — CSS мгновенно перестроит палитру переменных
+    document.body.setAttribute('data-theme', themeName);
+
+    // 2. Сохраняем выбор пользователя в кэш браузера, чтобы настройки не слетали
+    localStorage.setItem('hub-preferred-theme', themeName);
+
+    // 3. Снимаем подсветку со всех кнопок тем в настройках
+    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active-theme'));
+
+    // 4. Подсвечиваем рамкой текущую выбранную плитку темы
+    const activeBtn = document.getElementById(`theme-btn-${themeName}`);
+    if (activeBtn) {
+        activeBtn.classList.add('active-theme');
+    }
+};
+
+// ИНИЦИАЛИЗАЦИЯ: Автоматически восстанавливаем тему при первой загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('hub-preferred-theme') || 'colorful';
+    window.applyTheme(savedTheme);
+});

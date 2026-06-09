@@ -1,51 +1,110 @@
 /* ==========================================================================
-   1. ПЕРЕМЕННЫЕ И БЕЗОПАСНЫЙ ШРИФТ ROBOTO
+   1. СИСТЕМА ДИЗАЙН-ТОКЕНОВ (MATERIAL YOU) & БАЗОВЫЕ НАСТРОЙКИ
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700&display=swap');
 
 :root {
-    /* Наша фирменная палитра */
-    --bg-color: #B2CAD4;          /* Спокойный матовый серо-голубой фон вокруг */
-    --main-dark: #264653;         /* Глубокий сине-зеленый (левая панель, лого и заголовки) */
-    --accent-tile: #2a9d8f;       /* Мягкий бирюзовый (цвет активной плитки) */
+    /* ПО УМОЛЧАНИЮ: ЦВЕТНАЯ ТЕМА (COLORFUL) */
+    --md-sys-color-background:         #B2CAD4;
+    --md-sys-color-container:          #FFFFFF;
+    --md-sys-color-leftbox-bg:         #264653;
+    --md-sys-color-nav-icon:           #B2CAD4;
+    --md-sys-color-nav-icon-active:    #FFFFFF;
+    --md-sys-color-surface:            #FFFFFF;
 
-    --white: #FFFFFF;
-    --gray-text: #777777;
-    --black-text: #070707;
+    /* Контуры */
+    --md-sys-color-outline-active:     #264653;
+    --md-sys-color-outline-inactive:   #B2CAD4;
+    --md-sys-color-outline-disabled:   #cbd3d6;
+
+    /* Тексты и иконки */
+    --md-sys-color-primary:            #264653; /* Фирменный сланцевый */
+    --md-sys-color-on-surface:         #264653;
+    --md-sys-color-on-surface-variant: #2f3640;
+    --md-sys-color-on-surface-muted:   #777777;
+    --md-sys-color-accent:             #2a9d8f;
+
+    --md-sys-shadow-sm: 0 4px 14px rgba(38, 70, 83, 0.05);
+    --md-sys-shadow-md: 0 10px 25px rgba(38, 70, 83, 0.12);
 }
 
-/* Убираем отсюда font-family !important, чтобы не ломать шрифты иконок */
+/* СВЕТЛАЯ ТЕМА (LIGHT) */
+body[data-theme="light"] {
+    --md-sys-color-background:         #F0F3F5;
+    --md-sys-color-container:          #FFFFFF;
+    --md-sys-color-leftbox-bg:         #1E293B;
+    --md-sys-color-nav-icon:           #94A3B8;
+    --md-sys-color-nav-icon-active:    #FFFFFF;
+    --md-sys-color-surface:            #F8FAFC;
+
+    --md-sys-color-outline-active:     #1E293B;
+    --md-sys-color-outline-inactive:   #CBD5E1;
+    --md-sys-color-outline-disabled:   #E2E8F0;
+
+    /* Тексты и иконки */
+    --md-sys-color-primary:            #1E293B; /* Строгий угольный для покоя */
+    --md-sys-color-on-surface:         #0F172A;
+    --md-sys-color-on-surface-variant: #475569;
+    --md-sys-color-on-surface-muted:   #94A3B8;
+    --md-sys-color-accent:             #0284c7;
+
+    --md-sys-shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
+    --md-sys-shadow-md: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* ТЁМНАЯ ТЕМА (DARK) */
+body[data-theme="dark"] {
+    --md-sys-color-background:         #12161A;
+    --md-sys-color-container:          #1A2024;
+    --md-sys-color-leftbox-bg:         #0E1114;
+    --md-sys-color-nav-icon:           #4A5560;
+    --md-sys-color-nav-icon-active:    #4db6ac;
+    --md-sys-color-surface:            #222A30;
+
+    --md-sys-color-outline-active:     #E2E8F0;
+    --md-sys-color-outline-inactive:   #4A5560;
+    --md-sys-color-outline-disabled:   #333F48;
+
+    /* Тексты и иконки */
+    --md-sys-color-primary:            #CBD5E1; /* Мягкий светлый тон, чтобы иконки сияли ночером! */
+    --md-sys-color-on-surface:         #F8FAFC;
+    --md-sys-color-on-surface-variant: #94A3B8;
+    --md-sys-color-on-surface-muted:   #64748B;
+    --md-sys-color-accent:             #4db6ac;
+
+    --md-sys-shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
+    --md-sys-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Назначаем Roboto базовым шрифтом для всего текстового контента приложения */
 body, input, button, select, textarea, p, span, h1, h2, h3, a {
     font-family: 'Roboto', sans-serif;
 }
 
-/* Фон страницы теперь ровный, матовый и глубокий */
 body {
-    background: var(--bg-color);
+    background: var(--md-sys-color-background);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.3s ease;
 }
 
-/* Очистка ссылок, чтобы они не синели и не подчеркивались */
 a, a:visited, a:hover, a:active {
     text-decoration: none !important;
     color: inherit !important;
 }
 
-/* Читаемые отступы для текстов на Главной */
+/* Стили текстов на Главной */
 .rightbox p {
     margin-bottom: 16px;
     line-height: 1.6;
-    color: #2f3640;
+    color: var(--md-sys-color-on-surface-variant);
     font-weight: 300;
 }
 .rightbox ul, .rightbox ol {
@@ -55,24 +114,23 @@ a, a:visited, a:hover, a:active {
     margin-bottom: 8px;
     line-height: 1.5;
     font-weight: 300;
+    color: var(--md-sys-color-on-surface-variant);
 }
 
 /* ==========================================================================
    2. ДЕСКТОПНЫЙ КАРКАС ПАНЕЛЕЙ
    ========================================================================== */
-
-/* Основной контейнер-форма */
 .container {
-    background: var(--white);
+    background: var(--md-sys-color-container);
     width: 800px;
     height: 70vh;
     min-height: 400px;
     position: relative;
-    box-shadow: 0 15px 35px rgba(38, 70, 83, 0.15);
+    box-shadow: var(--md-sys-shadow-md);
     border-radius: 12px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Левая вертикальная панель */
 .leftbox {
     float: left;
     top: -5%;
@@ -80,11 +138,12 @@ a, a:visited, a:hover, a:active {
     position: absolute;
     width: 100px;
     height: 110%;
-    background: var(--main-dark);
+    background: var(--md-sys-color-leftbox-bg);
     box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     padding: 20px 0;
     z-index: 10;
+    transition: background 0.3s ease;
 }
 
 .leftbox nav {
@@ -100,14 +159,14 @@ a, a:visited, a:hover, a:active {
     position: relative;
 }
 
-/* Воздушные подсказки */
+/* Воздушные подсказки (Тултипы) */
 .leftbox nav .nav-link::after {
     content: attr(data-tooltip);
     position: absolute;
     left: 110px;
     top: 50%;
     transform: translateY(-50%) translateX(-10px);
-    background: #264653;
+    background: var(--md-sys-color-leftbox-bg);
     color: #ffffff;
     padding: 10px 30px;
     font-size: 1.1rem;
@@ -120,34 +179,12 @@ a, a:visited, a:hover, a:active {
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.leftbox nav .nav-link::before {
-    content: "";
-    position: absolute;
-    left: 102px;
-    top: 50%;
-    transform: translateY(-50%) translateX(-10px);
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent #264653 transparent transparent;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
 .leftbox nav .nav-link:hover::after {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
 }
-.leftbox nav .nav-link::before,
-.leftbox nav .nav-link:hover::before {
-    display: none !important;
-}
 
-/* ==========================================================================
-   ЦВЕТА И АНИМАЦИЯ ИКОНОК В БОКОВОМ МЕНЮ
-   ========================================================================== */
-
-/* Неактивные иконки — теперь четко в цвете #B2CAD4 */
+/* Управление иконками бокового меню */
 nav a, .leftbox nav a {
     padding: 15px 0;
     font-size: 1.2em;
@@ -156,24 +193,20 @@ nav a, .leftbox nav a {
     transition: all .2s ease-in-out;
     cursor: pointer;
     width: 100%;
-    color: #B2CAD4 !important; /* Твой цвет для неактивных пунктов */
-    opacity: 1 !important;     /* Убираем старое размытие, цвет теперь сочный */
+    color: var(--md-sys-color-nav-icon) !important;
 }
 
-/* При наведении иконка плавно загорается белым и слегка увеличивается */
 nav a:hover, .leftbox nav a:hover {
-    color: var(--white) !important;
+    color: var(--md-sys-color-nav-icon-active) !important;
     transform: scale(1.1);
 }
 
-/* Активный пункт меню уверенно горит чистым белым */
 nav a.active, .leftbox nav a.active {
-    color: var(--white) !important;
-    font-size: 1.3em;          /* Слегка выделяем активную вкладку размером */
+    color: var(--md-sys-color-nav-icon-active) !important;
+    font-size: 1.3em;
     transform: none;
 }
 
-/* Правая область контента */
 .rightbox {
     position: absolute;
     left: 140px;
@@ -182,19 +215,18 @@ nav a.active, .leftbox nav a.active {
     padding: 60px 40px 90px 40px;
 }
 
-/* Логотип hub */
 .logo {
     float: right;
     margin-right: 20px;
     margin-top: 15px;
-    color: var(--main-dark);
+    color: var(--md-sys-color-on-surface);
     font-weight: 700;
     font-size: 1.5em;
     letter-spacing: 1px;
     text-transform: lowercase;
 }
 
-/* Содержимое вкладок */
+/* Содержимое вкладок и анимация переключения табов */
 .tab-content {
     width: 100%;
     height: 100%;
@@ -217,9 +249,8 @@ nav a.active, .leftbox nav a.active {
     transform: translateX(30px);
 }
 
-/* Заголовок страницы */
 .page-title {
-    color: var(--main-dark);
+    color: var(--md-sys-color-on-surface);
     font-size: 1.1rem;
     margin-top: 10px;
     margin-bottom: 25px;
@@ -232,7 +263,7 @@ nav a.active, .leftbox nav a.active {
     margin-right: auto;
 }
 
-#content-reports {
+#content-reports, #content-settings  {
     align-items: center;
 }
 
@@ -243,7 +274,6 @@ nav a.active, .leftbox nav a.active {
     margin-bottom: 25px;
 }
 
-/* Сетка для плиток */
 .grid-layout {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -255,15 +285,14 @@ nav a.active, .leftbox nav a.active {
 }
 
 /* ==========================================================================
-   4. СТИЛЬ ПЛИТОК (Твоя идеальная цветовая схема с ховером)
+   4. СТИЛЬ ПЛИТОК (С новыми тенями и токенами)
    ========================================================================== */
-
-/* БАЗОВЫЙ КАРКАС КАРТОЧКИ (Общие размеры и геометрия для всех) */
 .tile-card {
-    background: var(--white) !important;
-    border: 2px dashed #B2CAD4 !important; /* Серый пунктир по умолчанию для заглушек */
+    background: var(--md-sys-color-surface) !important;
+    border: 2px dashed var(--md-sys-color-outline-inactive) !important;
     border-radius: 14px;
     padding: 18px 2px 12px 2px !important;
+    box-shadow: var(--md-sys-shadow-sm);
 
     display: flex;
     flex-direction: column;
@@ -273,11 +302,9 @@ nav a.active, .leftbox nav a.active {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     cursor: pointer;
-
     transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.2s ease;
 }
 
-/* БАЗОВЫЙ КАРКАС ИКОНКИ */
 .tile-icon {
     display: flex !important;
     align-items: center;
@@ -286,20 +313,18 @@ nav a.active, .leftbox nav a.active {
     height: 40px !important;
     min-height: 40px !important;
     margin: 0 auto 14px auto !important;
-
     background: transparent !important;
     border: none !important;
     width: auto !important;
     transition: color 0.25s ease;
 }
 
-/* БАЗОВЫЙ КАРКАС ТЕКСТА (Тонкий Roboto 200) */
 .tile-title {
     font-size: 0.9rem;
     font-weight: 200 !important;
     line-height: 1.3;
     text-align: center;
-    color: var(--main-dark) !important;
+    color: var(--md-sys-color-on-surface) !important;
     width: 100%;
     display: block;
     padding: 0 !important;
@@ -307,61 +332,45 @@ nav a.active, .leftbox nav a.active {
     word-wrap: break-word;
 }
 
-/* --------------------------------------------------------------------------
-   1. ТВОЯ АКТИВНАЯ РАБОЧАЯ ПЛИТКА (ГЛУБОКИЙ СЛАНЦЕВЫЙ -> БИРЮЗОВЫЙ СЛИЯНИЕ)
-   -------------------------------------------------------------------------- */
-
-/* В покое — строгий пунктир в цвет левой панели #264653 */
+/* --- 1. АКТИВНАЯ РАБОЧАЯ ПЛИТКА --- */
 .tile-card.tile-blue {
-    border: 2px dashed #264653 !important;
+    border: 2px dashed var(--md-sys-color-outline-active) !important;
 }
 .tile-card.tile-blue .tile-icon {
-    color: #264653 !important;
+    color: var(--md-sys-color-outline-active) !important;
 }
 
-/* ПРИ НАВЕДЕНИИ: загорается бирюзой #2A9D8F и превращается в сплошную линию */
 .tile-card.tile-blue:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(42, 157, 143, 0.06);
-    border: 2px solid #2A9D8F !important;
+    box-shadow: var(--md-sys-shadow-md) !important;
+    border: 2px solid var(--md-sys-color-accent) !important;
 }
 .tile-card.tile-blue:hover .tile-icon {
-    color: #2A9D8F !important;
+    color: var(--md-sys-color-accent) !important;
 }
 
-/* --------------------------------------------------------------------------
-   2. НЕАКТИВНЫЕ ПЛИТКИ-ЗАГЛУШКИ (СЕРЫЙ ПУНКТИР -> SOLID СЕРЫЙ)
-   -------------------------------------------------------------------------- */
-
-/* В покое — блеклый серый пунктир */
+/* --- 2. НЕАКТИВНЫЕ ПЛИТКИ-ЗАГЛУШКИ --- */
 .tile-card.empty-service {
-    border: 2px dashed #cbd3d6 !important;
+    border: 2px dashed var(--md-sys-color-outline-disabled) !important;
+    box-shadow: none;
     cursor: default;
 }
 .tile-card.empty-service .tile-icon {
-    color: #b2bcC2 !important;
+    color: var(--md-sys-color-on-surface-muted) !important;
 }
 .tile-card.empty-service .tile-title {
-    color: var(--gray-text) !important;
+    color: var(--md-sys-color-on-surface-muted) !important;
 }
 
-/* При наведении заглушка превращается в solid, но остается серой */
 .tile-card.empty-service:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    border: 2px solid #b2bcC2 !important;
+    box-shadow: var(--md-sys-shadow-sm) !important;
+    border: 2px solid var(--md-sys-color-outline-disabled) !important;
 }
-.tile-card.empty-service:hover .tile-icon {
-    color: #b2bcC2 !important;
-}
-.tile-card.empty-service:hover .tile-title {
-    color: var(--gray-text) !important;
-}
-/* ==========================================================================
-   5. МНОГОУРОВНЕВАЯ НАВИГАЦИЯ ВНУТРИ ТАБА (СТРОГО В СТИЛЕ ПЛИТОК)
-   ========================================================================== */
 
-/* Обертка для уровней меню */
+/* ==========================================================================
+   5. МНОГОУРОВНЕВАЯ НАВИГАЦИЯ ВНУТРИ ТАБА
+   ========================================================================== */
 .submenu-level {
     width: 100%;
     display: flex;
@@ -374,7 +383,6 @@ nav a.active, .leftbox nav a.active {
     to { opacity: 1; transform: translateX(0); }
 }
 
-/* Сетка для отображения категорий-строк */
 .categories-grid {
     display: flex;
     flex-direction: column;
@@ -384,31 +392,28 @@ nav a.active, .leftbox nav a.active {
     margin: 0 auto;
 }
 
-/* БАЗОВЫЙ КАРКАС КАРТОЧКИ КАТЕГОРИИ */
 .category-card {
-    background: #ffffff !important;
+    background: var(--md-sys-color-surface) !important;
     border-radius: 12px;
     padding: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    box-shadow: var(--md-sys-shadow-sm);
     transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.2s ease;
 }
 
-/* ИКОНКА КАТЕГОРИИ: Фон теперь прозрачный ВСЕГДА */
 .category-icon-wrapper {
     width: 40px;
     height: 40px;
-    background: transparent !important; /* Убрали серые и бирюзовые круги */
+    background: transparent !important;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     margin-right: 16px;
-    transition: color 0.25s ease;
 }
 
-/* Информационные тексты */
 .category-info {
     display: flex;
     flex-direction: column;
@@ -426,71 +431,61 @@ nav a.active, .leftbox nav a.active {
     transition: color 0.25s ease;
 }
 
-/* Правая стрелочка перехода */
 .arrow-next {
     font-size: 0.9rem;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/* --------------------------------------------------------------------------
-   ЦВЕТОВЫЕ МОДИФИКАТОРЫ КАТЕГОРИЙ (КОПИЯ ЛОГИКИ ПЛИТОК)
-   -------------------------------------------------------------------------- */
-
-/* --- 1. АКТИВНАЯ КАТЕГОРИЯ (Глубокий сланцевый в покое) --- */
+/* --- Модификатор: Активная категория --- */
 .category-card.tile-blue {
-    border: 2px dashed #264653 !important;
+    border: 2px dashed var(--md-sys-color-outline-active) !important;
 }
 .category-card.tile-blue .category-icon-wrapper i,
 .category-card.tile-blue .arrow-next,
 .category-card.tile-blue h2 {
-    color: #264653 !important;
+    color: var(--md-sys-color-outline-active) !important;
 }
 .category-card.tile-blue p {
-    color: #556e7a !important;
+    color: var(--md-sys-color-on-surface-variant) !important;
 }
 
-/* Ховер активной категории: сплошная линия и бирюза #2A9D8F */
 .category-card.tile-blue:hover {
     transform: translateX(4px);
-    box-shadow: 0 8px 20px rgba(42, 157, 143, 0.06);
-    border: 2px solid #2A9D8F !important;
+    box-shadow: var(--md-sys-shadow-md) !important;
+    border: 2px solid var(--md-sys-color-accent) !important;
 }
 .category-card.tile-blue:hover .category-icon-wrapper i,
 .category-card.tile-blue:hover .arrow-next,
 .category-card.tile-blue:hover h2 {
-    color: #2A9D8F !important;
+    color: var(--md-sys-color-accent) !important;
 }
 
-/* --- 2. НЕАКТИВНАЯ КАТЕГОРИЯ (Блеклый серый пунктир) --- */
+/* --- Модификатор: Неактивная категория --- */
 .category-card.empty-service {
-    border: 2px dashed #cbd3d6 !important;
+    border: 2px dashed var(--md-sys-color-outline-disabled) !important;
+    box-shadow: none;
     cursor: default;
 }
 .category-card.empty-service .category-icon-wrapper i,
 .category-card.empty-service .arrow-next {
-    color: #b2bcC2 !important;
+    color: var(--md-sys-color-on-surface-muted) !important;
 }
 .category-card.empty-service h2,
 .category-card.empty-service p {
-    color: var(--gray-text) !important;
+    color: var(--md-sys-color-on-surface-muted) !important;
 }
 
-/* Ховер неактивной категории: превращается в solid, но остается строго серой */
 .category-card.empty-service:hover {
     transform: translateX(2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    border: 2px solid #b2bcC2 !important;
-}
-.category-card.empty-service:hover .category-icon-wrapper i,
-.category-card.empty-service:hover .arrow-next {
-    color: #b2bcC2 !important;
+    box-shadow: var(--md-sys-shadow-sm) !important;
+    border: 2px solid var(--md-sys-color-outline-disabled) !important;
 }
 
-/* --- КНОПКА НАЗАД --- */
+/* --- Кнопка Назад и её невидимый Слот-заглушка --- */
 .back-button-row {
     font-size: 0.85rem;
     font-weight: 500;
-    color: #777777;
+    color: var(--md-sys-color-on-surface-muted);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -503,14 +498,72 @@ nav a.active, .leftbox nav a.active {
     transition: color 0.2s ease, transform 0.2s ease;
 }
 .back-button-row:hover {
-    color: #2a9d8f;
+    color: var(--md-sys-color-accent);
     transform: translateX(-3px);
 }
 .back-button-row i {
     font-size: 1rem;
 }
-/* Сделай заглушку невидимой, но сохраняющей свои размеры в потоке */
+
 .back-button-row.placeholder {
     visibility: hidden;
     pointer-events: none;
+}
+
+/* ==========================================================================
+   6. СТИЛИ ДЛЯ ЭКРАНА НАСТРОЕК (ПРИНУДИТЕЛЬНЫЕ ТОКЕНЫ ДЛЯ ИКОНОК)
+   ========================================================================== */
+.theme-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.theme-btn {
+    background: var(--md-sys-color-surface);
+    border: 2px dashed var(--md-sys-color-outline-active);
+    border-radius: 12px;
+    padding: 20px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: var(--md-sys-shadow-sm);
+}
+
+/* ИКОНКА В ПОКОЕ: Теперь принудительно берет цвет текущего режима */
+.theme-btn i {
+    font-size: 1.8rem;
+    color: var(--md-sys-color-primary) !important; /* Добавили !important */
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.25s ease;
+}
+
+.theme-btn span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--md-sys-color-on-surface);
+}
+
+/* ХОВЕР: Иконка принудительно загорается бирюзовым акцентом */
+.theme-btn:hover {
+    transform: translateY(-3px);
+    border-style: solid;
+    border-color: var(--md-sys-color-accent);
+    box-shadow: var(--md-sys-shadow-md);
+}
+.theme-btn:hover i {
+    color: var(--md-sys-color-accent) !important; /* Добавили !important */
+}
+
+/* АКТИВНАЯ ТЕМА: Иконка горит акцентным цветом выбранного режима */
+.theme-btn.active-theme {
+    border: 2px solid var(--md-sys-color-accent) !important;
+    background: var(--md-sys-color-surface) !important;
+}
+.theme-btn.active-theme i {
+    color: var(--md-sys-color-accent) !important;
 }
