@@ -1,137 +1,302 @@
-/* =============================================================================
-   MATERIAL YOU (M3) — Full Design System
-   ============================================================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-/* -----------------------------------------------------------------------------
-   COLOR TOKENS — Light (M3 Baseline)
-   ----------------------------------------------------------------------------- */
 :root,
 [data-theme="light"] {
-    --md-sys-color-primary:                   #6750A4;
-    --md-sys-color-on-primary:                #FFFFFF;
-    --md-sys-color-primary-container:         #EADDFF;
-    --md-sys-color-on-primary-container:      #21005D;
-    --md-sys-color-secondary:                 #625B71;
-    --md-sys-color-on-secondary:              #FFFFFF;
-    --md-sys-color-secondary-container:       #E8DEF8;
-    --md-sys-color-on-secondary-container:    #1D192B;
-    --md-sys-color-tertiary:                  #7D5260;
-    --md-sys-color-on-tertiary:               #FFFFFF;
-    --md-sys-color-tertiary-container:        #FFD8E4;
-    --md-sys-color-on-tertiary-container:     #31111D;
-    --md-sys-color-background:                #FEF7FF;
-    --md-sys-color-on-background:             #1D1B20;
-    --md-sys-color-surface:                   #FEF7FF;
-    --md-sys-color-on-surface:                #1D1B20;
-    --md-sys-color-surface-variant:           #E7E0EC;
-    --md-sys-color-on-surface-variant:        #49454F;
-    --md-sys-color-outline:                   #79747E;
-    --md-sys-color-outline-variant:           #CAC4D0;
-    --md-sys-color-inverse-surface:           #322F35;
-    --md-sys-color-inverse-on-surface:        #F5EFF7;
-    --md-sys-color-inverse-primary:           #D0BCFF;
-    --md-sys-color-surface-container-lowest:  #FFFFFF;
-    --md-sys-color-surface-container-low:     #F7F2FA;
-    --md-sys-color-surface-container:         #F3EDF7;
-    --md-sys-color-surface-container-high:    #ECE6F0;
-    --md-sys-color-surface-container-highest: #E6E0E9;
+    /* Primary Palette */
+    --md-sys-color-primary: #264653;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #bfeaff;
+    --md-sys-color-on-primary-container: #001f2a;
+
+    /* Secondary Palette */
+    --md-sys-color-secondary: #4a626c;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #cde7f2;
+    --md-sys-color-on-secondary-container: #051f27;
+
+    /* Tertiary Palette */
+    --md-sys-color-tertiary: #5a5b7e;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #e1e0ff;
+    --md-sys-color-on-tertiary-container: #171837;
+
+    /* Background & Surface */
+    --md-sys-color-background: #fbfdfe;
+    --md-sys-color-on-background: #191c1d;
+    --md-sys-color-surface: #fbfdfe;
+    --md-sys-color-on-surface: #191c1d;
+
+    /* Surface Variant */
+    --md-sys-color-surface-variant: #dce4e8;
+    --md-sys-color-on-surface-variant: #40484b;
+
+    /* Outline */
+    --md-sys-color-outline: #71787c;
+    --md-sys-color-outline-variant: #c0c8cb;
+
+    /* Inverse */
+    --md-sys-color-inverse-surface: #2e3132;
+    --md-sys-color-inverse-on-surface: #eff1f3;
+    --md-sys-color-inverse-primary: #5fd4ff;
+
+    /* Surface Containers */
+    --md-sys-color-surface-container-lowest: #ffffff;
+    --md-sys-color-surface-container-low: #f5f7f9;
+    --md-sys-color-surface-container: #eff1f3;
+    --md-sys-color-surface-container-high: #e9ecee;
+    --md-sys-color-surface-container-highest: #e3e6e8;
 
     --md-sys-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
     --md-sys-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
     --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.30);
 }
-
-/* -----------------------------------------------------------------------------
-   COLOR TOKENS — Dark (M3 Baseline)
-   ----------------------------------------------------------------------------- */
 [data-theme="dark"] {
-    --md-sys-color-primary:                   #D0BCFF;
-    --md-sys-color-on-primary:                #381E72;
-    --md-sys-color-primary-container:         #4F378B;
-    --md-sys-color-on-primary-container:      #EADDFF;
-    --md-sys-color-secondary:                 #CCC2DC;
-    --md-sys-color-on-secondary:              #332D41;
-    --md-sys-color-secondary-container:       #4A4458;
-    --md-sys-color-on-secondary-container:    #E8DEF8;
-    --md-sys-color-tertiary:                  #EFB8C8;
-    --md-sys-color-on-tertiary:               #492532;
-    --md-sys-color-tertiary-container:        #633B48;
-    --md-sys-color-on-tertiary-container:     #FFD8E4;
-    --md-sys-color-background:                #141218;
-    --md-sys-color-on-background:             #E6E0E9;
-    --md-sys-color-surface:                   #141218;
-    --md-sys-color-on-surface:                #E6E0E9;
-    --md-sys-color-surface-variant:           #49454F;
-    --md-sys-color-on-surface-variant:        #CAC4D0;
-    --md-sys-color-outline:                   #938F99;
-    --md-sys-color-outline-variant:           #49454F;
-    --md-sys-color-inverse-surface:           #E6E0E9;
-    --md-sys-color-inverse-on-surface:        #322F35;
-    --md-sys-color-inverse-primary:           #6750A4;
-    --md-sys-color-surface-container-lowest:  #0F0D13;
-    --md-sys-color-surface-container-low:     #1D1B20;
-    --md-sys-color-surface-container:         #211F26;
-    --md-sys-color-surface-container-high:    #2B2930;
-    --md-sys-color-surface-container-highest: #36343B;
+/* Primary Palette */
+        --md-sys-color-primary: #5fd4ff;
+        --md-sys-color-on-primary: #003546;
+        --md-sys-color-primary-container: #004d64;
+        --md-sys-color-on-primary-container: #bfeaff;
+
+        /* Secondary Palette */
+        --md-sys-color-secondary: #b1cbd6;
+        --md-sys-color-on-secondary: #1c333c;
+        --md-sys-color-secondary-container: #334a53;
+        --md-sys-color-on-secondary-container: #cde7f2;
+
+        /* Tertiary Palette */
+        --md-sys-color-tertiary: #c4c3eb;
+        --md-sys-color-on-tertiary: #2c2d4d;
+        --md-sys-color-tertiary-container: #434465;
+        --md-sys-color-on-tertiary-container: #e1e0ff;
+
+        /* Background & Surface */
+        --md-sys-color-background: #191c1d;
+        --md-sys-color-on-background: #e1e3e4;
+        --md-sys-color-surface: #191c1d;
+        --md-sys-color-on-surface: #e1e3e4;
+
+        /* Surface Variant */
+        --md-sys-color-surface-variant: #40484b;
+        --md-sys-color-on-surface-variant: #c0c8cb;
+
+        /* Outline */
+        --md-sys-color-outline: #8a9296;
+        --md-sys-color-outline-variant: #40484b;
+
+        /* Inverse */
+        --md-sys-color-inverse-surface: #e1e3e4;
+        --md-sys-color-inverse-on-surface: #191c1d;
+        --md-sys-color-inverse-primary: #264653;
+
+        /* Surface Containers */
+    --md-sys-color-surface-container-lowest: #0e1112;
+    --md-sys-color-surface-container-low: #191c1d;
+    --md-sys-color-surface-container: #1d2021;
+    --md-sys-color-surface-container-high: #272a2c;
+    --md-sys-color-surface-container-highest: #323537;
 
     --md-sys-elevation-1: 0 1px 3px 1px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
     --md-sys-elevation-2: 0 2px 6px 2px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
     --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.40), 0 1px 3px rgba(0,0,0,.40);
 }
+[data-theme="vivid-light"] {
+/* Primary Palette */
+        /* Primary Palette */
+    --md-sys-color-primary: #725c0c;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #fee086;
+    --md-sys-color-on-primary-container: #574500;
 
-/* -----------------------------------------------------------------------------
-   COLOR TOKENS — Teal (custom brand palette)
-   ----------------------------------------------------------------------------- */
-[data-theme="teal"] {
-    /* Главный бренд-идентификатор (Charcoal Blue) */
-    --md-sys-color-primary:                   #264653;
-    --md-sys-color-on-primary:                #FFFFFF;
-    --md-sys-color-primary-container:         #B2CAD4; /* Сочный матовый серо-голубой для активных плиток */
-    --md-sys-color-on-primary-container:      #0C2A36; /* Глубокий темный для текста на них */
+    /* Secondary Palette */
+    --md-sys-color-secondary: #685e40;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #f1e1bb;
+    --md-sys-color-on-secondary-container: #50462a;
 
-    /* Интерактивный акцент (Яркий бирюзовый Verdigris) */
-    --md-sys-color-secondary:                 #264653;
-    --md-sys-color-on-secondary:              #FFFFFF;
-    --md-sys-color-secondary-container:       #E76F51; /* Индикаторы меню загорятся фирменной бирюзой */
-    --md-sys-color-on-secondary-container:    #FFFFFF;
+    /* Tertiary Palette */
+    --md-sys-color-tertiary: #46664b;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #c7ecca;
+    --md-sys-color-on-tertiary-container: #2f4e35;
 
-    /* Дополнительные акценты (Burnt Peach & Tuscan Sun) */
-    --md-sys-color-tertiary:                  #E76F51;
-    --md-sys-color-on-tertiary:               #FFFFFF;
-    --md-sys-color-tertiary-container:        #E9C46A;
-    --md-sys-color-on-tertiary-container:     #0C2A36;
+    /* 🎨 Colored Background & Surface */
+    --md-sys-color-background: #fff8eb;
+    --md-sys-color-on-background: #1e1b10;
+    --md-sys-color-surface: #fff8eb;
+    --md-sys-color-on-surface: #1e1b10;
 
-    /* Опорные поверхности и глубокие контрастные тексты */
-    --md-sys-color-background:                #F4F7F8; /* Мягчайший светлый тинт от Pale Sky */
-    --md-sys-color-on-background:             #0C2A36;
-    --md-sys-color-surface:                   #FFFFFF;
-    --md-sys-color-on-surface:                #0C2A36;
+    /* Surface Variant */
+    --md-sys-color-surface-variant: #1e1b13;
+    --md-sys-color-on-surface-variant: #4c4639;
 
-    --md-sys-color-surface-variant:           #E2EBEF;
-    --md-sys-color-on-surface-variant:        #264653;
+    /* Outline */
+    --md-sys-color-outline: #7d7667;
+    --md-sys-color-outline-variant: #cec6b4;
 
-    --md-sys-color-outline:                   #264653;
-    --md-sys-color-outline-variant:           #B2CAD4;
+    /* Inverse */
+    --md-sys-color-inverse-surface: #343027;
+    --md-sys-color-inverse-on-surface: #f8f0e2;
+    --md-sys-color-inverse-primary: #e1c46d;
 
-    --md-sys-color-inverse-surface:           #0C2A36;
-    --md-sys-color-inverse-on-surface:        #F4F7F8;
-    --md-sys-color-inverse-primary:           #264653;
+    /* 🎨 Colored Surface Containers */
+    --md-sys-color-surface-container-lowest: #ffffff;
+    --md-sys-color-surface-container-low: #fbf3e5;
+    --md-sys-color-surface-container: #f5eddf;
+    --md-sys-color-surface-container-high: #efe7da;
+    --md-sys-color-surface-container-highest: #e9e2d4;
 
-    /* Тональная иерархия слоев приложения (от чисто-белого до приглушенного серо-голубого) */
-    --md-sys-color-surface-container-lowest:  #FFFFFF;
-    --md-sys-color-surface-container-low:     #F4F7F8;
-    --md-sys-color-surface-container:         #EBF1F4;
-    --md-sys-color-surface-container-high:    #E2EBEF;
-    --md-sys-color-surface-container-highest: #D7E4EA;
-
-    /* Фирменные тени с легким благородным подмесом Charcoal Blue */
-    --md-sys-elevation-1: 0 1px 2px rgba(12,42,54,.12), 0 1px 3px 1px rgba(12,42,54,.08);
-    --md-sys-elevation-2: 0 1px 2px rgba(12,42,54,.18), 0 2px 6px 2px rgba(12,42,54,.08);
-    --md-sys-elevation-3: 0 4px 8px 3px rgba(12,42,54,.08), 0 1px 3px rgba(12,42,54,.15);
+    --md-sys-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
+    --md-sys-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
+    --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.30);
 }
+[data-theme="vivid-dark"] {
+/* Primary Palette */
+        --md-sys-color-primary: #e1c46d;
+        --md-sys-color-on-primary: #3c2f00;
+        --md-sys-color-primary-container: #574500;
+        --md-sys-color-on-primary-container: #fee086;
 
+        /* Secondary Palette */
+        --md-sys-color-secondary: #d4c5a1;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #bbebf5;
+        --md-sys-color-on-secondary-container: #3d6b74;
+
+        /* Tertiary Palette */
+        --md-sys-color-tertiary: #7c489a;
+        --md-sys-color-on-tertiary: #183720;
+        --md-sys-color-tertiary-container: #2f4e35;
+        --md-sys-color-on-tertiary-container: #c7ecca;
+
+        /* Background & Surface */
+        --md-sys-color-background: #15130b;
+        --md-sys-color-on-background: #e8e2d4;
+        --md-sys-color-surface: #15130b;
+        --md-sys-color-on-surface: #e8e2d4;
+
+        /* Surface Variant */
+        --md-sys-color-surface-variant: #e9e2d4;
+        --md-sys-color-on-surface-variant: #cec6b4;
+
+        /* Outline */
+        --md-sys-color-outline: #979080;
+        --md-sys-color-outline-variant: #4c4639;
+
+        /* Inverse */
+        --md-sys-color-inverse-surface: #e9e2d4;
+        --md-sys-color-inverse-on-surface: #343027;
+        --md-sys-color-inverse-primary: #725c0c;
+
+        /* Surface Containers */
+    --md-sys-color-surface-container-lowest: #110e07;
+    --md-sys-color-surface-container-low: #1e1b13;
+    --md-sys-color-surface-container: #231f17;
+    --md-sys-color-surface-container-high: #2d2a21;
+    --md-sys-color-surface-container-highest: #38342b;
+
+    --md-sys-elevation-1: 0 1px 3px 1px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
+    --md-sys-elevation-2: 0 2px 6px 2px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
+    --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.40), 0 1px 3px rgba(0,0,0,.40);
+}
+[data-theme="bubble-light"] {
+/* Primary Palette */
+        /* Primary Palette */
+    --md-sys-color-primary: #006876;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #00bbd3;
+    --md-sys-color-on-primary-container: #004650;
+
+    /* Secondary Palette */
+    --md-sys-color-secondary: #37656e;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #bbebf5;
+    --md-sys-color-on-secondary-container: #3d6b74;
+
+    /* Tertiary Palette */
+    --md-sys-color-tertiary: #7c489a;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #ce94ed;
+    --md-sys-color-on-tertiary-container: #5a2678;
+
+    /* 🎨 Colored Background & Surface */
+    --md-sys-color-background: #f3fbfb;
+    --md-sys-color-on-background: #141d1e;
+    --md-sys-color-surface: #f3fbfb;
+    --md-sys-color-on-surface: #141d1e;
+
+    /* Surface Variant */
+    --md-sys-color-surface-variant: #161d1e;
+    --md-sys-color-on-surface-variant: #3c494c;
+
+    /* Outline */
+    --md-sys-color-outline: #6c797c;
+    --md-sys-color-outline-variant: #bbc9cc;
+
+    /* Inverse */
+    --md-sys-color-inverse-surface: #2b3133;
+    --md-sys-color-inverse-on-surface: #ecf2f3;
+    --md-sys-color-inverse-primary: #46d8f1;
+
+    /* 🎨 Colored Surface Containers */
+    --md-sys-color-surface-container-lowest: #ffffff;
+    --md-sys-color-surface-container-low: #eff5f6;
+    --md-sys-color-surface-container: #e9eff0;
+    --md-sys-color-surface-container-high: #e3e9eb;
+    --md-sys-color-surface-container-highest: #dde3e5;
+
+    --md-sys-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
+    --md-sys-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
+    --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.30);
+}
+[data-theme="bubble-dark"] {
+    /* Primary Palette */
+        --md-sys-color-primary: #46d8f1;
+        --md-sys-color-on-primary: #00363e;
+        --md-sys-color-primary-container: #00bbd3;
+        --md-sys-color-on-primary-container: #004650;
+
+    /* Secondary Palette */
+        --md-sys-color-secondary: #9fced9;
+        --md-sys-color-on-secondary: #00363e;
+        --md-sys-color-secondary-container: #1f4f58;
+        --md-sys-color-on-secondary-container: #92c0ca;
+
+    /* Tertiary Palette */
+        --md-sys-color-tertiary: #e6b4ff;
+        --md-sys-color-on-tertiary: #4a1568;
+        --md-sys-color-tertiary-container: #ce94ed;
+        --md-sys-color-on-tertiary-container: #5a2678;
+
+    /* Background & Surface */
+        --md-sys-color-background: #0d1416;
+        --md-sys-color-on-background: #dee3e5;
+        --md-sys-color-surface: #0d1416;
+        --md-sys-color-on-surface: #dee3e5;
+
+    /* Surface Variant */
+        --md-sys-color-surface-variant: #dde3e5;
+        --md-sys-color-on-surface-variant: #bbc9cc;
+
+    /* Outline */
+        --md-sys-color-outline: #869396;
+        --md-sys-color-outline-variant: #3c494c;
+
+    /* Inverse */
+        --md-sys-color-inverse-surface: #dde3e5;
+        --md-sys-color-inverse-on-surface: #2b3133;
+        --md-sys-color-inverse-primary: #006876;
+
+        /* Surface Containers */
+        --md-sys-color-surface-container-lowest: #090f11;
+        --md-sys-color-surface-container-low: #161d1e;
+        --md-sys-color-surface-container: #1a2122;
+        --md-sys-color-surface-container-high: #252b2c;
+        --md-sys-color-surface-container-highest: #2f3637;
+
+    --md-sys-elevation-1: 0 1px 3px 1px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
+    --md-sys-elevation-2: 0 2px 6px 2px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.40);
+    --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,.40), 0 1px 3px rgba(0,0,0,.40);
+}
 /* -----------------------------------------------------------------------------
    RESET & BASE
    ----------------------------------------------------------------------------- */
@@ -322,7 +487,7 @@ button { font-family: inherit; }
 .nav-rail-indicator {
     position: relative;
     width: 56px;
-    height: 32px;
+    height: 56px;
     border-radius: 16px;
     display: flex;
     align-items: center;
