@@ -1,5 +1,5 @@
 <div id="content-home" class="tab-pane">
-                <header class="content-header content-header--back">
+                <header class="content-header">
                     <button class="icon-button ripple-target nopointer">
                             <span class="material-symbols-rounded">waving_hand</span>
                     </button>

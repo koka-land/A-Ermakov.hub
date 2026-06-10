@@ -1,35 +1,51 @@
 import sys
 import json
+import base64  # Добавили стандартный модуль для декодирования
 
 
-def main():
-    # 1. Получаем данные от PHP (они придут аргументом командной строки)
-    try:
-        input_data = json.loads(sys.argv[1]) if len(sys.argv) > 1 else {}
-    except Exception as e:
-        print(json.dumps({"status": "error", "message": "Неверный формат входных данных"}))
-        return
+def process_text(input_text):
+    char_count = len(input_text)
+    word_count = len(input_text.split())
+    uppercase_text = input_text.upper()
 
-    # 2. Вытаскиваем параметры
-    user_name = input_data.get("name", "Незнакомец")
-
-    # === ЗДЕСЬ БУДЕТ ЛОГИКА ТВОЕГО ОТЧЁТА ===
-    # Например, чтение CSV, сложная математика, обработка логов и т.д.
-    result_message = f"Привет, {user_name}! Python успешно обработал твой запрос."
-    calculated_value = 42
-    # ========================================
-
-    # 3. Формируем ответ для PHP
-    response = {
-        "status": "success",
-        "message": result_message,
-        "data": {
-            "magic_number": calculated_value
+    return {
+        "original": input_text,
+        "uppercase": uppercase_text,
+        "stats": {
+            "chars": char_count,
+            "words": word_count
         }
     }
 
-    # 4. Выплёвываем JSON обратно (PHP его поймает)
-    print(json.dumps(response, ensure_ascii=False))
+
+def main():
+    if len(sys.argv) < 2:
+        print(json.dumps({"status": "error", "message": "Нет входных данных"}))
+        return
+
+    try:
+        # 1. Забираем закодированную строку из аргументов
+        base64_arg = sys.argv[1]
+
+        # 2. Декодируем её обратно в нормальный JSON-текст
+        json_bytes = base64.b64decode(base64_arg)
+        json_str = json_bytes.decode('utf-8')
+
+        # 3. Распаковываем JSON в словарь Python
+        payload = json.loads(json_str)
+        user_text = payload.get("text", "")
+
+        # Запускаем нашу логику
+        analysis = process_text(user_text)
+
+        response = {
+            "status": "success",
+            "data": analysis
+        }
+        print(json.dumps(response, ensure_ascii=False))
+
+    except Exception as e:
+        print(json.dumps({"status": "error", "message": f"Ошибка Python: {str(e)}"}))
 
 
 if __name__ == "__main__":
