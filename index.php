@@ -53,6 +53,18 @@
             </div>
         </nav>
         <main class="content-area" role="main">
+            <div id="pwa-notice" style="display: none; padding: 12px 16px; margin: 16px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 16px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--md-sys-elevation-1);">
+    <span class="material-symbols-rounded" style="color: var(--md-sys-color-secondary); flex-shrink: 0; margin-top: 2px;">phone_iphone</span>
+    <div style="flex-grow: 1;">
+        <h4 class="title-small" style="margin: 0 0 4px 0; font-weight: 600;">Установите как приложение</h4>
+        <p class="body-small" style="margin: 0; opacity: 0.9; line-height: 1.4;">
+            Добавьте этот сайт на экран <strong>«Домой»</strong> через меню браузера. Он станет полноценным приложением: без адресной строки и на весь экран!
+        </p>
+    </div>
+    <button onclick="dismissPwaNotice()" style="background: none; border: none; color: var(--md-sys-color-on-secondary-container); cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; opacity: 0.7;">
+        <span class="material-symbols-rounded" style="font-size: 20px;">close</span>
+    </button>
+</div>
             <?php include 'tabs/home.php'; ?>
             <?php include 'tabs/workspace.php'; ?>
             <?php include 'tabs/settings.php'; ?>
