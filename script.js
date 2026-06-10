@@ -184,63 +184,80 @@ window.closeUniversalModal = () => {
         // =============================================
     }
 };
-// Умный показ уведомления о PWA
-document.addEventListener('DOMContentLoaded', () => {
-    const pwaNotice = document.getElementById('pwa-notice');
-    if (!pwaNotice) return;
+// Переменная для хранения нативного промиса установки (Chrome / Android)
+let deferredPrompt = null;
 
-    // 1. Проверяем, мобильное ли это устройство
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+// 1. ПЕРЕХВАТ СИСТЕМНОГО СОБЫТИЯ (Работает в Android/Chrome/Edge)
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Блокируем дефолтное всплывающее окно браузера
+    e.preventDefault();
+    // Сохраняем событие в нашу переменную
+    deferredPrompt = e;
 
-    // 2. Проверяем, запущено ли оно уже в режиме Standalone (как приложение с экрана Домой)
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-
-    // 3. Проверяем, не скрывал ли пользователь этот баннер ранее в этой сессии
+    // Если устройство мобильное и баннер не был скрыт вручную — активируем показ
     const isDismissed = sessionStorage.getItem('pwa-notice-dismissed');
+    const pwaNotice = document.getElementById('pwa-notice');
 
-    // Если это мобилка, приложение ЕЩЕ НЕ установлено и баннер не закрывали — показываем его
-    if (isMobile && !isStandalone && !isDismissed) {
-        pwaNotice.style.display = 'flex';
-    } else {
-        pwaNotice.style.display = 'none'; // На ПК или внутри PWA баннер спать не будет
+    if (pwaNotice && !isDismissed) {
+        setTimeout(() => {
+            pwaNotice.classList.add('show');
+        }, 2000); // Показываем через 2 секунды после готовности
     }
 });
 
-// Функция закрытия баннера
-window.dismissPwaNotice = () => {
-    const pwaNotice = document.getElementById('pwa-notice');
-    if (pwaNotice) {
-        pwaNotice.style.display = 'none';
-        // Запоминаем, что пользователь закрыл его, чтобы не спамить при переходе по вкладкам
-        sessionStorage.setItem('pwa-notice-dismissed', 'true');
-    }
-};
-// Умный показ уведомления о PWA с задержкой
+// 2. ЛОГИКА ДЛЯ УСТРОЙСТВ, ГДЕ СОБЫТИЕ НЕ ПОДДЕРЖИВАЕТСЯ (Например, iOS Safari)
 document.addEventListener('DOMContentLoaded', () => {
     const pwaNotice = document.getElementById('pwa-notice');
-    if (!pwaNotice) return;
+    const installBtn = document.getElementById('pwa-install-btn');
+
+    if (!pwaNotice || !installBtn) return;
 
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
     const isDismissed = sessionStorage.getItem('pwa-notice-dismissed');
 
-    // Если условия подходят — взводим таймер
-    if (isMobile && !isStandalone && !isDismissed) {
-        // Окно мягко выедет через 3 секунды (3000 миллисекунд) после загрузки сайта
+    // Хитрый ход для iOS Safari: так как события 'beforeinstallprompt' там нет,
+    // мы принудительно взводим таймер баннера вручную только для техники Apple
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isIOS && !isStandalone && !isDismissed) {
         setTimeout(() => {
             pwaNotice.classList.add('show');
         }, 3000);
     }
+
+    // КЛИК ПО КНОПКЕ «УСТАНОВИТЬ»
+    installBtn.addEventListener('click', async () => {
+        // Сценарий А: Есть системный промис (Android / Chrome)
+        if (deferredPrompt) {
+            // Вызываем родное системное окно установки
+            deferredPrompt.prompt();
+
+            // Ждем, что ответит пользователь
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                console.log('Пользователь установил PWA хаб!');
+                dismissPwaNotice(); // Прячем баннер
+            }
+            deferredPrompt = null;
+        }
+        // Сценарий Б: Нативного промиса нет (iOS / Safari)
+        else {
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                // Красиво и кастомно объясняем пользователю Apple, что делать
+                alert('Чтобы установить приложение на iOS:\n\n1. Нажмите кнопку «Поделиться» (квадрат со стрелкой вверх) на нижней панели браузера Safari.\n2. В открывшемся меню выберите пункт «На экран Домой» (+).');
+            } else {
+                // Заглушка для ПК или редких браузеров
+                alert('Чтобы запустить полноэкранный режим, откройте главное меню вашего браузера и нажмите «Установить» или «Добавить на главный экран».');
+            }
+        }
+    });
 });
 
-// Красивое скрытие баннера
+// Плавное скрытие баннера
 window.dismissPwaNotice = () => {
     const pwaNotice = document.getElementById('pwa-notice');
     if (pwaNotice) {
-        // Сначала убираем класс, чтобы баннер плавно уехал вниз
         pwaNotice.classList.remove('show');
-        
-        // Запоминаем выбор пользователя на время этой сессии
         sessionStorage.setItem('pwa-notice-dismissed', 'true');
     }
 };
