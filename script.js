@@ -215,3 +215,32 @@ window.dismissPwaNotice = () => {
         sessionStorage.setItem('pwa-notice-dismissed', 'true');
     }
 };
+// Умный показ уведомления о PWA с задержкой
+document.addEventListener('DOMContentLoaded', () => {
+    const pwaNotice = document.getElementById('pwa-notice');
+    if (!pwaNotice) return;
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+    const isDismissed = sessionStorage.getItem('pwa-notice-dismissed');
+
+    // Если условия подходят — взводим таймер
+    if (isMobile && !isStandalone && !isDismissed) {
+        // Окно мягко выедет через 3 секунды (3000 миллисекунд) после загрузки сайта
+        setTimeout(() => {
+            pwaNotice.classList.add('show');
+        }, 3000);
+    }
+});
+
+// Красивое скрытие баннера
+window.dismissPwaNotice = () => {
+    const pwaNotice = document.getElementById('pwa-notice');
+    if (pwaNotice) {
+        // Сначала убираем класс, чтобы баннер плавно уехал вниз
+        pwaNotice.classList.remove('show');
+        
+        // Запоминаем выбор пользователя на время этой сессии
+        sessionStorage.setItem('pwa-notice-dismissed', 'true');
+    }
+};
