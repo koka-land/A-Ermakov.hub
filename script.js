@@ -184,3 +184,34 @@ window.closeUniversalModal = () => {
         // =============================================
     }
 };
+// Умный показ уведомления о PWA
+document.addEventListener('DOMContentLoaded', () => {
+    const pwaNotice = document.getElementById('pwa-notice');
+    if (!pwaNotice) return;
+
+    // 1. Проверяем, мобильное ли это устройство
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    // 2. Проверяем, запущено ли оно уже в режиме Standalone (как приложение с экрана Домой)
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+
+    // 3. Проверяем, не скрывал ли пользователь этот баннер ранее в этой сессии
+    const isDismissed = sessionStorage.getItem('pwa-notice-dismissed');
+
+    // Если это мобилка, приложение ЕЩЕ НЕ установлено и баннер не закрывали — показываем его
+    if (isMobile && !isStandalone && !isDismissed) {
+        pwaNotice.style.display = 'flex';
+    } else {
+        pwaNotice.style.display = 'none'; // На ПК или внутри PWA баннер спать не будет
+    }
+});
+
+// Функция закрытия баннера
+window.dismissPwaNotice = () => {
+    const pwaNotice = document.getElementById('pwa-notice');
+    if (pwaNotice) {
+        pwaNotice.style.display = 'none';
+        // Запоминаем, что пользователь закрыл его, чтобы не спамить при переходе по вкладкам
+        sessionStorage.setItem('pwa-notice-dismissed', 'true');
+    }
+};
