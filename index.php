@@ -53,7 +53,7 @@
             </div>
         </nav>
         <main class="content-area" role="main">
-            <div id="pwa-notice" style="display: none; padding: 12px 16px; margin: 16px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 16px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--md-sys-elevation-1);">
+            <div id="pwa-notice">
     <span class="material-symbols-rounded" style="color: var(--md-sys-color-secondary); flex-shrink: 0; margin-top: 2px;">phone_iphone</span>
     <div style="flex-grow: 1;">
         <h4 class="title-small" style="margin: 0 0 4px 0; font-weight: 600;">Установите как приложение</h4>
