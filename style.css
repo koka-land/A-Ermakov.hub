@@ -600,6 +600,10 @@ button { font-family: inherit; }
     scrollbar-color: var(--md-sys-color-outline-variant) transparent;
 }
 
+body.modal-open .content-scroll {
+    overflow: hidden !important;
+}
+
 .content-scroll::-webkit-scrollbar { width: 4px; }
 .content-scroll::-webkit-scrollbar-thumb {
     background: var(--md-sys-color-outline-variant);

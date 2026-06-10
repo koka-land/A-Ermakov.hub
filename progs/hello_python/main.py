@@ -7,13 +7,15 @@ def process_text(input_text):
     char_count = len(input_text)
     word_count = len(input_text.split())
     uppercase_text = input_text.upper()
+    count_1 = sum(1 for i in input_text if i == '1')
 
     return {
         "original": input_text,
         "uppercase": uppercase_text,
         "stats": {
             "chars": char_count,
-            "words": word_count
+            "words": word_count,
+            'one': count_1
         }
     }
 

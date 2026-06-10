@@ -50,19 +50,12 @@
                     </div>
                     <span class="nav-rail-label label-medium">Настройки</span>
                 </a>
-                <a href="#" class="nav-rail-item ripple-target" id="tab-analytics" data-tab="analytics" role="button">
-                    <div class="nav-rail-indicator">
-                        <span class="material-symbols-rounded">analytics</span>
-                    </div>
-                    <span class="nav-rail-label label-medium">Тесты</span>
-                </a>
             </div>
         </nav>
         <main class="content-area" role="main">
             <?php include 'tabs/home.php'; ?>
             <?php include 'tabs/workspace.php'; ?>
             <?php include 'tabs/settings.php'; ?>
-            <?php include 'tabs/analytics.php'; ?>
         </main>
     </div>
 
