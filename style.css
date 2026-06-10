@@ -414,7 +414,7 @@ button { font-family: inherit; }
    ----------------------------------------------------------------------------- */
 .app-surface {
     width: 960px;
-    height: 620px;
+    height: 960px;
     background: var(--md-sys-color-surface-container-low);
     border-radius: 28px;
     display: flex;
