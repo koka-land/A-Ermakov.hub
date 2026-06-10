@@ -1082,7 +1082,7 @@ body.modal-open .content-area .content-scroll {
         align-items: stretch;
         justify-content: stretch;
     }
-    .md-modal-container { border-radius: 0px; }
+    .md-modal-container { border-radius: 0px;  }
 
     .app-surface {
         width: 100%;
