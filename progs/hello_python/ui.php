@@ -17,7 +17,7 @@
         <h3 class="title-medium" style="color: var(--md-sys-color-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
             <span class="material-symbols-rounded">analytics</span> Результат обработки
         </h3>
-        <div id="py-result-content content-scroll" class="body-medium" style="color: var(--md-sys-color-on-surface); display: flex; flex-direction: column; gap: 8px;">
+        <div id="py-result-content" class="body-medium" style="color: var(--md-sys-color-on-surface); display: flex; flex-direction: column; gap: 8px;">
             </div>
     </div>
 </div>
