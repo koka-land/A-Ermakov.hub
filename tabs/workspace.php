@@ -188,7 +188,8 @@
             </button>
         </div>
 
-        <div id="universal-modal-content" class="content-scroll" style="flex-grow: 1; padding-right: 8px;">
+        <div id="universal-modal-content" class="content-scroll"
+             style="flex-grow: 1; overflow-y: auto !important; min-height: 0; padding-right: 8px;">
             </div>
 
     </div>
