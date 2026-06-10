@@ -54,23 +54,22 @@
         </nav>
         <main class="content-area" role="main">
             <div id="pwa-notice">
-    <span class="material-symbols-rounded" style="color: var(--md-sys-color-primary); flex-shrink: 0; margin-top: 2px;">touch_app</span>
-    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;">
-        <div>
-            <h4 class="title-small" style="margin: 0 0 2px 0; font-weight: 600; color: var(--md-sys-color-on-secondary-container);">Приложение готово к установке</h4>
-            <p class="body-small" style="margin: 0; opacity: 0.8; line-height: 1.4;">
-                Запускайте прямо с экрана «Домой» во весь экран и без лишних панелей браузера.
-            </p>
-        </div>
+    <span class="material-symbols-rounded pwa-lead-icon">touch_app</span>
 
-        <button id="pwa-install-btn" style="align-self: flex-start; background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); border: none; padding: 6px 16px; border-radius: 100px; font-weight: 500; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: var(--md-sys-elevation-1);">
-            <span class="material-symbols-rounded" style="font-size: 16px;">download</span>
+    <div class="pwa-content">
+        <h4 class="title-small pwa-title">Приложение готово к установке</h4>
+        <p class="body-small pwa-text">
+            Запускайте прямо с экрана «Домой» во весь экран и без лишних панелей браузера.
+        </p>
+
+        <button id="pwa-install-btn" class="ripple-target">
+            <span class="material-symbols-rounded">download</span>
             Установить
         </button>
     </div>
 
-    <button onclick="dismissPwaNotice()" style="background: none; border: none; color: var(--md-sys-color-on-secondary-container); cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; opacity: 0.5; margin-left: 4px;">
-        <span class="material-symbols-rounded" style="font-size: 20px;">close</span>
+    <button class="pwa-close-btn" onclick="dismissPwaNotice()" aria-label="Закрыть">
+        <span class="material-symbols-rounded">close</span>
     </button>
 </div>
             <?php include 'tabs/home.php'; ?>

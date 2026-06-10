@@ -177,19 +177,17 @@
 
             </div>
 
-<div id="universal-modal" class="md-modal-backdrop" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center;">
+<div id="universal-modal" class="md-modal-backdrop">
+    <div class="md-modal-container">
 
-    <div class="md-modal-container" style="background: var(--md-sys-color-surface-container-high); width: 100%; height: 100%; border-radius: 28px; padding: 24px; box-shadow: var(--md-sys-elevation-3); display: flex; flex-direction: column; gap: 16px;">
-
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
-            <h2 id="universal-modal-title" class="headline-small" style="color: var(--md-sys-color-on-surface);">Заголовок</h2>
-            <button class="icon-button" onclick="closeUniversalModal()" style="background: none; border: none; cursor: pointer; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center;">
+        <div class="md-modal-header">
+            <h2 id="universal-modal-title" class="headline-small">Заголовок</h2>
+            <button class="icon-button modal-close-btn" onclick="closeUniversalModal()" aria-label="Закрыть">
                 <span class="material-symbols-rounded">close</span>
             </button>
         </div>
 
-        <div id="universal-modal-content" class="content-scroll"
-             style="flex-grow: 1; overflow-y: auto !important; min-height: 0; padding-right: 8px;">
+        <div id="universal-modal-content" class="content-scroll">
             </div>
 
     </div>

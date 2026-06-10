@@ -1074,6 +1074,198 @@ body.modal-open .content-area .content-scroll {
     to { transform: scale(4); opacity: 0; }
 }
 
+/* Фиксированный мобильный баннер PWA */
+#pwa-notice {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    z-index: 2000; /* Поверх всех окон и контента */
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: var(--md-sys-elevation-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    /* Стартовое состояние: баннер полностью прозрачен и смещен за нижний край экрана */
+    opacity: 0;
+    transform: translateY(150%);
+
+    /* Плавный переход с физикой ускорения Material Design */
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1), opacity 0.5s ease;
+    pointer-events: none; /* Пока скрыт — не мешает кликать по элементам сзади */
+}
+
+/* Класс, который плавно поднимает баннер */
+#pwa-notice.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* Включаем кликабельность обратно */
+}
+/* ==========================================================================
+   КОМПОНЕНТ: СМАРТ-БАННЕР PWA
+   ========================================================================== */
+
+#pwa-notice {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    z-index: 2000;
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: var(--md-sys-elevation-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    /* Анимация выезда */
+    opacity: 0;
+    transform: translateY(150%);
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1), opacity 0.5s ease;
+    pointer-events: none;
+}
+
+/* Класс активации баннера (добавляется через JS) */
+#pwa-notice.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Иконка наводки */
+#pwa-notice .pwa-lead-icon {
+    color: var(--md-sys-color-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Контентный блок */
+#pwa-notice .pwa-content {
+    激flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Текстовые элементы */
+#pwa-notice .pwa-title {
+    margin: 0 0 2px 0;
+    font-weight: 600;
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+#pwa-notice .pwa-text {
+    margin: 0;
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+/* Кнопка «Установить» */
+#pwa-install-btn {
+    align-self: flex-start;
+    background: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    border: none;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+/* Кнопка закрытия (крестик) */
+#pwa-notice .pwa-close-btn {
+    background: none;
+    border: none;
+    color: var(--md-sys-color-on-secondary-container);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    margin-left: 4px;
+}
+
+#pwa-notice .pwa-close-btn .material-symbols-rounded {
+    font-size: 20px;
+}
+
+/* ==========================================================================
+   КОМПОНЕНТ: УНИВЕРСАЛЬНОЕ МОДАЛЬНОЕ ОКНО
+   ========================================================================== */
+
+/* Задний полупрозрачный фон-затемнение */
+.md-modal-backdrop {
+    display: none; /* Меняется на flex динамически через JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Контейнер окна (вид на компьютерах) */
+.md-modal-container {
+    background: var(--md-sys-color-surface-container-high);
+    width: 90%;
+    max-width: 650px;
+    max-height: 65vh;
+    border-radius: 28px;
+    padding: 0;
+    box-shadow: var(--md-sys-elevation-3);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Фиксированная шапка */
+.md-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 16px;
+}
+
+.md-modal-header h2 {
+    color: var(--md-sys-color-on-surface);
+}
+
+/* Кнопка закрытия (крестик) */
+.modal-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--md-sys-color-on-surface-variant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Область контента с умным флекс-скроллом */
+#universal-modal-content {
+    flex-grow: 1;
+    overflow-y: auto !important;
+    min-height: 0;
+    padding-right: 8px;
+}
+
 /* =============================================================================
    RESPONSIVE — Full-screen on screens < 960 px
    ============================================================================= */
@@ -1082,7 +1274,24 @@ body.modal-open .content-area .content-scroll {
         align-items: stretch;
         justify-content: stretch;
     }
-    .md-modal-container { border-radius: 0px;  }
+    /* Твой обновленный мобильный стиль модалки */
+    .md-modal-container {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0px;
+        padding: 0; /* На смартфонах чуть экономим место по краям */
+    }
+
+    /* Стили для PWA-баннера, которые мы добавили на прошлом шаге */
+    #pwa-notice {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 16px 16px 0 0;
+        box-shadow: var(--md-sys-elevation-3);
+    }
 
     .app-surface {
         width: 100%;
@@ -1096,7 +1305,87 @@ body.modal-open .content-area .content-scroll {
         border-radius: 0;
     }
 }
+/* ==========================================================================
+   ОБЩИЕ СТИЛИ ДЛЯ ФОРМ И ИНСТРУМЕНТОВ
+   ========================================================================== */
 
+/* Главный контейнер формы внутри программ */
+.program-form-container {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Подписи к полям ввода */
+.program-label {
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: 16px;
+    display: block;
+}
+
+/* Универсальное текстовое поле ввода */
+.program-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 8px;
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-size: 16px;
+    box-sizing: border-box; /* Защита от вылезания инпута за границы контейнера */
+    transition: border-color 0.2s ease;
+}
+
+/* Мягкий подсвет инпута при фокусе */
+.program-input:focus {
+    outline: none;
+    border-color: var(--md-sys-color-primary);
+}
+
+/* Основная кнопка запуска (Filled Button по гайдам MD3) */
+.program-action-btn {
+    align-self: flex-start;
+    background: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px; /* Соблюдаем твои 8px для единого стиля с инпутом */
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.program-action-btn:active {
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+/* Карточка результатов (из прошлого шага, для полноты картины) */
+.program-result-card {
+    display: none;
+    background: var(--md-sys-color-surface-container);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 12px;
+}
+
+.program-result-card h3 {
+    color: var(--md-sys-color-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.program-result-card .body-medium {
+    color: var(--md-sys-color-on-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 /* =============================================================================
    MOBILE — Bottom Navigation Bar on screens ≤ 599 px
    ============================================================================= */
@@ -1202,36 +1491,4 @@ body.modal-open .content-area .content-scroll {
         justify-content: center;
         padding: 10px 16px;
     }
-}
-
-/* Фиксированный мобильный баннер PWA */
-#pwa-notice {
-    position: fixed;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    z-index: 2000; /* Поверх всех окон и контента */
-    background: var(--md-sys-color-secondary-container);
-    color: var(--md-sys-color-on-secondary-container);
-    border-radius: 16px;
-    padding: 12px 16px;
-    box-shadow: var(--md-sys-elevation-2);
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-
-    /* Стартовое состояние: баннер полностью прозрачен и смещен за нижний край экрана */
-    opacity: 0;
-    transform: translateY(150%);
-    
-    /* Плавный переход с физикой ускорения Material Design */
-    transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1), opacity 0.5s ease;
-    pointer-events: none; /* Пока скрыт — не мешает кликать по элементам сзади */
-}
-
-/* Класс, который плавно поднимает баннер */
-#pwa-notice.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto; /* Включаем кликабельность обратно */
 }
