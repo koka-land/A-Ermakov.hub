@@ -177,17 +177,19 @@
 
             </div>
 
-        <div id="universal-modal" class="md-modal-backdrop" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center;">
-    <div class="md-modal-container" style="background: var(--md-sys-color-surface-container-high); width: 90%; max-width: 650px; border-radius: 28px; padding: 24px; box-shadow: var(--md-sys-elevation-3); display: flex; flex-direction: column; gap: 16px;">
+<div id="universal-modal" class="md-modal-backdrop" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center;">
 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="md-modal-container" style="background: var(--md-sys-color-surface-container-high); width: 90%; max-width: 650px; max-height: 85vh; border-radius: 28px; padding: 24px; box-shadow: var(--md-sys-elevation-3); display: flex; flex-direction: column; gap: 16px;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
             <h2 id="universal-modal-title" class="headline-small" style="color: var(--md-sys-color-on-surface);">Заголовок</h2>
             <button class="icon-button" onclick="closeUniversalModal()" style="background: none; border: none; cursor: pointer; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center;">
                 <span class="material-symbols-rounded">close</span>
             </button>
         </div>
 
-        <div id="universal-modal-content"></div>
+        <div id="universal-modal-content" style="overflow-y: auto; flex-grow: 1; padding-right: 8px;">
+            </div>
 
     </div>
 </div>
