@@ -1202,3 +1202,35 @@ body.modal-open .content-area .content-scroll {
         padding: 10px 16px;
     }
 }
+
+/* Фиксированный мобильный баннер PWA */
+#pwa-notice {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    z-index: 2000; /* Поверх всех окон и контента */
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: var(--md-sys-elevation-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    /* Стартовое состояние: баннер полностью прозрачен и смещен за нижний край экрана */
+    opacity: 0;
+    transform: translateY(150%);
+    
+    /* Плавный переход с физикой ускорения Material Design */
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1), opacity 0.5s ease;
+    pointer-events: none; /* Пока скрыт — не мешает кликать по элементам сзади */
+}
+
+/* Класс, который плавно поднимает баннер */
+#pwa-notice.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* Включаем кликабельность обратно */
+}
