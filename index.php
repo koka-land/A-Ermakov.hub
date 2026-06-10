@@ -39,15 +39,9 @@
                 </a>
                 <a href="#" class="nav-rail-item ripple-target" id="tab-reports" data-tab="reports" role="button">
                     <div class="nav-rail-indicator">
-                        <span class="material-symbols-rounded">folder_open</span>
+                        <span class="material-symbols-rounded">design_services</span>
                     </div>
-                    <span class="nav-rail-label label-medium">Отчёты</span>
-                </a>
-                <a href="#" class="nav-rail-item ripple-target" id="tab-analytics" data-tab="analytics" role="button">
-                    <div class="nav-rail-indicator">
-                        <span class="material-symbols-rounded">analytics</span>
-                    </div>
-                    <span class="nav-rail-label label-medium">Аналитика</span>
+                    <span class="nav-rail-label label-medium">Инструменты</span>
                 </a>
                 <a href="#" class="nav-rail-item ripple-target" id="tab-settings" data-tab="settings" role="button">
                     <div class="nav-rail-indicator">
@@ -60,7 +54,7 @@
 
         <main class="content-area" role="main">
             <?php include 'tabs/home.php'; ?>
-            <?php include 'tabs/reports.php'; ?>
+            <?php include 'tabs/workspace.php'; ?>
             <?php include 'tabs/settings.php'; ?>
         </main>
     </div>

@@ -5,7 +5,7 @@
                         <button class="icon-button ripple-target nopointer">
                             <span class="material-symbols-rounded">folder</span>
                         </button>
-                        <h1 class="headline-small">Категории</h1>
+                        <h1 class="headline-small">Инструменты</h1>
                     </header>
                     <div class="content-scroll">
                         <div class="list-container">

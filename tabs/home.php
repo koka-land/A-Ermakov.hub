@@ -1,9 +1,9 @@
 <div id="content-home" class="tab-pane">
-                <header class="content-header">
+                <header class="content-header content-header--back">
                     <button class="icon-button ripple-target nopointer">
-                            <span class="material-symbols-rounded">folder</span>
+                            <span class="material-symbols-rounded">waving_hand</span>
                     </button>
-                    <h1 class="headline-small">Добро пожаловать</h1>
+                    <h1 class="headline-small">Это HUB, добро пожаловать!</h1>
                 </header>
                 <div class="content-scroll">
                     <div class="welcome-card md-card filled-card">
