@@ -600,7 +600,7 @@ button { font-family: inherit; }
     scrollbar-color: var(--md-sys-color-outline-variant) transparent;
 }
 
-body.modal-open .content-scroll {
+body.modal-open .content-area .content-scroll {
     overflow: hidden !important;
 }
 
