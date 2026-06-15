@@ -19,7 +19,8 @@
     // =====================================================================
     async function fetchStats() {
         try {
-            const response = await fetch('/skills-stats');
+            // Стучимся к нашему PHP файлу, передавая экшен stats
+            const response = await fetch('progs/study_skills/bridge.php?action=stats');
             if (response.ok) {
                 const text = await response.text();
                 // Парсим значения счетчиков из структуры шаблона Flask
@@ -106,13 +107,13 @@
         formData.append('csv_file', file);
 
         try {
-            const response = await fetch('/analyze', {
-            method: 'POST',
-            body: formData
+            // Отправляем файл на наш PHP-мост, передавая экшен analyze
+            const response = await fetch('progs/study_skills/bridge.php?action=analyze', {
+                method: 'POST',
+                body: formData
             });
 
-            if (!response.ok) throw new Error('Ошибка бэкенда');
-
+            if (!response.ok) throw new Error('Ошибка бэкенда через PHP-мост');
             const rawHtml = await response.text();
 
             // Вытаскиваем структуры данных, зашитые во Flask шаблоне
