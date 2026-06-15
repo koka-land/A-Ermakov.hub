@@ -1,0 +1,388 @@
+/* ==========================================================================
+   ЛОКАЛЬНЫЙ CSS КОМПОНЕНТ: УЧЕБНЫЕ УМЕНИЯ (STUDY SKILLS)
+   ========================================================================== */
+
+.skills-upload-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* Контейнер подсказки */
+.skills-help-wrapper {
+    position: relative;
+}
+
+.skills-tooltip {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 320px;
+    background: var(--md-sys-color-surface-container-highest);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--md-sys-elevation-2);
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.skills-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.skills-tooltip h5 {
+    color: var(--md-sys-color-primary);
+    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.skills-tooltip ol {
+    padding-left: 16px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Интерактивная зона Drag and Drop */
+.skills-drop-zone {
+    border: 2px dashed var(--md-sys-color-outline-variant);
+    background: var(--md-sys-color-surface-container-low);
+    border-radius: 16px;
+    padding: 32px 16px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+
+.skills-drop-zone.highlight {
+    border-color: var(--md-sys-color-primary);
+    background: var(--md-sys-color-primary-container);
+}
+
+.skills-drop-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.skills-drop-zone .upload-icon {
+    font-size: 40px;
+    color: var(--md-sys-color-primary);
+}
+
+.skills-file-name {
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--md-sys-color-primary);
+    display: none;
+}
+
+/* Карточки счетчиков статистики */
+.skills-stats-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.skills-stat-card {
+    flex: 1;
+    background: var(--md-sys-color-surface-container-low);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+}
+
+.skills-stat-card .material-symbols-rounded {
+    color: var(--md-sys-color-secondary);
+}
+
+.skills-stat-card strong {
+    font-size: 18px;
+    color: var(--md-sys-color-on-surface);
+}
+
+/* Внутренний лоадер */
+.skills-loader-wrapper {
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.skills-progress-track {
+    width: 80%;
+    max-width: 300px;
+    height: 6px;
+    background: var(--md-sys-color-surface-container-highest);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.skills-progress-fill {
+    height: 100%;
+    background: var(--md-sys-color-primary);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Сетка результатов */
+.skills-back-btn {
+    background: none;
+    border: none;
+    color: var(--md-sys-color-primary);
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding: 0;
+}
+
+.skills-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background: var(--md-sys-color-surface-container-low);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+}
+
+.summary-card strong {
+    font-size: 24px;
+    display: block;
+    color: var(--md-sys-color-on-surface);
+    margin-top: 4px;
+}
+
+.summary-card.card-danger strong {
+    color: var(--md-sys-color-error);
+}
+
+/* Ряд табов внутри модалки */
+.skills-tabs-row {
+    display: flex;
+    gap: 4px;
+    background: var(--md-sys-color-surface-container-low);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+}
+
+.skills-inner-tab {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.skills-inner-tab.active {
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+}
+
+.skills-tab-section {
+    display: none;
+}
+
+.skills-tab-section.active {
+    display: block;
+}
+
+/* Таблицы */
+.skills-table-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.btn-export-csv {
+    background: var(--md-sys-color-surface-container-highest);
+    color: var(--md-sys-color-primary);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 8px;
+    padding: 0 16px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.skills-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.skills-data-table th {
+    background: var(--md-sys-color-surface-container-low);
+    padding: 10px 12px;
+    text-align: left;
+    color: var(--md-sys-color-on-surface-variant);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    cursor: pointer;
+}
+
+.skills-data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--md-sys-color-surface-container-lowest);
+}
+
+.skills-clickable-row {
+    color: var(--md-sys-color-primary);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.skills-danger-row {
+    background: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+}
+
+/* Баджи */
+.skills-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge-blue { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+.badge-green { background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container); }
+.badge-red { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+
+/* Графики */
+.skills-chart-legend {
+    display: flex;
+    gap: 16px;
+    margin: 12px 0;
+    font-size: 12px;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.dot-green { background: #1d9e75; }
+.dot-red { background: #e24b4a; }
+
+.skills-bars-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skills-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.skills-bar-name {
+    width: 140px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.skills-bar-track {
+    flex-grow: 1;
+    height: 16px;
+    background: var(--md-sys-color-surface-container-highest);
+    border-radius: 4px;
+    display: flex;
+    overflow: hidden;
+}
+
+.bar-green-fill { background: #1d9e75; height: 100%; }
+.bar-red-fill { background: #e24b4a; height: 100%; }
+.skills-bar-total { font-size: 12px; font-weight: bold; width: 35px; text-align: right; }
+
+/* Внутренняя модалка учителя */
+.skills-inner-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 2500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills-inner-modal {
+    background: var(--md-sys-color-surface-container-highest);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 480px;
+    padding: 20px;
+    box-shadow: var(--md-sys-elevation-4);
+}
+
+.skills-inner-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skills-inner-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 12px;
+}
+
+.skills-modal-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    font-size: 13px;
+}
+
+.item-index { color: var(--md-sys-color-outline); font-size: 11px; }

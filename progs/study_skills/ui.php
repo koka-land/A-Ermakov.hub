@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="progs/study_skills/style.css?v=1.0">
+
 <div class="program-form-container" id="study-skills-root">
 
     <div id="skills-upload-view">
@@ -97,7 +99,7 @@
                     <tr>
                         <th onclick="sortSkillsTable('skills-t-students', 0, this)">Класс <span class="sort-direction-icon"></span></th>
                         <th onclick="sortSkillsTable('skills-t-students', 1, this)">Ученик <span class="sort-direction-icon"></span></th>
-                        <th>Учителя ребенка</th>
+                        <th>Статус привязок</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -130,7 +132,7 @@
                     <tr>
                         <th onclick="sortSkillsTable('skills-t-classes', 0, this)">Класс <span class="sort-direction-icon"></span></th>
                         <th>Всего детей в МЭШ</th>
-                        <th>Всего учителей предмета</th>
+                        <th>Статус обработки</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -160,7 +162,7 @@
                         <th onclick="sortSkillsTable('skills-t-problems', 0, this)">Класс <span class="sort-direction-icon"></span></th>
                         <th onclick="sortSkillsTable('skills-t-problems', 1, this)">Ученик <span class="sort-direction-icon"></span></th>
                         <th>Текущие учителя</th>
-                        <th class="text-error">❌ Потерянные учителя</th>
+                        <th class="text-error">❌ Состояние связи</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
