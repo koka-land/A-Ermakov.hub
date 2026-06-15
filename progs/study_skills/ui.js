@@ -1,5 +1,4 @@
 (() => {
-    // Селекторы корневых элементов загрузки и UI
     const dropArea = document.getElementById('skills-drop-area');
     const fileInput = document.getElementById('skills-file-input');
     const fileNameDisplay = document.getElementById('skills-file-name-display');
@@ -11,19 +10,15 @@
     const loadingView = document.getElementById('skills-loading-view');
     const resultView = document.getElementById('skills-result-view');
 
-    let globalResultData = null; // Локальный слепок БД ответа сервера
+    let globalResultData = null;
     let sortDirections = {};
 
-    // =====================================================================
-    // 1. ИНИЦИАЛИЗАЦИЯ СТАТИСТИКИ С ФЛАСКА (Глобальный счетчик)
-    // =====================================================================
+    // 1. ИНИЦИАЛИЗАЦИЯ СТАТИСТИКИ С ФЛАСКА
     async function fetchStats() {
         try {
-            // Стучимся к нашему PHP файлу, передавая экшен stats
             const response = await fetch('progs/study_skills/bridge.php?action=stats');
             if (response.ok) {
                 const text = await response.text();
-                // Парсим значения счетчиков из структуры шаблона Flask
                 const visits = text.match(/Сервисом воспользовались[\s\S]*?<strong.*?>(\d+)<\/strong>/);
                 const uploads = text.match(/Проанализировано отчетов[\s\S]*?<strong.*?>(\d+)<\/strong>/);
 
@@ -37,16 +32,13 @@
     }
     fetchStats();
 
-    // Переключатель всплывающего хелпера
     helpBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         tooltip.classList.toggle('show');
     });
     document.addEventListener('click', () => tooltip.classList.remove('show'));
 
-    // =====================================================================
-    // 2. РЕАЛИЗАЦИЯ DRAG & DROP
-    // =====================================================================
+    // 2. ДВИЖОК DRAG & DROP
     ['dragenter', 'dragover'].forEach(eventName => {
         dropArea.addEventListener(eventName, (e) => {
             e.preventDefault();
@@ -80,9 +72,7 @@
         submitBtn.disabled = false;
     }
 
-    // =====================================================================
-    // 3. ОТПРАВКА И СИМУЛЯЦИЯ СЛОЖНОГО ПРОГРЕССА
-    // =====================================================================
+    // 3. ОТПРАВКА И ИНЖЕКТ ЧИСТОГО JSON
     submitBtn.addEventListener('click', async () => {
         const file = fileInput.files[0];
         if (!file) return;
@@ -107,79 +97,76 @@
         formData.append('csv_file', file);
 
         try {
-            // Отправляем файл на наш PHP-мост, передавая экшен analyze
             const response = await fetch('progs/study_skills/bridge.php?action=analyze', {
                 method: 'POST',
                 body: formData
             });
 
-            if (!response.ok) throw new Error('Ошибка бэкенда через PHP-мост');
-            const rawHtml = await response.text();
+            if (!response.ok) throw new Error('Ошибка бэкенда при анализе');
 
-            // Вытаскиваем структуры данных, зашитые во Flask шаблоне
-            const studentsMatch = rawHtml.match(/const studentsFullList = (\[[\s\S]*?\]);/);
-            const teachersMatch = rawHtml.match(/const teacherModalData = (\{[\s\S]*?\});/);
+            // ПОЛУЧАЕМ НАПРЯМУЮ НАИВНЫЙ JSON ОБЪЕКТ ИЗ ПИТОНА
+            const flaskData = await response.json();
 
-            if (studentsMatch && teachersMatch) {
-                // Избавляемся от возможных трейлинг-запятых Jinja, ломающих JSON.parse
-                const cleanStudentsStr = studentsMatch[1].replace(/,\s*\]/g, ']').replace(/,\s*\}/g, '}');
-                const cleanTeachersStr = teachersMatch[1].replace(/,\s*\}/g, '}');
+            // Парсим структуру в формат для интерфейса
+            globalResultData = buildDataStructure(flaskData);
 
-                const parsedStudents = JSON.parse(cleanStudentsStr);
-                const parsedTeachers = JSON.parse(cleanTeachersStr);
+            clearInterval(interval);
+            bar.style.width = '100%';
 
-                globalResultData = buildDataStructure(parsedStudents, parsedTeachers);
-
-                clearInterval(interval);
-                bar.style.width = '100%';
-
-                setTimeout(() => {
-                    loadingView.style.display = 'none';
-                    resultView.style.display = 'block';
-                    renderInterface();
-                }, 500);
-            } else {
-                throw new Error('Не удалось спарсить структуры данных.');
-            }
+            setTimeout(() => {
+                loadingView.style.display = 'none';
+                resultView.style.display = 'block';
+                renderInterface();
+            }, 500);
 
         } catch (err) {
             clearInterval(interval);
-            alert('Ошибка разбора данных: ' + err.message);
+            alert('Ошибка обработки данных: ' + err.message);
             window.resetSkillsAnalyzer();
         }
     });
 
-    function buildDataStructure(students, teachersData) {
+    function buildDataStructure(flaskData) {
         let problemCount = 0;
         let classesSet = new Set();
-        let teachersSet = new Set(Object.keys(teachersData));
+        let teachersData = {};
 
-        students.forEach(s => {
-            classesSet.add(s.cls);
-            if (s.missingCount > 0) problemCount++;
+        flaskData.teachers.forEach(t => {
+            teachersData[t.teacher] = t.classes;
         });
 
+        flaskData.students.forEach(s => {
+            classesSet.add(s.class);
+            if (s.missing_teachers && s.missing_teachers.length > 0) problemCount++;
+        });
+
+        const mappedStudents = flaskData.students.map(s => ({
+            cls: s.class,
+            student: s.student,
+            count: s.teacher_count,
+            max: s.max_teachers,
+            missingCount: s.missing_teachers ? s.missing_teachers.length : 0,
+            missingTeachers: s.missing_teachers || []
+        }));
+
         return {
-            students: students,
+            students: mappedStudents,
             teachersData: teachersData,
-            totalStudents: students.length,
-            totalTeachers: teachersSet.size,
-            totalClasses: classesSet.size,
+            totalStudents: flaskData.students.length,
+            totalTeachers: flaskData.teachers.length,
+            totalClasses: flaskData.classes.length,
             totalProblems: problemCount,
-            classesList: Array.from(classesSet).sort((a,b) => a.localeCompare(b, undefined, {numeric:true}))
+            classesList: flaskData.classes.map(c => c.class)
         };
     }
 
-    // =====================================================================
-    // 4. ОТРЕНДЕР ИНТЕРФЕЙСА РЕЗУЛЬТАТОВ (Генерация таблиц)
-    // =====================================================================
+    // 4. ОТРЕНДЕР ИНТЕРФЕЙСА ТАБЛИЦ И МОДАЛОК
     function renderInterface() {
         document.getElementById('res-total-students').innerText = globalResultData.totalStudents;
         document.getElementById('res-total-teachers').innerText = globalResultData.totalTeachers;
         document.getElementById('res-total-classes').innerText = globalResultData.totalClasses;
         document.getElementById('res-total-problems').innerText = globalResultData.totalProblems;
 
-        // 1. Ученики
         const studentsBody = document.querySelector('#skills-t-students tbody');
         studentsBody.innerHTML = globalResultData.students.map(s => `
             <tr>
@@ -189,7 +176,6 @@
             </tr>
         `).join('');
 
-        // 2. Учителя
         const teachersBody = document.querySelector('#skills-t-teachers tbody');
         teachersBody.innerHTML = Object.keys(globalResultData.teachersData).map(t => {
             const loadInfo = globalResultData.teachersData[t].map(c => `
@@ -205,12 +191,10 @@
             `;
         }).join('');
 
-        // Клики по учителям
         teachersBody.querySelectorAll('.skills-clickable-row').forEach(td => {
             td.addEventListener('click', () => openSkillsTeacherModal(td.getAttribute('data-teacher')));
         });
 
-        // 3. Классы
         const classesBody = document.querySelector('#skills-t-classes tbody');
         classesBody.innerHTML = globalResultData.classesList.map(c => {
             const countInClass = globalResultData.students.filter(s => s.cls === c).length;
@@ -223,11 +207,9 @@
             `;
         }).join('');
 
-        // Селект графиков
         const select = document.getElementById('skills-class-select');
         select.innerHTML = globalResultData.classesList.map(c => `<option value="${c}">${c}</option>`).join('');
 
-        // 4. Критические аномалии
         const problemsBody = document.querySelector('#skills-t-problems tbody');
         const problematicStudents = globalResultData.students.filter(s => s.missingCount > 0);
         if (problematicStudents.length === 0) {
@@ -238,15 +220,12 @@
                     <td><span class="skills-badge badge-red">${s.cls}</span></td>
                     <td class="fw-bold">${s.student}</td>
                     <td class="skills-text-muted">Привязок: ${s.count}/${s.max}</td>
-                    <td class="fw-bold text-error">Пропуск ${s.missingCount} подгрупп(ы)</td>
+                    <td class="fw-bold text-error">Пропущено: ${s.missingTeachers.join(', ')}</td>
                 </tr>
             `).join('');
         }
     }
 
-    // =====================================================================
-    // 5. ПОДСИСТЕМА УПРАВЛЕНИЯ ТАБАМИ, ПОИСКОМ, СОРТИРОВКОЙ И ЭКСПОРТОМ
-    // =====================================================================
     window.switchSkillsTab = (tabId, button) => {
         document.querySelectorAll('.skills-tab-section').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.skills-inner-tab').forEach(t => t.classList.remove('active'));

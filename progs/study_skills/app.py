@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from analyzer import analyze_csv
 import os
 import time
@@ -115,10 +115,12 @@ def analyze():
     try:
         file = request.files.get("csv_file")
         if not file:
-            return "ERROR: no file received.", 400
+            return jsonify({"error": "No file received"}), 400
 
+        # Твой математический анализатор из analyzer.py
         result = analyze_csv(file)
 
+        # Накручиваем счётчики
         uploads_count = increment_uploads_counter()
         visits_count = get_counter_value("visits.txt")
 
@@ -127,9 +129,11 @@ def analyze():
             "uploads": uploads_count
         }
 
-        return render_template("result.html", result=result)
+        # ВМЕСТО КУСКА HTML ВОЗВРАЩАЕМ ЧИСТЫЕ ДАННЫЕ
+        return jsonify(result)
+
     except Exception as e:
-        return "ERROR: " + str(e), 500
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":

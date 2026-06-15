@@ -1,19 +1,25 @@
 <?php
-// Профессиональный PHP-мост между браузером и локальным Flask (порт 8000)
+// Профессиональный PHP-мост между браузером и локальным Flask (порт 5000)
 $flask_url = "http://127.0.0.1:5000";
 
 $action = $_GET['action'] ?? '';
 
-// 1. Обработка запроса статистики визитов
+// 1. Обработка запроса статистики визитов через cURL
 if ($action === 'stats') {
-    // PHP сам делает внутренний запрос во Flask (этому запросу файрволы не мешают)
-    $html = @file_get_contents($flask_url . '/');
-    if ($html === false) {
+    $ch = curl_init($flask_url . '/');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+
+    $response = curl_exec($ch);
+
+    if (curl_errno($ch)) {
         http_response_code(500);
-        echo "ERROR: Flask server is offline on port 8000";
-        exit;
+        echo "ERROR: Flask server is offline on port 5000. " . curl_error($ch);
+    } else {
+        echo $response;
     }
-    echo $html;
+
+    curl_close($ch);
     exit;
 }
 
@@ -25,7 +31,6 @@ if ($action === 'analyze' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Пересылаем полученный CSV-файл во Flask через cURL
     $ch = curl_init($flask_url . '/analyze');
     $cfile = new CURLFile(
         $_FILES['csv_file']['tmp_name'],
