@@ -19,7 +19,7 @@
     // =====================================================================
     async function fetchStats() {
         try {
-            const response = await fetch('http://127.0.0.1:8000/');
+            const response = await fetch('/skills-stats');
             if (response.ok) {
                 const text = await response.text();
                 // Парсим значения счетчиков из структуры шаблона Flask
@@ -106,9 +106,9 @@
         formData.append('csv_file', file);
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/analyze', {
-                method: 'POST',
-                body: formData
+            const response = await fetch('/analyze', {
+            method: 'POST',
+            body: formData
             });
 
             if (!response.ok) throw new Error('Ошибка бэкенда');
