@@ -1,3 +1,6 @@
 **/venv/
 **/__pycache__/
 *.pyc
+# Тестовые файлы
+test-color.html
+test-material-library.php
