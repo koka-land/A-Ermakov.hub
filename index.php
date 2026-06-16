@@ -7,9 +7,11 @@
     <title>A-Ermakov · hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
 
@@ -21,7 +23,7 @@
                     <circle class="progress-indicator" cx="24" cy="24" r="20"/>
                 </svg>
             </div>
-            <span class="label-large loader-label">hub</span>
+            <span class="md-label-large loader-label">hub</span>
         </div>
     </div>
 
@@ -29,49 +31,49 @@
 
         <nav class="nav-rail" role="navigation" aria-label="Основная навигация">
             <div class="nav-rail-header">
-                <span class="nav-brand title-medium">hub</span>
+                <span class="nav-brand">hub</span>
             </div>
             <div class="nav-rail-items">
-                <a href="#" class="nav-rail-item active ripple-target" id="tab-home" data-tab="home" role="button">
+                <a href="#" class="nav-rail-item active md-ripple" id="tab-home" data-tab="home" role="button">
                     <div class="nav-rail-indicator">
                         <span class="material-symbols-rounded">home</span>
                     </div>
-                    <span class="nav-rail-label label-medium">Главная</span>
+                    <span class="nav-rail-label md-label-medium">Главная</span>
                 </a>
-                <a href="#" class="nav-rail-item ripple-target" id="tab-reports" data-tab="reports" role="button">
+                <a href="#" class="nav-rail-item md-ripple" id="tab-reports" data-tab="reports" role="button">
                     <div class="nav-rail-indicator">
                         <span class="material-symbols-rounded">design_services</span>
                     </div>
-                    <span class="nav-rail-label label-medium">Инструменты</span>
+                    <span class="nav-rail-label md-label-medium">Инструменты</span>
                 </a>
-                <a href="#" class="nav-rail-item ripple-target" id="tab-settings" data-tab="settings" role="button">
+                <a href="#" class="nav-rail-item md-ripple" id="tab-settings" data-tab="settings" role="button">
                     <div class="nav-rail-indicator">
                         <span class="material-symbols-rounded">settings</span>
                     </div>
-                    <span class="nav-rail-label label-medium">Настройки</span>
+                    <span class="nav-rail-label md-label-medium">Настройки</span>
                 </a>
             </div>
         </nav>
+
         <main class="content-area" role="main">
+
             <div id="pwa-notice">
-    <span class="material-symbols-rounded pwa-lead-icon">touch_app</span>
+                <span class="material-symbols-rounded pwa-lead-icon">touch_app</span>
+                <div class="pwa-content">
+                    <h4 class="md-title-small pwa-title" style="font-weight: 700;">Приложение готово к установке</h4>
+                    <p class="md-body-small pwa-text">
+                        Запускайте прямо с экрана «Домой» во весь экран и без лишних панелей браузера.
+                    </p>
+                    <button id="pwa-install-btn" class="md-btn md-btn-tonal md-ripple" style="height: 32px; padding: 0 16px; margin-top: 4px;">
+                        <span class="material-symbols-rounded" style="font-size: 18px;">download</span>
+                        Установить
+                    </button>
+                </div>
+                <button class="pwa-close-btn" onclick="dismissPwaNotice()" aria-label="Закрыть">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
 
-    <div class="pwa-content">
-        <h4 class="title-small pwa-title">Приложение готово к установке</h4>
-        <p class="body-small pwa-text">
-            Запускайте прямо с экрана «Домой» во весь экран и без лишних панелей браузера.
-        </p>
-
-        <button id="pwa-install-btn" class="ripple-target">
-            <span class="material-symbols-rounded">download</span>
-            Установить
-        </button>
-    </div>
-
-    <button class="pwa-close-btn" onclick="dismissPwaNotice()" aria-label="Закрыть">
-        <span class="material-symbols-rounded">close</span>
-    </button>
-</div>
             <?php include 'tabs/home.php'; ?>
             <?php include 'tabs/workspace.php'; ?>
             <?php include 'tabs/settings.php'; ?>

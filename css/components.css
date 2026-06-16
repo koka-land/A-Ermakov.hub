@@ -1,0 +1,278 @@
+/* ==========================================================================
+   1. NATIVE MATERIAL YOU COMPONENTS
+   ========================================================================== */
+
+/* Эффект Ripple слоя (M3 State) */
+.md-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.md-ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    opacity: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
+}
+
+.md-ripple:hover::after { opacity: var(--md-sys-state-hover-opacity); }
+.md-ripple:active::after { opacity: var(--md-sys-state-pressed-opacity); transition-duration: 50ms; }
+
+/* Кнопки (Buttons) */
+.md-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 24px;
+    border: none;
+    border-radius: var(--md-sys-shape-corner-full);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    outline: none;
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.md-btn-filled { background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+.md-btn-filled:hover { box-shadow: var(--md-sys-elevation-1); }
+.md-btn-tonal { background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.md-btn-outlined { background-color: transparent; color: var(--md-sys-color-primary); border: 1px solid var(--md-sys-color-outline); }
+.md-btn:disabled { opacity: 0.38; pointer-events: none; }
+
+/* Текстовые поля ввода (Text Fields) */
+.md-text-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    margin-bottom: 4px;
+}
+
+.md-text-field-filled { background-color: var(--md-sys-color-surface-container-highest); border-radius: 4px 4px 0 0; }
+.md-text-field input { width: 100%; border: none; outline: none; background: transparent; font-size: 16px; color: var(--md-sys-color-on-surface); padding: 24px 16px 8px; }
+.md-text-field label { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--md-sys-color-on-surface-variant); pointer-events: none; transition: all 0.2s var(--md-sys-motion-easing-standard); }
+.md-text-field input:focus ~ label, .md-text-field input:not(:placeholder-shown) ~ label { top: 8px; transform: none; font-size: 12px; color: var(--md-sys-color-primary); }
+.md-text-field-filled::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--md-sys-color-on-surface-variant); }
+.md-text-field-filled:focus-within::after { height: 2px; background: var(--md-sys-color-primary); }
+.md-text-field input::placeholder { color: transparent; }
+
+/* Контурный инпут (Outlined Input) */
+.md-text-field-outlined { border: 1px solid var(--md-sys-color-outline); border-radius: 8px; }
+.md-text-field-outlined input { padding: 16px; }
+.md-text-field-outlined label { background: var(--md-sys-color-surface); padding: 0 4px; }
+.md-text-field-outlined input:focus ~ label, .md-text-field-outlined input:not(:placeholder-shown) ~ label { top: 0; font-size: 12px; }
+.md-text-field-outlined:focus-within { border: 2px solid var(--md-sys-color-primary); }
+
+/* Чипы (Chips) */
+.md-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid var(--md-sys-color-outline);
+    background: transparent;
+    cursor: pointer;
+    color: var(--md-sys-color-on-surface);
+}
+
+.md-chip-filter.active, .md-chip-selected { background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-color: transparent; }
+
+/* Переключатель (Switch) */
+.md-switch { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+.md-switch input { display: none; }
+.md-switch-track { position: relative; width: 52px; height: 32px; border-radius: 16px; border: 2px solid var(--md-sys-color-outline); background: var(--md-sys-color-surface-container-highest); transition: all 0.2s; }
+.md-switch-thumb { position: absolute; top: 50%; left: 4px; transform: translateY(-50%); width: 16px; height: 16px; border-radius: 50%; background: var(--md-sys-color-outline); transition: all 0.2s; }
+.md-switch input:checked ~ .md-switch-track { background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); }
+.md-switch input:checked ~ .md-switch-track .md-switch-thumb { left: 24px; background: var(--md-sys-color-on-primary); width: 24px; height: 24px; }
+
+/* Системные вкладки (M3 Tabs) */
+.md-tabs { display: flex; align-items: flex-end; position: relative; border-bottom: 1px solid var(--md-sys-color-surface-container-highest); width: 100%; }
+.md-tab { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 24px; border: none; background: transparent; color: var(--md-sys-color-on-surface-variant); font-size: 14px; font-weight: 500; cursor: pointer; position: relative; overflow: hidden; }
+.md-tab-indicator { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; background-color: var(--md-sys-color-primary); transform: scaleX(0); transition: transform 0.2s var(--md-sys-motion-easing-standard); }
+.md-tab.md-tab-active { color: var(--md-sys-color-primary); font-weight: 700; }
+.md-tab.md-tab-active .md-tab-indicator { transform: scaleX(1); }
+
+/* Карточки (Cards) */
+.md-card { border-radius: 12px; overflow: hidden; }
+.md-card-filled { background-color: var(--md-sys-color-surface-container-highest); }
+.md-card-outlined { background-color: transparent; border: 1px solid var(--md-sys-color-outline-variant); }
+.md-card-interactive { cursor: pointer; }
+
+/* Системные списки (M3 Lists) */
+.md-list { list-style: none; padding: 8px 0; }
+.md-list-item { display: flex; align-items: center; min-height: 56px; padding: 0 16px; gap: 16px; color: var(--md-sys-color-on-surface); position: relative; }
+.md-list-item-clickable { cursor: pointer; }
+.md-list-item-leading { display: flex; align-items: center; color: var(--md-sys-color-on-surface-variant); }
+.md-list-item-content { flex: 1; min-width: 0; }
+.md-list-item-headline { font-size: 16px; font-weight: 500; }
+.md-list-item-supporting { font-size: 14px; color: var(--md-sys-color-on-surface-variant); }
+.md-list-item-trailing { display: flex; align-items: center; color: var(--md-sys-color-on-surface-variant); }
+
+.list-content { display: flex; flex-direction: column; flex-grow: 1; min-width: 0; }
+.list-leading-icon { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+/* Бесконечные лоадеры (Progress Indicators) */
+.md-progress-linear { width: 100%; height: 4px; background: var(--md-sys-color-surface-container-highest); position: relative; overflow: hidden; }
+.md-progress-linear-track { height: 100%; background: var(--md-sys-color-primary); width: 50%; animation: md-linear-indet 1.5s infinite linear; }
+@keyframes md-linear-indet { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+
+.md-progress-circular { width: 48px; height: 48px; animation: cp-rotate 1.4s linear infinite; }
+.md-progress-circular svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.md-progress-circular-track { fill: none; stroke: var(--md-sys-color-surface-container-highest); stroke-width: 4; }
+.md-progress-circular-indicator { fill: none; stroke: var(--md-sys-color-primary); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1, 200; stroke-dashoffset: 0; animation: cp-dash 1.4s ease-in-out infinite; }
+@keyframes cp-rotate { 100% { transform: rotate(360deg); } }
+@keyframes cp-dash { 0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; } 50% { stroke-dasharray: 89, 200; stroke-dashoffset: -35px; } 100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124px; } }
+
+/* Разделители */
+.md-divider { width: 100%; height: 1px; background-color: var(--md-sys-color-outline-variant); border: none; }
+
+/* Контейнеры форм общего назначения */
+.program-form-container { padding: 0; display: flex; flex-direction: column; gap: 20px; }
+.program-input { width: 100%; padding: 12px 16px; border: 1px solid var(--md-sys-color-outline); border-radius: 8px; background: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface); font-size: 16px; transition: border-color 0.2s ease; }
+.program-input:focus { outline: none; border-color: var(--md-sys-color-primary); }
+
+/* Модальное универсальное окно хаба */
+.md-modal-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 1000; align-items: center; justify-content: center; }
+.md-modal-container { background: var(--md-sys-color-surface-container-high); width: 90%; max-width: 650px; max-height: 65vh; border-radius: 28px; padding: 0; box-shadow: var(--md-sys-elevation-3); display: flex; flex-direction: column; gap: 16px; }
+.md-modal-header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; padding: 16px; }
+.md-modal-header h2 { color: var(--md-sys-color-on-surface); }
+.modal-close-btn { background: none; border: none; cursor: pointer; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; }
+#universal-modal-content { flex-grow: 1; overflow-y: auto !important; min-height: 0; padding-right: 8px; }
+
+/* Мобильный баннер PWA */
+#pwa-notice {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    z-index: 2000;
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: var(--md-sys-elevation-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(150%);
+    transition: transform 0.5s var(--md-sys-motion-easing-standard), opacity 0.5s ease;
+    pointer-events: none;
+}
+#pwa-notice.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+/* Кнопки-иконки */
+.icon-button {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--md-sys-shape-corner-full, 50%);
+    border: none;
+    background: transparent !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--md-sys-color-on-surface-variant);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
+}
+.icon-button::before { content: ''; position: absolute; inset: 0; background: var(--md-sys-color-on-surface); opacity: 0; border-radius: inherit; transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard); }
+.icon-button:hover::before { opacity: var(--md-sys-state-hover-opacity, 0.08); }
+.icon-button:hover { color: var(--md-sys-color-on-surface); }
+.icon-button.nopointer { cursor: default; pointer-events: none; }
+
+/* ==========================================================================
+   2. MODULE: STUDY SKILLS
+   ========================================================================== */
+.skills-wizard-container { width: 100%; display: flex; flex-direction: column; gap: 24px; padding: 8px 24px 24px 24px; }
+.skills-stepper, .skills-drop-zone, .skills-actions-bar, .skills-loader-wrapper { width: 100%; max-width: 560px; margin-left: auto; margin-right: auto; }
+.skills-stepper { display: flex; align-items: flex-start; justify-content: space-between; padding: 8px 0 16px; }
+
+.step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; }
+.step-circle { width: 40px; height: 40px; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-highest); border: 2px solid var(--md-sys-color-outline-variant); display: flex; align-items: center; justify-content: center; margin-bottom: 8px; z-index: 2; transition: all 0.3s var(--md-sys-motion-easing-standard); }
+.step-number { color: var(--md-sys-color-on-surface-variant); }
+.step-icon { display: none; color: var(--md-sys-color-on-primary-container); }
+.step-line { height: 2px; background: var(--md-sys-color-outline-variant); flex: 1; margin-top: 20px; margin-left: -4px; margin-right: -4px; z-index: 1; transition: background-color 0.3s ease; }
+.step-label-group { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.step-title { color: var(--md-sys-color-on-surface-variant); font-weight: 500; white-space: nowrap; }
+
+.step-node.active .step-circle { background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); }
+.step-node.active .step-number { color: var(--md-sys-color-on-primary); }
+.step-node.active .step-title { color: var(--md-sys-color-on-surface); font-weight: 700; }
+.step-node.completed .step-circle { background: var(--md-sys-color-primary-container); border-color: var(--md-sys-color-primary); }
+.step-node.completed .step-number { display: none; }
+.step-node.completed .step-icon { display: inline-block; }
+.step-node.completed .step-title { color: var(--md-sys-color-on-surface); }
+.step-line.completed { background: var(--md-sys-color-primary); }
+
+.skills-step-view, .skills-tab-pane, .workspace-tab-pane { display: none; }
+.skills-step-view.active, .skills-tab-pane.active, .workspace-tab-pane.active { display: block; animation: stepEnter var(--md-sys-motion-duration-medium4) var(--md-sys-motion-easing-standard) forwards; }
+.submenu-level { display: block; width: 100%; }
+.submenu-level.submenu-hidden { display: none !important; }
+
+.skills-drop-zone { border: 2px dashed var(--md-sys-color-outline); border-radius: var(--md-sys-shape-corner-large); padding: 48px 24px; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: border-color 0.2s, background-color 0.2s; }
+.skills-drop-zone:hover, .skills-drop-zone.highlight { border-color: var(--md-sys-color-primary); background: var(--md-sys-color-surface-container-low); }
+.skills-selected-file { margin-top: 12px; font-weight: 700; color: var(--md-sys-color-primary); }
+.skills-actions-bar { display: flex; justify-content: flex-end; margin-top: 20px; }
+.skills-loader-wrapper { padding: 60px 0; }
+
+.skills-dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.skills-metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 28px; }
+.metric-card { padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.metric-num { font-size: 36px; font-weight: 700; color: var(--md-sys-color-on-surface); line-height: 1; }
+
+.card-anomaly { border: 1px solid var(--md-sys-color-outline-variant); }
+.card-anomaly.has-problems { background-color: var(--md-sys-color-error-container); border-color: var(--md-sys-color-error); }
+.card-anomaly.has-problems .metric-num { color: var(--md-sys-color-error); }
+.card-anomaly.has-problems .status-label { color: var(--md-sys-color-on-error-container); font-weight: 700; }
+
+.skills-table-container { width: 100%; overflow-x: auto; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium); }
+table { width: 100%; border-collapse: collapse; }
+th { padding: 14px 16px; color: var(--md-sys-color-on-surface); text-align: left; border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+td { padding: 14px 16px; color: var(--md-sys-color-on-surface); border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+tr:last-child td { border-bottom: none; }
+.skills-row-error { background: var(--md-sys-color-surface-container-low); }
+.skills-text-danger { color: var(--md-sys-color-error); font-weight: 500; }
+
+@keyframes stepEnter {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   3. COMPONENT ADAPTIVE OVERRIDES
+   ========================================================================== */
+@media (max-width: 959px) {
+    .md-modal-container {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0px;
+        padding: 0;
+    }
+    #pwa-notice {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 16px 16px 0 0;
+        box-shadow: var(--md-sys-elevation-3);
+    }
+}
+
+@media (max-width: 599px) {
+    .skills-stepper {
+        padding: 4px 0;
+    }
+}

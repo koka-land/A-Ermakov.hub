@@ -16,7 +16,7 @@ function renderPageHeader($title, $backFunction = null) {
                   </button>";
     }
 
-    $html .= "<h1 class=\"headline-small\">{$title}</h1></header>";
+    $html .= "<h1 class=\"md-headline-small\">{$title}</h1></header>";
     return $html;
 }
 
@@ -24,34 +24,35 @@ function renderPageHeader($title, $backFunction = null) {
  * 2. Шаблон элемента списка (Категории)
  */
 function renderListItem($icon, $title, $subtitle, $onClick = '', $isDisabled = false) {
-    $itemClass = $isDisabled ? 'md-list-item--disabled' : 'ripple-target';
-    $containerClass = $isDisabled ? 'tonal-container--muted' : '';
+    // Используем наш новый утилитарный класс opacity-disabled
+    $itemClass = $isDisabled ? 'opacity-disabled' : 'md-list-item-clickable md-ripple';
     $clickAttr = $onClick ? "onclick=\"{$onClick}\"" : '';
 
     return "
     <div class=\"md-list-item {$itemClass}\" {$clickAttr}>
-        <div class=\"list-leading-icon tonal-container {$containerClass}\">
-            <span class=\"material-symbols-rounded\">{$icon}</span>
+        <div class=\"md-list-item-leading\">
+            <span class=\"material-symbols-rounded md-icon-filled md-text-primary\">{$icon}</span>
         </div>
-        <div class=\"list-content\">
-            <span class=\"title-medium\">{$title}</span>
-            <span class=\"body-small secondary-text\">{$subtitle}</span>
+        <div class=\"md-list-item-content list-content\">
+            <span class=\"md-title-medium\">{$title}</span>
+            <span class=\"md-body-small md-text-on-surface-variant\">{$subtitle}</span>
         </div>
-        <span class=\"material-symbols-rounded list-trailing\">chevron_right</span>
+        <span class=\"material-symbols-rounded md-list-item-trailing\">chevron_right</span>
     </div>";
 }
 
 /**
- * 3. Шаблон плитки
+ * 3. Шаблон плитки (Карточки)
  */
 function renderTile($icon, $label, $isActive = false, $onClick = '') {
-    $statusClass = $isActive ? 'active-tile ripple-target' : 'disabled-tile';
+    // Приводим к стандарту наших новых карточек из workspace.php
+    $statusClass = $isActive ? 'md-card-interactive md-ripple' : 'opacity-disabled';
     $clickAttr = $onClick ? "onclick=\"{$onClick}\"" : '';
 
     return "
-    <div class=\"md-tile {$statusClass}\" {$clickAttr}>
-        <span class=\"material-symbols-rounded tile-icon\">{$icon}</span>
-        <span class=\"label-small tile-label\">{$label}</span>
+    <div class=\"md-card md-card-filled card-content-center {$statusClass}\" {$clickAttr}>
+        <span class=\"material-symbols-rounded md-icon-filled md-text-primary md-icon-large\">{$icon}</span>
+        <span class=\"md-label-medium\">{$label}</span>
     </div>";
 }
 
