@@ -1,0 +1,92 @@
+/* ==========================================================================
+   1. СТИЛИ И НАСТРОЙКА ОДНОКРАТНОЙ АНИМАЦИИ (замена infinite на forwards)
+   ========================================================================== */
+
+svg {
+  background: var(--md-sys-color-background) !important;
+}
+
+
+.grid-line {
+  stroke: var(--md-sys-color-inverse-primary);
+  stroke-width: 2;
+  /* Анимация проиграется 1 раз и замрет в финальной точке (forwards) */
+  animation: drawGrid 9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.grid-h { stroke-dasharray: 3142; stroke-dashoffset: 3142; }
+.grid-v { stroke-dasharray: 1344; stroke-dashoffset: 1344; }
+
+@keyframes drawGrid {
+  0% { opacity: 1; }
+  22%, 55% { stroke-dashoffset: 0; opacity: 1; }
+  /* Сетка и оси полностью исчезают и остаются скрытыми */
+  66%, 100% { opacity: 0; stroke-dashoffset: 0; }
+}
+
+.axis {
+  stroke-linecap: round;
+  animation: drawAxis 9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.axis-main { stroke: var(--md-sys-color-secondary-container); stroke-width: 8; }
+.axis-mid { stroke: var(--md-sys-color-on-secondary-container); stroke-width: 5; opacity: 0.5; }
+.ax-horiz { stroke-dasharray: 3142; stroke-dashoffset: 3142; }
+.ax-vert { stroke-dasharray: 1344; stroke-dashoffset: 1344; }
+.ax-main-h { stroke-dasharray: 2942; stroke-dashoffset: 2942; }
+.ax-main-v { stroke-dasharray: 1244; stroke-dashoffset: 1244; }
+
+@keyframes drawAxis {
+  0%, 22% { }
+  38%, 55% { stroke-dashoffset: 0; opacity: 1; }
+  66%, 100% { opacity: 0; stroke-dashoffset: 0; }
+}
+
+/* ==========================================================================
+   2. ИНДИВИДУАЛЬНЫЕ НАСТРОЙКИ ДЛЯ БУКВ
+   ========================================================================== */
+.char-h, .char-u, .char-b, .char-b2 {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 45000;
+  stroke-dashoffset: 45000;
+
+  /* Задаем цвет, но прячем его через прозрачность, сохраняя вырезы (evenodd) */
+  fill: var(--md-sys-color-primary);
+  fill-opacity: 0;
+  fill-rule: evenodd;
+}
+
+/* Обычные буквы (рисуются и заливаются 1 раз) */
+.char-h, .char-b, .char-b2 {
+  stroke: var(--md-sys-color-tertiary);
+  animation: draw-and-fill 9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* БУКВА U: Рисуется со всеми, а на 9-й секунде включает пульсацию контура */
+.char-u {
+  stroke: var(--md-sys-color-tertiary);
+  animation:
+    draw-and-fill 9s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    u-pulse-stroke 4s ease-in-out 9s infinite alternate; /* Строго на 9-й секунде */
+}
+
+/* ==========================================================================
+   3. КЛЮЧЕВЫЕ КАДРЫ (Исправленные)
+   ========================================================================== */
+
+/* ОБЩИЙ ТАЙМЛАЙН: Рисует контур и проявляет заливку через opacity */
+@keyframes draw-and-fill {
+  0%, 38% { stroke-dashoffset: 45000; stroke-width: 30; fill-opacity: 0; }
+  55%, 66% { stroke-dashoffset: 0; stroke-width: 30; fill-opacity: 0; } /* Опечатка исправлена! */
+
+  /* Финал: контур исчезает, заливка плавно проявляется на 100% */
+  83%, 100% { stroke-dashoffset: 50; stroke-width: 30; fill-opacity: 1; }
+}
+
+/* ПУЛЬСАЦИЯ ТОЛЬКО ДЛЯ U (Меняет только контур, заливку вообще не трогает) */
+@keyframes u-pulse-stroke {
+  0%, 25% {stroke-width: 30; stroke: var(--md-sys-color-primary);}
+  25%, 50% {stroke-width: 300; stroke: var(--md-sys-color-tertiary);}
+  50%, 75% {stroke-width: 300; stroke: var(--md-sys-color-tertiary);}
+  75%, 100% {stroke-width: 30; stroke: var(--md-sys-color-primary);}
+  }
+}
