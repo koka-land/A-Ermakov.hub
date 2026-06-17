@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 $prog = $_GET['prog'] ?? '';
 
-// Защита: разрешаем только безопасные символы в имени папки (без точек и слэшей)
+// Защита: разрешаем только безопасные символы
 if (!preg_match('/^[a-zA-Z0-9_-]+$/', $prog)) {
     echo "<p class='md-body-medium md-text-error'>Неверное имя программы.</p>";
     exit;

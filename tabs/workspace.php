@@ -8,31 +8,31 @@
             <h1 class="md-headline-small">Инструменты</h1>
         </header>
         <div class="content-scroll">
-            <div class="md-list">
+            <div class="md-list" style="display: flex; flex-direction: column; gap: 8px;">
 
-                <div class="md-list-item md-list-item-clickable md-ripple" onclick="openSubmenu('sub-reports')">
-                    <div class="md-list-item-leading">
-                        <span class="material-symbols-rounded md-icon-filled md-text-primary">donut_large</span>
-                    </div>
-                    <div class="md-list-item-content">
-                        <span class="md-title-medium">Отчёты</span>
-                        <span class="md-body-small md-text-on-surface-variant">Анализ журналов, статистика и учебные умения</span>
-                    </div>
-                    <span class="material-symbols-rounded md-list-item-trailing">chevron_right</span>
-                </div>
+    <div class="md-list-item md-card-outlined md-list-item-clickable md-ripple" onclick="openSubmenu('sub-reports')">
+        <div class="md-list-item-leading tonal-container" style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: var(--md-sys-color-secondary-container);">
+            <span class="material-symbols-rounded md-icon-filled md-text-primary">donut_large</span>
+        </div>
+        <div class="md-list-item-content list-content">
+            <span class="md-title-medium">Отчёты</span>
+            <span class="md-body-small secondary-text">Анализ журналов, статистика и учебные умения</span>
+        </div>
+        <span class="material-symbols-rounded md-list-item-trailing">chevron_right</span>
+    </div>
 
-                <div class="md-list-item opacity-disabled">
-                    <div class="md-list-item-leading">
-                        <span class="material-symbols-rounded md-text-on-surface-variant">folder_open</span>
-                    </div>
-                    <div class="md-list-item-content">
-                        <span class="md-title-medium">Что-то ещё</span>
-                        <span class="md-body-small md-text-on-surface-variant">Дополнительные метрики и внешние выгрузки</span>
-                    </div>
-                    <span class="material-symbols-rounded md-list-item-trailing">chevron_right</span>
-                </div>
+    <div class="md-list-item md-card-outlined opacity-disabled" onclick="">
+        <div class="md-list-item-leading tonal-container--muted" style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: var(--md-sys-color-surface-container-highest);">
+            <span class="material-symbols-rounded md-text-on-surface-variant">folder_open</span>
+        </div>
+        <div class="md-list-item-content list-content">
+            <span class="md-title-medium">Что-то ещё</span>
+            <span class="md-body-small secondary-text">Дополнительные метрики и внешние выгрузки</span>
+        </div>
+        <span class="material-symbols-rounded md-list-item-trailing">chevron_right</span>
+    </div>
 
-            </div>
+</div>
         </div>
     </div>
 
@@ -52,17 +52,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div id="universal-modal" class="md-modal-backdrop">
-    <div class="md-modal-container">
-        <div class="md-modal-header">
-            <h2 id="universal-modal-title" class="md-headline-small">Заголовок</h2>
-            <button class="icon-button modal-close-btn" onclick="closeUniversalModal()" aria-label="Закрыть">
-                <span class="material-symbols-rounded">close</span>
-            </button>
-        </div>
-        <div id="universal-modal-content" class="content-scroll"></div>
     </div>
 </div>

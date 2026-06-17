@@ -16,16 +16,16 @@
 <body>
 
     <div id="app-loader" class="app-loader">
-        <div class="loader-content">
-            <div class="md-circular-progress">
-                <svg viewBox="0 0 48 48" class="progress-svg">
-                    <circle class="progress-track" cx="24" cy="24" r="20"/>
-                    <circle class="progress-indicator" cx="24" cy="24" r="20"/>
-                </svg>
-            </div>
-            <span class="md-label-large loader-label">hub</span>
+    <div class="loader-content">
+        <div class="md-progress-circular">
+            <svg viewBox="0 0 48 48" class="progress-svg">
+                <circle class="md-progress-circular-track" cx="24" cy="24" r="20"/>
+                <circle class="md-progress-circular-indicator" cx="24" cy="24" r="20"/>
+            </svg>
         </div>
+        <span class="md-label-large loader-label">hub</span>
     </div>
+</div>
 
     <div class="app-surface" id="app">
 
@@ -58,28 +58,40 @@
         <main class="content-area" role="main">
 
             <div id="pwa-notice">
-                <span class="material-symbols-rounded pwa-lead-icon">touch_app</span>
-                <div class="pwa-content">
-                    <h4 class="md-title-small pwa-title" style="font-weight: 700;">Приложение готово к установке</h4>
-                    <p class="md-body-small pwa-text">
-                        Запускайте прямо с экрана «Домой» во весь экран и без лишних панелей браузера.
-                    </p>
-                    <button id="pwa-install-btn" class="md-btn md-btn-tonal md-ripple" style="height: 32px; padding: 0 16px; margin-top: 4px;">
-                        <span class="material-symbols-rounded" style="font-size: 18px;">download</span>
-                        Установить
-                    </button>
-                </div>
-                <button class="pwa-close-btn" onclick="dismissPwaNotice()" aria-label="Закрыть">
-                    <span class="material-symbols-rounded">close</span>
-                </button>
-            </div>
+    <span class="material-symbols-rounded pwa-lead-icon">touch_app</span>
+    <div class="pwa-content">
+        <h4 class="md-title-small pwa-title">Приложение готово к установке</h4>
+        <p class="md-body-small pwa-text">
+            Запускайте прямо с экрана «Домой» во весь экран и без лишних панелей браузера.
+        </p>
+        <button id="pwa-install-btn" class="md-btn md-btn-tonal md-ripple pwa-btn">
+            <span class="material-symbols-rounded md-icon-small">download</span>
+            Установить
+        </button>
+    </div>
+    <button class="icon-button pwa-close-btn" onclick="dismissPwaNotice()" aria-label="Закрыть">
+        <span class="material-symbols-rounded">close</span>
+    </button>
+</div>
 
             <?php include 'tabs/home.php'; ?>
             <?php include 'tabs/workspace.php'; ?>
             <?php include 'tabs/settings.php'; ?>
-        </main>
-    </div>
+        <div id="universal-modal" class="md-modal-backdrop">
+            <div class="md-modal-container">
+                <div class="md-modal-header">
+                    <h2 id="universal-modal-title" class="md-headline-small">Заголовок</h2>
+                    <button class="icon-button modal-close-btn" onclick="closeUniversalModal()" aria-label="Закрыть">
+                        <span class="material-symbols-rounded">close</span>
+                    </button>
+                </div>
+                <div id="universal-modal-content" class="content-scroll"></div>
+            </div>
+        </div>
 
-    <script src="script.js"></script>
+    </main>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
