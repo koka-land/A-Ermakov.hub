@@ -29,8 +29,11 @@
     transform: translateY(0);
     pointer-events: auto;
 }
-.logo-container {width: 70%; margin: auto; padding: 0 24px 24px; margin-bottom: 24px;}
-@media (min-width: 960px) { #pwa-notice { display: none !important; } }
+.logo-container {width: 90%; margin: auto;}
+
+@media (min-width: 960px) {
+    #pwa-notice { display: none !important; }
+}
 @media (max-width: 599px) {
     #pwa-notice { bottom: 0; right: 0; width: 100%; border-radius: 24px 24px 0 0; }
 }
